@@ -1,5 +1,5 @@
 # game_engines-unity
-A Roguelike Game in Unity for the Game Engine Course at HTW Berlin
+A Roguelike 2D Top-Down Game in Unity for the Game Engine Course at HTW Berlin
 
 
 # dev stuff
