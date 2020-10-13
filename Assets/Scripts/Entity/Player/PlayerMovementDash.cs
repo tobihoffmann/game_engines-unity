@@ -32,17 +32,14 @@ namespace Entity.Player
         
         void Update()
         {
+            Vector2 mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
+            Vector2 dashDirection = new Ray2D(playerPosition,mousePosition - playerPosition).direction;
             
-
             if (dash.triggered)
             {
-                Vector2 mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                Vector2 dashDirection = new Ray(transform.position,mousePosition).direction;
                 _controller.Move(dashDirection * (Time.deltaTime * dashDistance));
             }
-            
-            Debug.DrawRay(transform.position,mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Color.red);
-            
         }
     }
 }
