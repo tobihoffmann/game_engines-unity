@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 namespace Entity.Player
 {
@@ -14,7 +16,12 @@ namespace Entity.Player
         [SerializeField][Tooltip("Main Camera Object")]
         private Camera mainCam;
     
-        private CharacterController _controller;
+        private Rigidbody2D _player;
+
+        private Vector2 _mousePosition;
+        private Vector2 _playerPosition;
+        private Vector2 _dashDirection;
+        private bool _isDashTriggered;
         
         private void OnEnable()
         {
@@ -27,18 +34,24 @@ namespace Entity.Player
 
         void Start()
         {
-            _controller = GetComponent<CharacterController>();
+            _player = GetComponent<Rigidbody2D>();
         }
         
         void Update()
         {
-            Vector2 mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
-            Vector2 dashDirection = new Ray2D(playerPosition,mousePosition - playerPosition).direction;
-            
-            if (dash.triggered)
+            _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            _playerPosition = new Vector2(transform.position.x, transform.position.y);
+            _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
+
+            if (dash.triggered) _isDashTriggered = true;
+        }
+
+        private void FixedUpdate()
+        {
+            if (_isDashTriggered)
             {
-                _controller.Move(dashDirection * (Time.deltaTime * dashDistance));
+                _player.MovePosition(_playerPosition + _dashDirection * (Time.deltaTime * dashDistance));
+                _isDashTriggered = false;
             }
         }
     }
