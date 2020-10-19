@@ -15,7 +15,10 @@ namespace Entity.Player
 
         [SerializeField][Tooltip("Main Camera Object")]
         private Camera mainCam;
-    
+
+        [SerializeField] [Tooltip("All Layers with Objects to collide with on dash")]
+        private LayerMask dashLayerMask;
+        
         private Rigidbody2D _player;
 
         private Vector2 _mousePosition;
@@ -50,7 +53,14 @@ namespace Entity.Player
         {
             if (_isDashTriggered)
             {
-                _player.MovePosition(_playerPosition + _dashDirection * (Time.deltaTime * dashDistance));
+                Vector3 dashPosition = _playerPosition + _dashDirection * (Time.deltaTime * dashDistance);
+
+                RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(_playerPosition, _dashDirection, (Time.deltaTime * dashDistance), dashLayerMask);
+                if (rcHitToDashPosition.collider != null)
+                {
+                    dashPosition = rcHitToDashPosition.point;
+                }
+                _player.MovePosition(dashPosition);
                 _isDashTriggered = false;
             }
         }
