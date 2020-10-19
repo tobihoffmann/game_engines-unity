@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Entity.Player
@@ -11,9 +12,9 @@ namespace Entity.Player
         [SerializeField][Tooltip("Input actions for walking")]
         private InputAction walking;
 
-        private Vector2 _inputVector;
+        private Vector2 _walkingDirection;
 
-        private CharacterController _controller;
+        private Rigidbody2D _player;
 
         private void OnEnable()
         {
@@ -26,13 +27,17 @@ namespace Entity.Player
 
         void Start()
         {
-            _controller = GetComponent<CharacterController>();
+            _player = GetComponent<Rigidbody2D>();
         }
-        
-        void Update()
+
+        private void Update()
         {
-            _inputVector = walking.ReadValue<Vector2>();
-            _controller.Move(_inputVector * (Time.deltaTime * movementSpeed));
+            _walkingDirection = walking.ReadValue<Vector2>();
+        }
+
+        void FixedUpdate()
+        {
+            _player.MovePosition(_player.position + _walkingDirection * (Time.deltaTime * movementSpeed));
         }
     }
 }
