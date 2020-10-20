@@ -39,5 +39,7 @@ namespace Entity.Player
         {
             _player.MovePosition(_player.position + _walkingDirection * (Time.deltaTime * movementSpeed));
         }
+        
+        // sdlkjgdaölfgnhsdfög
     }
 }
