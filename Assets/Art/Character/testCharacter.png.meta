@@ -1,7 +1,88 @@
 fileFormatVersion: 2
 guid: d524889a7042548409af3d6825093864
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7094474727115146075
+    second: player_down_01
+  - first:
+      213: 43008175567316330
+    second: testCharacter_1
+  - first:
+      213: 5376932403583811478
+    second: player_left_01
+  - first:
+      213: 2652419567262056810
+    second: player_up_01
+  - first:
+      213: 6481095574797492441
+    second: player_right_01
+  - first:
+      213: 5769589670173916212
+    second: testCharacter_5
+  - first:
+      213: -314148101677844731
+    second: testCharacter_6
+  - first:
+      213: 1263000048984578331
+    second: testCharacter_7
+  - first:
+      213: -2602960720134943945
+    second: testCharacter_8
+  - first:
+      213: 7483529808338837819
+    second: player_up_02
+  - first:
+      213: -1491719239176883627
+    second: testCharacter_10
+  - first:
+      213: -2756366193217386038
+    second: player_down_02
+  - first:
+      213: 7716510211367923761
+    second: player_left_02
+  - first:
+      213: -4292507626808676441
+    second: player_right_02
+  - first:
+      213: 4943696385563738730
+    second: testCharacter_14
+  - first:
+      213: 2236871168612799845
+    second: testCharacter_15
+  - first:
+      213: 7423653115210846165
+    second: player_down_attck
+  - first:
+      213: 3473601137283046813
+    second: testCharacter_17
+  - first:
+      213: -1937639824388293728
+    second: testCharacter_18
+  - first:
+      213: 2711905926814824050
+    second: testCharacter_19
+  - first:
+      213: 4269076940970100805
+    second: player_up_attck
+  - first:
+      213: 4528809673615388294
+    second: testCharacter_21
+  - first:
+      213: -8334354063561529286
+    second: testCharacter_22
+  - first:
+      213: -1939563959366365129
+    second: testCharacter_23
+  - first:
+      213: -8216259767431117402
+    second: player_left_attck
+  - first:
+      213: 7935546919291793310
+    second: player_right_attck
+  - first:
+      213: -2566750513594698006
+    second: testCharacter_26
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +121,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -85,7 +166,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: player_down_01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 862
+        width: 237
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5acb056e2dc5b8d90800000000000000
+      internalID: -7094474727115146075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_left_01
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 862
+        width: 207
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f76e86883be9a40800000000000000
+      internalID: 5376932403583811478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_up_01
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 862
+        width: 227
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6143f51b894fc420800000000000000
+      internalID: 2652419567262056810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_right_01
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 862
+        width: 197
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d02923461a71f950800000000000000
+      internalID: 6481095574797492441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_up_02
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 448
+        width: 217
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31651416b6dad760800000000000000
+      internalID: 7483529808338837819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_down_02
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 448
+        width: 227
+        height: 331
+      alignment: 9
+      pivot: {x: 0.42800346, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9c1661d8b6fb9d0800000000000000
+      internalID: -2756366193217386038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_left_02
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 448
+        width: 217
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1307246472d861b60800000000000000
+      internalID: 7716510211367923761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_right_02
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 448
+        width: 227
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7afe96c5e03fd64c0800000000000000
+      internalID: -4292507626808676441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_down_attck
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 4
+        width: 299
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df4dd31d2d160760800000000000000
+      internalID: 7423653115210846165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_up_attck
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 4
+        width: 290
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5488559fbdece3b30800000000000000
+      internalID: 4269076940970100805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_left_attck
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 5
+        width: 445
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a54febe54bf9fd80800000000000000
+      internalID: -8216259767431117402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_right_attck
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 4
+        width: 444
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9f25d6f0e9b02e60800000000000000
+      internalID: 7935546919291793310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
