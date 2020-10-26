@@ -6,7 +6,8 @@ namespace Managers
 {
     public class PlayerManager : Singleton<PlayerManager>
     {
-        [SerializeField] private GameObject player;
+        [SerializeField]
+        private GameObject player;
         
         private PlayerState _playerState;
 
@@ -18,9 +19,5 @@ namespace Managers
 
         public GameObject GetPlayer() => player;
         public PlayerState GetPlayerState() => _playerState;
-
-        public bool PlayerInReach(GameObject otherObject, float maxRange) =>
-            Vector3.Distance(player.transform.position, otherObject.transform.position) <=
-            maxRange;
     }
 }
