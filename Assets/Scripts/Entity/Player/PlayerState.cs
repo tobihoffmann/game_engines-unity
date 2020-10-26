@@ -14,14 +14,28 @@ namespace Entity.Player
         /// </summary>
         [SerializeField] [Tooltip("maximum hit points of the player")]
         private int maxHitPoints;
+
+        /// <summary>
+        /// The amount of unlocked power-up slots
+        /// </summary>
+        [SerializeField] [Tooltip("Amount of unlocked power-up slots")]
+        private int powerUpSlots;
+        
+        /// <summary>
+        /// The amount of maximum power-up slots a player can have. (Balancing)
+        /// </summary>
+        [SerializeField] [Tooltip("maximum power-up slots a player can have")]
+        private int maxPowerUpSlots;
         
         public static event PlayerStateChanged OnPlayerHitPointsUpdate;
         
+        public static event PlayerStateChanged OnPlayerPowerUpsUpdate;
+
         public static event PlayerIsDead OnPlayerDeath;
         
         
         /// <summary>
-        /// changes the entities current hit points
+        /// changes current hit points of the player
         /// </summary>
         public void ChangePlayerHitPoints(int changeBy)
         {
@@ -29,13 +43,26 @@ namespace Entity.Player
             if (updatedValue > maxHitPoints) updatedValue = maxHitPoints;
             updatedValue = Mathf.Clamp(updatedValue, 0, maxHitPoints);
             hitPoints = updatedValue;
-            //throws an event with the new health value as a parameter
+            //throws event with the new health value as a parameter
             OnPlayerHitPointsUpdate?.Invoke(hitPoints);
             if (hitPoints <= 0) 
                 Die();
         }
 
-        public override void Hit(int damage)
+        /// <summary>
+        /// Unlocks a new power-up slot
+        /// </summary>
+        public void UnlockPowerUpSlot()
+        {
+            int updatedValue = powerUpSlots + 1;
+            if (updatedValue > maxPowerUpSlots) updatedValue = maxPowerUpSlots;
+            updatedValue = Mathf.Clamp(updatedValue, 0, maxPowerUpSlots);
+            powerUpSlots = updatedValue;
+            //throws event with the new amount of unlocked power-up slots as a parameter
+            OnPlayerPowerUpsUpdate?.Invoke(powerUpSlots);
+        }
+
+            public override void Hit(int damage)
         {
             ChangePlayerHitPoints(-damage);
         }
