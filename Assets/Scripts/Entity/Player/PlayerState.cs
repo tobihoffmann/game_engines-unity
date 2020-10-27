@@ -62,7 +62,7 @@ namespace Entity.Player
             OnPlayerPowerUpsUpdate?.Invoke(powerUpSlots);
         }
 
-            public override void Hit(int damage)
+        public override void Hit(int damage)
         {
             ChangePlayerHitPoints(-damage);
         }
