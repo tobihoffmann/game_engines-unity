@@ -3810,7 +3810,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1303302139}
   - component: {fileID: 1303302138}
-  - component: {fileID: 1303302137}
   - component: {fileID: 1303302142}
   - component: {fileID: 1303302141}
   - component: {fileID: 1303302140}
@@ -3822,19 +3821,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1303302137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303302136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1393b2ec52110448aa0a7bf25018289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingPos: {x: 0, y: 0, z: 0}
 --- !u!212 &1303302138
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3944,7 +3930,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.5
-  pickNextWaypointDist: 4.92
+  pickNextWaypointDist: 0.6
   endReachedDistance: 0.29
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1

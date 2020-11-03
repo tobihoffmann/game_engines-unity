@@ -19,7 +19,7 @@ public class IdleBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        distance = Vector3.Distance(playerPos.position, enemyPos.position);
+        distance = Vector2.Distance(playerPos.position, enemyPos.position);
         if (distance < animator.GetFloat("chaseDistance"))
         {
             animator.SetBool("isChasing", true);
