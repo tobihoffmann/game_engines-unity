@@ -23,7 +23,5 @@ namespace PowerUps
         [SerializeField]
         private int bonusRangeDamage;
         
-        [SerializeField]
-        private WeaponModifier weaponMod;
     }
 }

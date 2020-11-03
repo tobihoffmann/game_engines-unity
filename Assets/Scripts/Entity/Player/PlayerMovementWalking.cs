@@ -13,6 +13,7 @@ namespace Entity.Player
         private InputAction walking;
 
         private Vector2 _walkingDirection;
+        
 
         private Rigidbody2D _player;
 
