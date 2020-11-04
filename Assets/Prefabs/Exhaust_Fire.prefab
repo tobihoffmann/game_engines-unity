@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 489082335814354651}
   - component: {fileID: 7604781014559203031}
   - component: {fileID: 4423131010458899345}
+  - component: {fileID: -6527593893775475289}
   m_Layer: 0
   m_Name: Exhaust_Fire
   m_TagString: Untagged
@@ -130,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22413683, y: 0.46104693}
   m_EdgeRadius: 0
+--- !u!114 &-6527593893775475289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267584932666707647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2ee9956eea3b74b8f8fb12faebab29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 5314071186999782670, guid: be6fb4b5e456ce44c9b127395eaa97bb,
+    type: 3}
