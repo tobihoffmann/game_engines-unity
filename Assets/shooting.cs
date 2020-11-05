@@ -15,7 +15,7 @@ public class shooting : MonoBehaviour
 
     private Vector2 _mousePosition;
     private Vector2 _playerPosition;
-    private Vector2 _dashDirection;
+    private Vector2 _shootDirection;
     
 
     
@@ -50,10 +50,10 @@ public class shooting : MonoBehaviour
 
         _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         _playerPosition = new Vector2(transform.position.x, transform.position.y);
-        _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
-        rb.AddForce(_dashDirection * bulletForce, ForceMode2D.Impulse);
+        _shootDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
+        rb.AddForce(_shootDirection * bulletForce, ForceMode2D.Impulse);
 
-        float angle = Mathf.Atan2(_dashDirection.y, _dashDirection.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(_shootDirection.y, _shootDirection.x) * Mathf.Rad2Deg - 90;
         rb.rotation = angle;
     }
     
