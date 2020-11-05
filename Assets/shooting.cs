@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class shooting : MonoBehaviour
 {
+     [SerializeField][Tooltip("Main Camera Object")]
+     private Camera mainCam;
     
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -11,7 +13,9 @@ public class shooting : MonoBehaviour
     [SerializeField][Tooltip("Input actions for shooting")]
     private InputAction shoot;
 
-
+    private Vector2 _mousePosition;
+    private Vector2 _playerPosition;
+    private Vector2 _dashDirection;
     
 
     
@@ -40,14 +44,17 @@ public class shooting : MonoBehaviour
     {
         
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
+        
+        
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        _playerPosition = new Vector2(transform.position.x, transform.position.y);
+        _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
+        rb.AddForce(_dashDirection * bulletForce, ForceMode2D.Impulse);
 
-       
-        
-
+        float angle = Mathf.Atan2(_dashDirection.y, _dashDirection.x) * Mathf.Rad2Deg - 90;
+        rb.rotation = angle;
     }
     
 }
