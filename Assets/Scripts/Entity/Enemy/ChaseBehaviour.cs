@@ -1,34 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using Pathfinding;
 using UnityEngine;
 
 public class ChaseBehaviour : StateMachineBehaviour
 {
-    private Transform playerPos;
-    private Transform enemyPos;
-    private float distance;
-    private AIDestinationSetter aids;
+    private Transform _playerPos;
+    private Transform _enemyPos;
+    private float _distance;
+    private AIDestinationSetter _aids;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        enemyPos = animator.transform;
-        aids = animator.GetComponent<AIDestinationSetter>();
-        aids.target = playerPos;
+        _playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        _enemyPos = animator.transform;
+        _aids = animator.GetComponent<AIDestinationSetter>();
+        _aids.target = _playerPos;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        distance = Vector2.Distance(playerPos.position, enemyPos.position);
-        if (distance > animator.GetFloat("chaseDistance"))
+        _distance = Vector2.Distance(_playerPos.position, _enemyPos.position);
+        if (_distance > animator.GetFloat("chaseDistance") || _distance < animator.GetFloat("explodeDistance"))
         {
             animator.SetBool("isChasing", false);
         }
-        Debug.Log(distance);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        aids.target = enemyPos;
+        _aids.target = null;
     }
 }
