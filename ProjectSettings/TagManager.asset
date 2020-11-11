@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Background
-  - Player
+  - 
   - Environment
   - Roads
   - 
@@ -22,12 +22,11 @@ TagManager:
   - 
   - 
   - 
-  - Walls
+  - Objects
   - 
   - 
   - 
   - Player
-  - 
   - 
   - 
   - 
