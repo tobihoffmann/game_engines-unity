@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7604781014559203031}
   - component: {fileID: 4423131010458899345}
   - component: {fileID: -6527593893775475289}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Exhaust_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
