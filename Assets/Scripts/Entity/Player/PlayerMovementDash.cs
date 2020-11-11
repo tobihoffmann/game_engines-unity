@@ -1,4 +1,5 @@
 ﻿
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,12 @@ using UnityEngine.InputSystem;
 namespace Entity.Player
 {
     public class PlayerMovementDash : MonoBehaviour
+
+        
     {
+        [SerializeField][Tooltip("Cooldown Time for Dash")]
+        private float coolDown;
+
         [SerializeField][Tooltip("Dash distance of the player")]
         private float dashDistance = 500f;
         
@@ -26,6 +32,7 @@ namespace Entity.Player
         private Vector2 _dashDirection;
         private bool _isDashTriggered;
         
+        
         private void OnEnable()
         {
             dash.Enable();
@@ -38,15 +45,24 @@ namespace Entity.Player
         void Start()
         {
             _player = GetComponent<Rigidbody2D>();
+
+            
         }
         
         void Update()
         {
-            _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            _playerPosition = new Vector2(transform.position.x, transform.position.y);
-            _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
+            //Dash cooldown
+            
+            coolDown -= Time.deltaTime;
+            if (coolDown <= 0)
+            {
+                //Dash direction calculations
+                _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                _playerPosition = new Vector2(transform.position.x, transform.position.y);
+                _dashDirection = new Ray2D(_playerPosition, _mousePosition - _playerPosition).direction;
 
-            if (dash.triggered) _isDashTriggered = true;
+                if (dash.triggered) _isDashTriggered = true;
+            }
         }
 
         private void FixedUpdate()
@@ -62,6 +78,8 @@ namespace Entity.Player
                 }
                 _player.MovePosition(dashPosition);
                 _isDashTriggered = false;
+
+                coolDown = 2f;
             }
         }
     }

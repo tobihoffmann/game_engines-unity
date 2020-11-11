@@ -2517,6 +2517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1298a5366bbe0334d9c737676ec447eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDown: 2
   dashDistance: 200
   dash:
     m_Name: Dash
