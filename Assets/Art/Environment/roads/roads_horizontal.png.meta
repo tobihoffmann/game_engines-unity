@@ -108,12 +108,12 @@ TextureImporter:
       name: roads_horizontal_ending_right
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 499
-        width: 302
+        width: 288
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -129,12 +129,12 @@ TextureImporter:
       name: roads_horizontal_ending_left
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 401
-        width: 302
+        width: 288
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: roads_horizontal_wasted_2
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 303
-        width: 302
+        width: 288
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: roads_horizontal_wasted_1
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 205
-        width: 302
+        width: 288
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: roads_horizontal_normal_2
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 107
-        width: 302
+        width: 288
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: roads_horizontal_normal_1
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 9
-        width: 302
+        width: 288
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
