@@ -48,11 +48,6 @@ namespace Entity.Player
             _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
 
             if (dash.triggered) _isDashTriggered = true;
-            //turns the player in mousedirection
-           
-            // Vector2 lookDir = _mousePosition - _player.position;
-            // float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-            // _player.rotation = angle;
         }
 
         private void FixedUpdate()

@@ -6,9 +6,12 @@ public class shooting : MonoBehaviour
 {
     [SerializeField][Tooltip("Main Camera Object")]
     private Camera mainCam;
-    
+
+    [SerializeField][Tooltip("FirePoint Object")]
     public Transform firePoint;
+    [SerializeField][Tooltip("Prefab for Bullet Object")]
     public GameObject bulletPrefab;
+    [SerializeField][Tooltip("Float variable for the Bulletforce")]
     public float bulletForce = 50f;
     [SerializeField][Tooltip("Input actions for shooting")]
     private InputAction shoot;
