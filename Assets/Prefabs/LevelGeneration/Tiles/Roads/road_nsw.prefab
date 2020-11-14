@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 2
+  levelSize: 0
 --- !u!61 &7206915336712872660
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103,8 +104,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8870464833915001060}
   m_Layer: 0
-  m_Name: road_tdl
-  m_TagString: Untagged
+  m_Name: road_nsw
+  m_TagString: Junction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 1
+  levelSize: 0
 --- !u!61 &763048042091752127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -464,6 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 0
+  levelSize: 0
 --- !u!61 &2518278719252963261
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 3
+  levelSize: 0
 --- !u!61 &7360043540050216663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103,8 +104,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8671441885570484483}
   m_Layer: 0
-  m_Name: road_trd
-  m_TagString: Untagged
+  m_Name: road_nes
+  m_TagString: Junction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 2
+  levelSize: 0
 --- !u!61 &840140944170345315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -385,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 0
+  levelSize: 0
 --- !u!61 &7900603603179295108
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnPoint
   - RoadTiles
+  - Junction
   layers:
   - Default
   - TransparentFX
