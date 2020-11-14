@@ -2,7 +2,7 @@
 
 namespace LevelGeneration
 {
-    public class TileTemplates : MonoBehaviour
+    public class RoadTiles : MonoBehaviour
     {
         public GameObject[] northTiles;
 

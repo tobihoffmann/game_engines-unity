@@ -1,98 +1,109 @@
-﻿
-using LevelGeneration;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LevelGenerator : MonoBehaviour
+namespace LevelGeneration
 {
-    private int _junctionsThree;
-    private int _junctionsFour;
-    
-    private int _maxJunctionsThree;
-    private int _maxJunctionsFour;
-    
-
-    private TileTemplates _templates;
-
-    private int _random;
-
-    private bool _isSpawned;
-
-    [SerializeField][Tooltip("Entry tile")]
-    private GameObject _entryPoint;
-        
-    /// <summary>
-    /// The road opening needed on the new tile to spawn:
-    /// North, East, South, West
-    /// </summary>
-    [SerializeField][Tooltip("Amount of Tiles the level is going to exist of")]
-    private int levelSize;
-
-    private void Start()
+    public class LevelGenerator : MonoBehaviour
     {
-        _templates = GameObject.FindGameObjectWithTag("RoadTiles").GetComponent<TileTemplates>();
-        Invoke(nameof(Spawn), 0.3f);
-    }
+        /// <summary>
+        /// The road opening needed on the new tile to spawn:
+        /// North, East, South, West
+        /// </summary>
+        [SerializeField][Tooltip("Amount of RoadTiles the level is going to exist of")]
+        private int levelSize;
+
+        private int _currentLevelSize;
     
-    private void Spawn()
-    {
-        // spawn point aus dem prefab _entryPoint als variable
-        for (int i = 0; i < levelSize; i++)
+        [SerializeField][Tooltip("Entry tile")]
+        private GameObject _entryPoint;
+
+        private RoadTiles _roadTiles;
+
+        private int _random;
+
+        private int _junctionsThree;
+        private int _junctionsFour;
+        private int _maxJunctionsThree;
+        private int _maxJunctionsFour;
+
+        private void Start()
         {
-            if (!_isSpawned)
+            _roadTiles = gameObject.GetComponent<RoadTiles>();
+
+            Invoke(nameof(SpawnRoads), 0.3f);
+        }
+
+        private void GenerateLevel()
+        {
+            Invoke(nameof(SpawnRoads), 0.3f);
+        }
+        private void SpawnRoads(Tile roadTile)
+        {
+            while (_currentLevelSize < levelSize)
             {
-                switch (roadDirection)
+                foreach (GameObject sp in roadTile.getSpawnPoints())
                 {
-                    case Direction.North:
-                        _random = Random.Range(0, _templates.northTiles.Length);
-                        Instantiate(_templates.northTiles[_random], transform.position, Quaternion.identity);
+                    SpawnRoad(sp.GetComponent<SpawnPoint>());
+                }
+                _currentLevelSize++;
+            }
+        }
+
+        private void SpawnRoad(SpawnPoint spawnPoint)
+        {
+            if (!spawnPoint.isSpawned)
+            {
+                switch (spawnPoint.roadDirection)
+                {
+                    case SpawnPoint.Direction.North:
+                        _random = Random.Range(0, _roadTiles.northTiles.Length);
+                        Instantiate(_roadTiles.northTiles[_random], transform.position, Quaternion.identity);
                         break;
-                    case Direction.East:
-                        _random = Random.Range(0, _templates.eastTiles.Length);
-                        Instantiate(_templates.eastTiles[_random], transform.position, Quaternion.identity);
+                    case SpawnPoint.Direction.East:
+                        _random = Random.Range(0, _roadTiles.eastTiles.Length);
+                        Instantiate(_roadTiles.eastTiles[_random], transform.position, Quaternion.identity);
                         break;
-                    case Direction.South:
-                        _random = Random.Range(0, _templates.southTiles.Length);
-                        Instantiate(_templates.southTiles[_random], transform.position, Quaternion.identity);
+                    case SpawnPoint.Direction.South:
+                        _random = Random.Range(0, _roadTiles.southTiles.Length);
+                        Instantiate(_roadTiles.southTiles[_random], transform.position, Quaternion.identity);
                         break;
-                    case Direction.West:
-                        _random = Random.Range(0, _templates.westTiles.Length);
-                        Instantiate(_templates.westTiles[_random], transform.position, Quaternion.identity);
+                    case SpawnPoint.Direction.West:
+                        _random = Random.Range(0, _roadTiles.westTiles.Length);
+                        Instantiate(_roadTiles.westTiles[_random], transform.position, Quaternion.identity);
                         break;
                     default:
                         Debug.Log("There is no direction set on this spawn point");
                         break;
                 }
-                _isSpawned = true;
+                spawnPoint.isSpawned = true;
             }
         }
-    }
     
-    
-    private void ManageJunction()
-    {
-        if (newTile.isJunction)
+        private void ManageJunction()
         {
-            if (newTile.isJunctionThree)
+            if (newTile.isJunction)
             {
-                _junctionsThree++;
-                if (_junctionsThree >= _maxJunctionsThree)
-                    removealljunctionsthree();
-            } else if (newTile.isJunctionFour)
-            {
-                _junctionsFour++;
-                if (_junctionsFour >= _maxJunctionsFour)
-                    removealljunctionsfour();
+                if (newTile.isJunctionThree)
+                {
+                    _junctionsThree++;
+                    if (_junctionsThree >= _maxJunctionsThree)
+                        removealljunctionsthree();
+                } else if (newTile.isJunctionFour)
+                {
+                    _junctionsFour++;
+                    if (_junctionsFour >= _maxJunctionsFour)
+                        removealljunctionsfour();
+                }
             }
         }
-    }
     
     
 
-    private bool canPlaceJunction()
-    {
-        // if junctionsOf4 >= maxJunctionsOf4 || junctionsOf3 >= maxJunctionsOf3 || is previous tile a junction
+        private bool canPlaceJunction()
+        {
+            // if junctionsOf4 >= maxJunctionsOf4 || junctionsOf3 >= maxJunctionsOf3 || is previous tile a junction
             // return false
-        // else return true
-        return false;
+            // else return true
+            return false;
+        }
     }
 }
