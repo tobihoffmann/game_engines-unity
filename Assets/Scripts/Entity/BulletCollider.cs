@@ -4,7 +4,7 @@ using UnityEngine;
 public class BulletCollider : MonoBehaviour
 {
     [SerializeField][Tooltip("Gameobject for HitEffect Animation")]
-    public GameObject hitEffect;
+    private GameObject hitEffect;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
