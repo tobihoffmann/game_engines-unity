@@ -11,15 +11,21 @@ namespace UI
     {
         //public string SpriteLocation = "Sprites/PlayerHungerStates_Sprite";
 
-        [SerializeField] private int currentHealth = 5;
+        
 
-        [SerializeField] private int maxHealth;
+        [SerializeField]
+        private int maxHealth;
 
-        [SerializeField] private Image[] hearts;
-
-        [SerializeField] private Sprite fullHeart;
-
-        [SerializeField] private Sprite emptyHeart;
+        [SerializeField]
+        private Image[] hearts;
+        
+        [SerializeField]
+        private Sprite fullHeart;
+        
+        [SerializeField]
+        private Sprite emptyHeart;
+        
+        private int _currentHealth;
 
         private void OnEnable()
         {
@@ -33,19 +39,24 @@ namespace UI
             //TODO: PlayerState.OnPlayerPowerUpsUpdate -= OnMaxHealthUpdated
         }
 
+        private void Start()
+        {
+            throw new NotImplementedException();
+        }
+
         private void OnHealthUpdated(int newValue)
         {
-            currentHealth = newValue;
+            _currentHealth = newValue;
             
             // Clamp current health in case of overhealing
-            if (currentHealth > maxHealth) currentHealth = maxHealth;
+            if (_currentHealth > maxHealth) _currentHealth = maxHealth;
             // Clamp current health in case of damaging Entity below 0
-            if (currentHealth < 0) currentHealth = 0;
+            if (_currentHealth < 0) _currentHealth = 0;
             
             
             for (int i = 0; i < hearts.Length; i++)
             {
-                hearts[i].sprite = (i < currentHealth) ? fullHeart : emptyHeart;
+                hearts[i].sprite = (i < _currentHealth) ? fullHeart : emptyHeart;
             }
         }
 
