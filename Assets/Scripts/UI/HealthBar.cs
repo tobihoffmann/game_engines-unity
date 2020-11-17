@@ -41,7 +41,7 @@ namespace UI
 
         private void Start()
         {
-            throw new NotImplementedException();
+            _currentHealth = maxHealth;
         }
 
         private void OnHealthUpdated(int newValue)
