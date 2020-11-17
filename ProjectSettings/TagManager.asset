@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SpawnPoint
+  - RoadTiles
+  - Junction
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - 
   - 
   - Background
-  - Player
+  - 
   - Environment
   - Roads
   - Projectile
@@ -22,7 +25,7 @@ TagManager:
   - 
   - 
   - 
-  - Walls
+  - Objects
   - 
   - 
   - 

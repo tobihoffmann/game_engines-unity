@@ -28,9 +28,7 @@ namespace Entity.Player
         private int maxPowerUpSlots;
         
         public static event PlayerStateChanged OnPlayerHitPointsUpdate;
-        
         public static event PlayerStateChanged OnPlayerPowerUpsUpdate;
-
         public static event PlayerIsDead OnPlayerDeath;
         
         
