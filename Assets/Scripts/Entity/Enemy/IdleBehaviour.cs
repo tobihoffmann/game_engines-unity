@@ -30,6 +30,5 @@ namespace Entity.Enemy
                 animator.SetBool("isChasing", true);
             }
         }
-        
     }
 }

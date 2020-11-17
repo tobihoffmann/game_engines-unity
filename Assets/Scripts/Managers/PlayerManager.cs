@@ -16,5 +16,10 @@ namespace Managers
             base.Awake();
             _playerState = player.GetComponent<PlayerState>();
         }
+
+        public GameObject GetPlayer()
+        {
+            return player;
+        }
     }
 }
