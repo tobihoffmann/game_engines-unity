@@ -103,11 +103,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 320
-        width: 302
-        height: 302
+        y: 308
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -123,12 +123,12 @@ TextureImporter:
       name: roads_turns_right-top
       rect:
         serializedVersion: 2
-        x: 318
-        y: 320
-        width: 302
-        height: 302
+        x: 307
+        y: 308
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,11 +145,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 9
-        width: 302
-        height: 302
+        y: 10
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: roads_turns_right-bottom
       rect:
         serializedVersion: 2
-        x: 320
-        y: 9
-        width: 302
-        height: 302
+        x: 307
+        y: 10
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

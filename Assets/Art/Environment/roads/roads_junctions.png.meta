@@ -108,12 +108,12 @@ TextureImporter:
       name: roads_junctions_cross_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 320
-        width: 302
-        height: 302
+        x: 0
+        y: 311
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -129,12 +129,12 @@ TextureImporter:
       name: roads_junctions_cross_2
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
-        width: 302
-        height: 302
+        x: 311
+        y: 311
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: roads_junctions_exit_left
       rect:
         serializedVersion: 2
-        x: 631
-        y: 320
-        width: 302
-        height: 302
+        x: 622
+        y: 311
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: roads_junctions_exit_right
       rect:
         serializedVersion: 2
-        x: 631
-        y: 9
-        width: 302
-        height: 302
+        x: 622
+        y: 0
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: roads_junctions_exit_top
       rect:
         serializedVersion: 2
-        x: 320
-        y: 9
-        width: 302
-        height: 302
+        x: 311
+        y: 0
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: roads_junctions_exit_bottom
       rect:
         serializedVersion: 2
-        x: 9
-        y: 9
-        width: 302
-        height: 302
+        x: 0
+        y: 0
+        width: 288
+        height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
