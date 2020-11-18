@@ -43,10 +43,5 @@ namespace Managers
         {
             return player;
         }
-
-        public GameObject GetPlayer()
-        {
-            return player;
-        }
     }
 }
