@@ -1,4 +1,5 @@
 ﻿using Entity.Player;
+using Managers;
 using Pathfinding;
 using UnityEngine;
 
@@ -15,25 +16,27 @@ namespace Entity.Enemy
         [SerializeField] [Tooltip("Amount of damage the explosion deals.")]
         private int damage = 1;
 
-        [SerializeField] [Tooltip("Target to chase.")]
-        private GameObject Target;
-        
+        //[SerializeField] [Tooltip("Target to chase.")]
+        private GameObject _target;
+
+        private GameObject _player;
         
         private void Awake()
         {
-            AIDestSetter = GetComponent<AIDestinationSetter>();
-            
-            Debug.Log(AIDestSetter.target);
-
+            _target = PlayerManager.Instance.GetPlayer();
             Origin = gameObject;
             
-            PlayerState = Target.GetComponent<PlayerState>();
+            AIDestSetter = GetComponent<AIDestinationSetter>();
+            Debug.Log(AIDestSetter.target);
+            PlayerState = _target.GetComponent<PlayerState>();
         }
 
 
-        void Update()
+        private void Update()
         {
-            Distance = Vector2.Distance(Origin.transform.position, Target.transform.position);
+            
+            
+            Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
             if (Distance < explodeDistance)
                 SwitchState(State.Attack);
             else if (Distance < chaseDistance)
@@ -52,14 +55,14 @@ namespace Entity.Enemy
         {
             AIDestSetter.target = Origin.transform;
             
-            Vector3 originPosition = Origin.transform.position;
-            Vector3 targetPosition = Target.transform.position;
-            RaycastHit2D hit = Physics2D.Raycast(originPosition, (targetPosition - originPosition).normalized, Distance);
-            
-            Debug.DrawRay(originPosition, hit.point, Color.red);
+            Vector2 originPosition = Origin.transform.position;
+            Vector2 targetPosition = new Vector2(_target.transform.position.x, _target.transform.position.y - .6f);
+            RaycastHit2D hit = Physics2D.Raycast(originPosition, (targetPosition - originPosition).normalized, explodeDistance);
+            //Debug.Log(Distance);
+            Debug.DrawRay(originPosition, (targetPosition - originPosition), Color.red);
 
             //if target not behind cover, deal damage.
-            if (hit.collider.gameObject == Target)
+            if (hit.collider.gameObject == _target)
             {
                 PlayerState.Hit(damage);
             }
@@ -67,7 +70,7 @@ namespace Entity.Enemy
 
         protected override void Chase()
         {
-            AIDestSetter.target = Target.transform;
+            AIDestSetter.target = _target.transform;
         }
     }
 }
