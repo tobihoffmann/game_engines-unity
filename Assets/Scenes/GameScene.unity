@@ -1041,8 +1041,9 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Melee
       m_Flags: 0
-  attackPoint: {fileID: 1958360994}
+  attackCenter: {fileID: 1958360994}
   attackRange: 0.8
+  MeleeDamage: 1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512

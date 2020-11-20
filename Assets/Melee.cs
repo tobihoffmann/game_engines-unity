@@ -8,10 +8,13 @@ public class Melee : MonoBehaviour
     private InputAction melee;
     
     [SerializeField][Tooltip("Center of the AttackCircle")]
-    private Transform attackPoint;
+    private Transform attackCenter;
     
     [SerializeField][Tooltip("Radian of the AttackCircle")]
     private float attackRange = 0.5f;
+    
+    [SerializeField][Tooltip("Damage of the Melee Attack")]
+    private float MeleeDamage;
     
     [SerializeField][Tooltip("LayerMask for detecting enemies")]
     private LayerMask enemyLayers;
@@ -42,7 +45,7 @@ public class Melee : MonoBehaviour
 
     void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
         
         Debug.Log("MeleeAttack");
         
@@ -50,6 +53,10 @@ public class Melee : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit" + enemy.name);
+            //give damage to the enemy 
+            //just pseudo code, because no enemyManager implemented yet
+            
+            //enemy.EnemyManager.SetHitpoints(-MeleeDamage);
         }
         
         
