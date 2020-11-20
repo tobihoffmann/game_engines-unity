@@ -31,6 +31,7 @@ namespace Entity.Player
         private Vector2 _playerPosition;
         private Vector2 _dashDirection;
         private bool _isDashTriggered;
+        private float t;
         
         
         private void OnEnable()
@@ -44,6 +45,7 @@ namespace Entity.Player
 
         void Start()
         {
+            t = coolDown;
             _player = GetComponent<Rigidbody2D>();
 
             
@@ -52,9 +54,8 @@ namespace Entity.Player
         void Update()
         {
             //Dash cooldown
-            
-            coolDown -= Time.deltaTime;
-            if (coolDown <= 0)
+            t -= Time.deltaTime;
+            if (t <= 0)
             {
                 //Dash direction calculations
                 _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -78,8 +79,9 @@ namespace Entity.Player
                 }
                 _player.MovePosition(dashPosition);
                 _isDashTriggered = false;
-
-                coolDown = 2f;
+                
+                //if dash is used, reset t ro CoolDown value
+                t = coolDown;
             }
         }
     }
