@@ -76,5 +76,6 @@ namespace Entity.Enemy
         {
             throw new NotImplementedException();
         }
+        
     }
 }

@@ -22,7 +22,13 @@ namespace Entity.Enemy
         
         private Animator _animator;
         
-        //private bool _isExploding = false;
+        [SerializeField] [Tooltip("Wander radius of AI.")]
+        private float radius = 2f;
+
+        private IAstarAI _ai;
+        private AIPath _aiPath;
+        
+        private bool _isExploding = false;
 
         [SerializeField][Tooltip("Target to chase.")]
         private GameObject target;
@@ -30,7 +36,9 @@ namespace Entity.Enemy
         
         private void Awake()
         {
-            target = PlayerManager.Instance.GetPlayer();
+            //target = PlayerManager.Instance.GetPlayer();
+            _ai = GetComponent<IAstarAI>();
+            _aiPath = GetComponent<AIPath>();
             Origin = gameObject;
             AIDestSetter = GetComponent<AIDestinationSetter>();
             PlayerState = target.GetComponent<PlayerState>();
@@ -43,7 +51,7 @@ namespace Entity.Enemy
             Distance = Vector2.Distance(Origin.transform.position, target.transform.position);
             if (Distance < explodeDistance)
                 SwitchState(State.Attack);
-            else if (Distance < chaseDistance && _animator.GetBool("isExploding") == false)
+            else if (Distance < chaseDistance && _isExploding == false)
                 SwitchState(State.Chase);
             else 
                 SwitchState(State.Idle);
@@ -51,9 +59,16 @@ namespace Entity.Enemy
 
         protected override void Idle()
         {
-            if (AIDestSetter.target != null && AIDestSetter.target != Origin.transform)
-                AIDestSetter.target = Origin.transform;
-            //TODO: implement patrolling or sth
+            AIDestSetter.target = null;
+            //Lower movement speed while patrolling
+            _aiPath.maxSpeed = 1.5f;
+            // Update the destination of the AI if
+            // the AI is not already calculating a path and
+            // the ai has reached the end of the path or it has no path at all
+            if (!_ai.pathPending && (_ai.reachedEndOfPath || !_ai.hasPath)) {
+                _ai.destination = PickRandomPoint();
+                _ai.SearchPath();
+            }
         }
 
         /// <summary>
@@ -61,6 +76,7 @@ namespace Entity.Enemy
         /// </summary>
         protected override void Attack()
         {
+            _aiPath.maxSpeed = 0f;
             AIDestSetter.target = Origin.transform;
 
             //Box Collider Offset
@@ -87,20 +103,29 @@ namespace Entity.Enemy
         /// <returns></returns>
         private IEnumerator WaitAndExplode(float explodeTime, RaycastHit2D hit)
         {
-            
+            _isExploding = true;
             yield return new WaitForSeconds(explodeTime);
             _animator.SetBool("isExploding", true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
             if (hit.collider != null && hit.collider.gameObject == target)
             {
                 PlayerState.Hit(damage);
             }
             Destroy(gameObject);
         }
-
+        
         protected override void Chase()
         {
+            //Increase movement speed while in chase mode
+            _aiPath.maxSpeed = 8f;
             AIDestSetter.target = target.transform;
+        }
+        
+        private Vector3 PickRandomPoint () {
+            Vector3 point = Random.insideUnitSphere * radius;
+            point.z = 0;
+            point += _ai.position;
+            return point;
         }
     }
 }
