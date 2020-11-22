@@ -28,27 +28,26 @@ namespace Entity.Enemy
         private IAstarAI _ai;
         private AIPath _aiPath;
         
-        private bool _isExploding = false;
+        private bool _isExploding;
 
-        [SerializeField][Tooltip("Target to chase.")]
-        private GameObject target;
+        private GameObject _target;
         
         
-        private void Awake()
+        private void Start()
         {
-            //target = PlayerManager.Instance.GetPlayer();
+            _target = PlayerManager.Instance.GetPlayer();
             _ai = GetComponent<IAstarAI>();
             _aiPath = GetComponent<AIPath>();
             Origin = gameObject;
             AIDestSetter = GetComponent<AIDestinationSetter>();
-            PlayerState = target.GetComponent<PlayerState>();
+            PlayerState = _target.GetComponent<PlayerState>();
             _animator = GetComponent<Animator>();
         }
 
 
         private void Update()
         {
-            Distance = Vector2.Distance(Origin.transform.position, target.transform.position);
+            Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
             if (Distance < explodeDistance)
                 SwitchState(State.Attack);
             else if (Distance < chaseDistance && _isExploding == false)
@@ -80,12 +79,12 @@ namespace Entity.Enemy
             AIDestSetter.target = Origin.transform;
 
             //Box Collider Offset
-            Vector2 bcoffset = target.GetComponent<BoxCollider2D>().offset;
+            Vector2 bcoffset = _target.GetComponent<BoxCollider2D>().offset;
             
             //Position of origin (spider)
             Vector2 originPosition = Origin.transform.position;
             
-            Vector2 targetPosition = target.transform.position;
+            Vector2 targetPosition = _target.transform.position;
             
             //Position of collider of the target (player)
             Vector2 finalTargetPos = targetPosition + bcoffset;
@@ -107,7 +106,7 @@ namespace Entity.Enemy
             yield return new WaitForSeconds(explodeTime);
             _animator.SetBool("isExploding", true);
             yield return new WaitForSeconds(0.25f);
-            if (hit.collider != null && hit.collider.gameObject == target)
+            if (hit.collider != null && hit.collider.gameObject == _target)
             {
                 PlayerState.Hit(damage);
             }
@@ -118,7 +117,7 @@ namespace Entity.Enemy
         {
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
-            AIDestSetter.target = target.transform;
+            AIDestSetter.target = _target.transform;
         }
         
         private Vector3 PickRandomPoint () {
