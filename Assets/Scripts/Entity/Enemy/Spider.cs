@@ -24,11 +24,10 @@ namespace Entity.Enemy
         
         //private bool _isExploding = false;
 
-        [SerializeField][Tooltip("Target to chase.")]
         private GameObject target;
         
         
-        private void Awake()
+        private void Start()
         {
             target = PlayerManager.Instance.GetPlayer();
             Origin = gameObject;
