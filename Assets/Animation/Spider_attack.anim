@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Spider_idle
+  m_Name: Spider_attack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1972702087670225888, guid: 9ae3c9b6780dd7f4bb6f384113cef450,
+      value: {fileID: -4630935741132721332, guid: 9ae3c9b6780dd7f4bb6f384113cef450,
+        type: 3}
+    - time: 0.1
+      value: {fileID: 462398376579320980, guid: 9ae3c9b6780dd7f4bb6f384113cef450,
+        type: 3}
+    - time: 0.2
+      value: {fileID: -4630935741132721332, guid: 9ae3c9b6780dd7f4bb6f384113cef450,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -41,13 +47,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1972702087670225888, guid: 9ae3c9b6780dd7f4bb6f384113cef450, type: 3}
+    - {fileID: -4630935741132721332, guid: 9ae3c9b6780dd7f4bb6f384113cef450, type: 3}
+    - {fileID: 462398376579320980, guid: 9ae3c9b6780dd7f4bb6f384113cef450, type: 3}
+    - {fileID: -4630935741132721332, guid: 9ae3c9b6780dd7f4bb6f384113cef450, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.21666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

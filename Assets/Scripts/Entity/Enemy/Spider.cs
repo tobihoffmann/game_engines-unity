@@ -62,6 +62,7 @@ namespace Entity.Enemy
 
         protected override void Idle()
         {
+            _animator.Play("Spider_idle");
             AIDestSetter.target = null;
             //Lower movement speed while patrolling
             _aiPath.maxSpeed = 1.5f;
@@ -109,18 +110,20 @@ namespace Entity.Enemy
         private IEnumerator WaitAndExplode(float explodeTime, RaycastHit2D hit)
         {
             _isExploding = true;
+            _animator.Play("Spider_attack");
             yield return new WaitForSeconds(explodeTime);
-            _animator.SetBool("isExploding", true);
-            yield return new WaitForSeconds(0.25f);
+            _animator.Play("Spider_explode");
             if (hit.collider != null && hit.collider.gameObject == _target)
             {
                 PlayerState.Hit(damage);
             }
+            yield return new WaitForSeconds(.25f);
             Destroy(gameObject);
         }
         
         protected override void Chase()
         {
+            _animator.Play("Spider_chase");
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
             AIDestSetter.target = _target.transform;
