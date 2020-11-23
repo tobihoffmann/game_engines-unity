@@ -123,7 +123,7 @@ namespace Entity.Enemy
         
         protected override void Chase()
         {
-            //_animator.Play("Spider_chase");
+            _animator.Play("Spider_chase");
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
             AIDestSetter.target = _target.transform;
