@@ -48,17 +48,17 @@ namespace Entity.Enemy
         private void Update()
         {
             Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
-            if (Distance < explodeDistance)
-                SwitchState(State.Attack);
-            else if (_isExploding == false)
+            if (_isExploding == false)
             {
-                if (Distance < chaseDistance)
+                if (Distance < explodeDistance)
+                    SwitchState(State.Attack);
+                else if (Distance < chaseDistance)
                     SwitchState(State.Chase);
                 else 
                     SwitchState(State.Idle);
             }
-                
         }
+        
 
         protected override void Idle()
         {
@@ -113,17 +113,17 @@ namespace Entity.Enemy
             _animator.Play("Spider_attack");
             yield return new WaitForSeconds(explodeTime);
             _animator.Play("Spider_explode");
-            if (hit.collider != null && hit.collider.gameObject == _target)
+            yield return new WaitForSeconds(.25f);
+            if (hit.collider != null && hit.collider.gameObject == _target && Distance <= explodeDistance)
             {
                 PlayerState.Hit(damage);
             }
-            yield return new WaitForSeconds(.25f);
             Destroy(gameObject);
         }
         
         protected override void Chase()
         {
-            _animator.Play("Spider_chase");
+            //_animator.Play("Spider_chase");
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
             AIDestSetter.target = _target.transform;
