@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
-  - RoadTiles
   - Junction
   layers:
   - Default
@@ -20,7 +19,7 @@ TagManager:
   - 
   - Environment
   - Roads
-  - Projectile
+  - 
   - 
   - 
   - 
@@ -30,7 +29,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - AI
   - 
   - 
   - 

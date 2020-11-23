@@ -1,4 +1,6 @@
 ﻿
+using System;
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +22,7 @@ public class shooting : MonoBehaviour
     private Vector2 _playerPosition;
     private Vector2 _shootDirection;
     
-
+    
     
 
     private void OnEnable()
@@ -54,6 +56,9 @@ public class shooting : MonoBehaviour
         //initiate the bullet
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         
+        // Makes sure the bullet doesn't collide with the Object that is shooting it
+        Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), transform.GetComponent<BoxCollider2D>());
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
         //turn the bullet in the correct direction
