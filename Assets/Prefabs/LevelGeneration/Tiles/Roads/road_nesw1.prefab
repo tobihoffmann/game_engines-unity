@@ -42,11 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1976415963122951317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 0
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &6488742393696088257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -368,11 +368,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7255050376054061644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 1
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &4279358014627932678
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -462,11 +462,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7662672186885463767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 3
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &3886793076209193389
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -556,11 +556,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8149968366165036667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 2
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &2537494382796679745
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -272,11 +272,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6121791542559304996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 3
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &3355212705187405567
 BoxCollider2D:
   m_ObjectHideFlags: 0

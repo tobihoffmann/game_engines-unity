@@ -77,11 +77,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2224371497724289990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 2
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &8934569680086266172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -253,11 +253,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4369486941832661050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045ee2059244e643b0279246df98b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 817b63a02da394241af8e40b4cc4e5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roadDirection: 3
-  levelSize: 0
+  levelSize: 100
 --- !u!61 &4323301296944134178
 BoxCollider2D:
   m_ObjectHideFlags: 0

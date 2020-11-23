@@ -33,7 +33,7 @@ namespace LevelGeneration
         /// North, East, South, West
         /// </summary>
         [SerializeField][Tooltip("Amount of Tiles the level is going to exist of")]
-        private int levelSize;
+        private int levelSize = 100;
 
         private void Start()
         {
