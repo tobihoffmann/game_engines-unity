@@ -53,22 +53,22 @@ namespace LevelGeneration
                     case Direction.North:
                         _random = Random.Range(0, _templates.northTiles.Count);
                         if (Instantiate(_templates.northTiles[_random], transform.position, Quaternion.identity).CompareTag("Junction"))
-                            RemoveJunctions();
+                            RemoveJunctions(false);
                         break;
                     case Direction.East:
                         _random = Random.Range(0, _templates.eastTiles.Count);
                         if (Instantiate(_templates.eastTiles[_random], transform.position, Quaternion.identity).CompareTag("Junction"))
-                            RemoveJunctions();
+                            RemoveJunctions(false);
                         break;
                     case Direction.South:
                         _random = Random.Range(0, _templates.southTiles.Count);
                         if (Instantiate(_templates.southTiles[_random], transform.position, Quaternion.identity).CompareTag("Junction"))
-                            RemoveJunctions();
+                            RemoveJunctions(false);
                         break;
                     case Direction.West:
                         _random = Random.Range(0, _templates.westTiles.Count);
                         if (Instantiate(_templates.westTiles[_random], transform.position, Quaternion.identity).CompareTag("Junction"))
-                            RemoveJunctions();
+                            RemoveJunctions(false);
                         break;
                     default:
                         Debug.Log("There is no direction set on this spawn point");
@@ -84,27 +84,29 @@ namespace LevelGeneration
         }
 
         
-        private void RemoveJunctions()
+        private void RemoveJunctions(bool isTJunction)
         {
+            String junctionType = isTJunction ? "tJunction" : "xJunction";
+            
             for (int i = 0; i < _templates.northTiles.Count; i++)
             {
                 GameObject tile = _templates.northTiles[i];
-                if (tile.CompareTag("Junction")) _templates.northTiles.Remove(tile);
+                if (tile.CompareTag(junctionType)) _templates.northTiles.Remove(tile);
             }
             for (int i = 0; i < _templates.eastTiles.Count; i++)
             {
                 GameObject tile = _templates.eastTiles[i];
-                if (tile.CompareTag("Junction")) _templates.eastTiles.Remove(tile);
+                if (tile.CompareTag(junctionType)) _templates.eastTiles.Remove(tile);
             }
             for (int i = 0; i < _templates.southTiles.Count; i++)
             {
                 GameObject tile = _templates.southTiles[i];
-                if (tile.CompareTag("Junction")) _templates.southTiles.Remove(tile);
+                if (tile.CompareTag(junctionType)) _templates.southTiles.Remove(tile);
             }
             for (int i = 0; i < _templates.westTiles.Count; i++)
             {
                 GameObject tile = _templates.westTiles[i];
-                if (tile.CompareTag("Junction")) _templates.westTiles.Remove(tile);
+                if (tile.CompareTag(junctionType)) _templates.westTiles.Remove(tile);
             }
         }
     }
