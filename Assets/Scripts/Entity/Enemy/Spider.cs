@@ -50,10 +50,14 @@ namespace Entity.Enemy
             Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
             if (Distance < explodeDistance)
                 SwitchState(State.Attack);
-            else if (Distance < chaseDistance && _isExploding == false)
-                SwitchState(State.Chase);
-            else 
-                SwitchState(State.Idle);
+            else if (_isExploding == false)
+            {
+                if (Distance < chaseDistance)
+                    SwitchState(State.Chase);
+                else 
+                    SwitchState(State.Idle);
+            }
+                
         }
 
         protected override void Idle()
@@ -75,6 +79,8 @@ namespace Entity.Enemy
         /// </summary>
         protected override void Attack()
         {
+            _isExploding = true;
+            
             _aiPath.maxSpeed = 0f;
             AIDestSetter.target = Origin.transform;
 

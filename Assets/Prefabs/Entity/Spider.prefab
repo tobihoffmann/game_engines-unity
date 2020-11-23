@@ -225,5 +225,5 @@ MonoBehaviour:
   explodeDistance: 3
   chaseDistance: 10
   damage: 1
-  exTime: 1
-  target: {fileID: 0}
+  exTime: 0.8
+  radius: 2
