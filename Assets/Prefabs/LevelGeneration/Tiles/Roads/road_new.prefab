@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 734359917360987867}
   m_Layer: 0
   m_Name: road_new
-  m_TagString: Junction
+  m_TagString: t_Junction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

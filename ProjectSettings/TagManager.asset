@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SpawnPoint
   - Junction
+  - t_Junction
+  - x_Junction
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8870464833915001060}
   m_Layer: 0
   m_Name: road_nsw
-  m_TagString: Junction
+  m_TagString: t_Junction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
