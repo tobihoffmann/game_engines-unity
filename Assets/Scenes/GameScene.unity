@@ -192,7 +192,7 @@ PrefabInstance:
         type: 3}
       propertyPath: northTiles.Array.data[4]
       value: 
-      objectReference: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
+      objectReference: {fileID: 6060530393285259004, guid: d09e1de6c2444304bb6ab1c690784f35,
         type: 3}
     - target: {fileID: 8981991353330198755, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
         type: 3}
@@ -209,6 +209,18 @@ PrefabInstance:
     - target: {fileID: 8981991353330198755, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
         type: 3}
       propertyPath: westTiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 4071389222364161301, guid: ca1c3a6c1eefaeb4ca935aab0055b658,
+        type: 3}
+    - target: {fileID: 8981991353330198755, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
+        type: 3}
+      propertyPath: westTiles.Array.data[11]
+      value: 
+      objectReference: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
+        type: 3}
+    - target: {fileID: 8981991353330198755, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
+        type: 3}
+      propertyPath: northTiles.Array.data[11]
       value: 
       objectReference: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
         type: 3}
