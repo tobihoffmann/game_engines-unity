@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Entity.Player;
 using Managers;
 using Pathfinding;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entity.Enemy
 {
@@ -134,6 +136,16 @@ namespace Entity.Enemy
             point.z = 0;
             point += _ai.position;
             return point;
+        }
+
+        
+        /// <summary>
+        /// Visualize explode radius on gizmos.
+        /// </summary>
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(Origin.transform.position, explodeDistance);
         }
     }
 }

@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5764efbc777c1294bb7be814aa97e3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodeDistance: 3
+  explodeDistance: 2.5
   chaseDistance: 10
   damage: 1
   exTime: 0.8
