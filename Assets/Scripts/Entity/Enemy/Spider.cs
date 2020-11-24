@@ -145,7 +145,7 @@ namespace Entity.Enemy
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(Origin.transform.position, explodeDistance);
+            Gizmos.DrawWireSphere(transform.position, explodeDistance);
         }
     }
 }
