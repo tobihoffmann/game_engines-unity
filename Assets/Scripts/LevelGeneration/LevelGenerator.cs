@@ -77,6 +77,8 @@ namespace LevelGeneration
                 _grid[newRoad.X, newRoad.Y-1] == null || newRoad.south == _grid[newRoad.X, newRoad.Y-1].GetComponent<Road>().north &&
                 _grid[newRoad.X-1, newRoad.Y] != null || newRoad.west == _grid[newRoad.X-1, newRoad.Y].GetComponent<Road>().east)
             {
+                newRoadTile.GetComponent<Road>().X = x;
+                newRoadTile.GetComponent<Road>().Y = y;
                 _grid[x, y] = newRoadTile;
                 q.Enqueue(newRoadTile);
             }
