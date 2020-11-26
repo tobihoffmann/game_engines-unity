@@ -13,14 +13,5 @@ namespace LevelGeneration
         
         public List<GameObject> westTiles;
         
-        
-        
-        /*public GameObject[] northTiles;
-
-        public GameObject[] eastTiles;
-
-        public GameObject[] southTiles;
-    
-        public GameObject[] westTiles;*/
     }
 }

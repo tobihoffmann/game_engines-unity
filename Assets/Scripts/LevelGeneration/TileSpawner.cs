@@ -6,14 +6,14 @@ using Random = UnityEngine.Random;
     {
         public class TileSpawner : MonoBehaviour
         {
-            private enum Direction { North, East, South, West }
+            internal enum Direction { North, East, South, West }
         
             /// <summary>
             /// The road opening needed on the new tile to spawn:
             /// North, East, South, West
             /// </summary>
             [SerializeField][Tooltip("road opening needed on the new tile to spawn")]
-            private Direction roadDirection;
+            internal Direction roadDirection;
         
             private float _maxLvlDistance = 250f;
 
@@ -21,7 +21,7 @@ using Random = UnityEngine.Random;
 
             private int _random;
 
-            private bool _isSpawned;
+            internal bool IsSpawned;
 
             private float _distance;
 
@@ -38,7 +38,7 @@ using Random = UnityEngine.Random;
 
             private void Spawn()
             {
-                if (!_isSpawned)
+                if (!IsSpawned)
                 {
                     GameObject tile;
                     switch (roadDirection)
@@ -79,7 +79,7 @@ using Random = UnityEngine.Random;
                             Debug.Log("There is no direction set on this spawn point");
                             break;
                     }
-                    _isSpawned = true;
+                    IsSpawned = true;
                 }
             }
 
