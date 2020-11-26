@@ -11,20 +11,27 @@ namespace LevelGeneration
         private int levelWidth, levelHeight;
 
         private GameObject[,] _grid;
+
+        [SerializeField] 
+        private int tileSize;
         
         [SerializeField] 
         private GameObject startRoad;
+        
+        private Queue<GameObject> q = new Queue<GameObject>();
 
         private void Start()
         {
             _grid = new GameObject[levelWidth,levelHeight];
+            GenerateRoad();
+            DrawTileArray();
         }
-        
+        [SerializeField]
         private TileTemplates _tiles;
 
         private void GenerateRoad()
         {
-             Queue<GameObject> q = new Queue<GameObject>();
+            
             
             // Put Start Road in the middle of the grid
             int startPosX = levelWidth/2;
@@ -41,52 +48,89 @@ namespace LevelGeneration
                 Road road = r.GetComponent<Road>();
                 if (road.north)
                 {
-                    GameObject newRoad = _tiles.northTiles[Random.Range(0, _tiles.northTiles.Count)];
-                    if (_grid[road.X, road.Y + 1] != null)
-                    {
-                        _grid[road.X, road.Y + 1] = newRoad;
-                        q.Enqueue(newRoad);
-                    }
-                    
+                    AddTile(road.X, road.Y+1);
                 }
                 if (road.east)
                 {
-                    GameObject newRoad = _tiles.eastTiles[Random.Range(0, _tiles.eastTiles.Count)];
-                    if (_grid[road.X + 1, road.Y] != null)
-                    {
-                        _grid[road.X + 1, road.Y] = newRoad;
-                        q.Enqueue(newRoad);
-                    }
+                    AddTile(road.X + 1, road.Y);
                 }
                 if (road.south)
                 {
-                    GameObject newRoad = _tiles.southTiles[Random.Range(0, _tiles.southTiles.Count)];
-                    if (_grid[road.X, road.Y - 1] != null)
-                    {
-                        _grid[road.X, road.Y - 1] = newRoad;
-                        q.Enqueue(newRoad);
-                    }
-                    
+                    AddTile(road.X, road.Y - 1);
                 }
                 if (road.west)
                 {
-                    GameObject newRoad = _tiles.westTiles[Random.Range(0, _tiles.westTiles.Count)];
-                    if (_grid[road.X - 1, road.Y] != null)
-                    {
-                        _grid[road.X - 1, road.Y] = newRoad;
-                        q.Enqueue(newRoad);
-                    }
+                    AddTile(road.X - 1, road.Y);
                 }
                 q.Dequeue();
             }
         }
-
         
-        private void SetStartCoordinates()
+        private void AddTile(int x, int y)
         {
-            _grid[levelWidth/2, levelHeight/2] = new Road();
+            GameObject newRoadTile = _tiles.northTiles[Random.Range(0, _tiles.northTiles.Count)];
+            Road newRoad = newRoadTile.GetComponent<Road>();
+
+            // check if new tile matches with neighbours, else roll again
+            if (_grid[newRoad.X, newRoad.Y+1] == null || newRoad.north == _grid[newRoad.X, newRoad.Y+1].GetComponent<Road>().south && 
+                _grid[newRoad.X+1, newRoad.Y] == null || newRoad.east == _grid[newRoad.X+1, newRoad.Y].GetComponent<Road>().west &&
+                _grid[newRoad.X, newRoad.Y-1] == null || newRoad.south == _grid[newRoad.X, newRoad.Y-1].GetComponent<Road>().north &&
+                _grid[newRoad.X-1, newRoad.Y] != null || newRoad.west == _grid[newRoad.X-1, newRoad.Y].GetComponent<Road>().east)
+            {
+                _grid[x, y] = newRoadTile;
+                q.Enqueue(newRoadTile);
+            }
+            else
+            {
+                AddTile(x,y);
+            }
         }
 
+        private void DrawTileArray()
+        {
+            for (int x = 0; x < levelWidth; x++)
+            {
+                for (int y = 0; y < levelHeight; y++)
+                {
+                    Instantiate(_grid[x, y], new Vector3(x * tileSize, y * tileSize, 0), Quaternion.identity);
+                }
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         private List<GameObject> GetNeighbours(GameObject road)
         {
             List<GameObject> neighbours = new List<GameObject>();
