@@ -24,7 +24,7 @@ namespace LevelGeneration
         {
             _grid = new GameObject[levelWidth,levelHeight];
             GenerateRoad();
-            DrawTileArray();
+            DrawLevelArray();
         }
         [SerializeField]
         private TileTemplates _tiles;
@@ -44,8 +44,8 @@ namespace LevelGeneration
 
             foreach (GameObject r in q)
             {
-                //check booleans
                 Road road = r.GetComponent<Road>();
+                // Apply new Road Tiles if there is an Exit
                 if (road.north)
                 {
                     AddTile(road.X, road.Y+1);
@@ -86,7 +86,7 @@ namespace LevelGeneration
             }
         }
 
-        private void DrawTileArray()
+        private void DrawLevelArray()
         {
             for (int x = 0; x < levelWidth; x++)
             {
