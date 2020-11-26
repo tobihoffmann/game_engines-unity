@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Interfaces;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singleton<GameManager>
     {
         private bool _gameHasEnded = false;
 
@@ -25,6 +26,14 @@ namespace Managers
         void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
+        public static void Quit()
+        {
+#if UNITY_EDITOR //Exits the play-mode
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
         }
 
     }
