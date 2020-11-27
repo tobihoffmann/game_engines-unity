@@ -9,6 +9,15 @@ namespace LevelGeneration
         internal List<GameObject> roadTiles;
         
         [SerializeField]
-        internal List<GameObject> roadEndings;
+        internal GameObject endingNorth;
+        
+        [SerializeField]
+        internal GameObject endingEast;
+        
+        [SerializeField]
+        internal GameObject endingSouth;
+        
+        [SerializeField]
+        internal GameObject endingWest;
     }
 }

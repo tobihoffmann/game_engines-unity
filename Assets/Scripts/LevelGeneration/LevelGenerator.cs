@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
-using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace LevelGeneration
@@ -38,7 +35,6 @@ namespace LevelGeneration
             DrawLevelArray();
         }
         
-
         private void GenerateRoad()
         {
             // Put Level Start in the middle of the grid and enqueue
@@ -50,7 +46,7 @@ namespace LevelGeneration
             startRoad.GetComponent<Road>().Y = levelHeight / 2;
             q.Enqueue(startRoad);
             
-            while (q.Count != 0)
+            while (q.Count != 0 && _tileCount < _maxTiles)
             {
                 Road road = q.Peek().GetComponent<Road>();
                 
@@ -73,41 +69,39 @@ namespace LevelGeneration
                 }
                 q.Dequeue();
             }
+            EndRoads();
         }
         
         private void AddTile(int x, int y)
         {
             // In bounds of levelGrid (-2 for level border layer and road endings)
-            if (x > 1 && x < levelWidth -1 && y > 1 && y < levelHeight -1 )
+            if (x > 1 && x < levelWidth -2 && y > 1 && y < levelHeight -2 )
             {
                 bool foundMatch = false;
                 int whileCount = 0;
-                while (whileCount < 500 && !foundMatch)
+                while (whileCount < 100)
                 {
                     // Roll a random road tile
                     GameObject newRoadTile = tiles.roadTiles[Random.Range(0, tiles.roadTiles.Count)];
-                    newRoadTile.GetComponent<Road>().X = x;
-                    newRoadTile.GetComponent<Road>().Y = y;
-                
                     Road newRoad = newRoadTile.GetComponent<Road>();
                     
                 
                     // check if new tile matches with neighbours, else roll again
-                    if ((_levelGrid[x, y+1] == null || _levelGrid[x, y+1] != null && newRoad.north == _levelGrid[x, y+1].GetComponent<Road>().south) && 
-                        (_levelGrid[x+1, y] == null || _levelGrid[x+1, y] != null && newRoad.east == _levelGrid[x+1, y].GetComponent<Road>().west) &&
-                        (_levelGrid[x, y-1] == null || _levelGrid[x, y-1] != null && newRoad.south == _levelGrid[x, y-1].GetComponent<Road>().north) &&
-                        (_levelGrid[x-1, y] == null || _levelGrid[x-1, y] != null && newRoad.west == _levelGrid[x-1, y].GetComponent<Road>().east))
+                    if ((_levelGrid[x, y+1] == null || newRoad.north == _levelGrid[x, y+1].GetComponent<Road>().south) && 
+                        (_levelGrid[x+1, y] == null || newRoad.east == _levelGrid[x+1, y].GetComponent<Road>().west) &&
+                        (_levelGrid[x, y-1] == null || newRoad.south == _levelGrid[x, y-1].GetComponent<Road>().north) &&
+                        (_levelGrid[x-1, y] == null || newRoad.west == _levelGrid[x-1, y].GetComponent<Road>().east))
                     {
+                        //TODO: on top of while (only condition)
                         if (_levelGrid[x, y] == null)
-                        {
+                        {   
+                            newRoad.X = x;
+                            newRoad.Y = y;
                             _levelGrid[x, y] = newRoadTile;
                             _tileCount++;
                             q.Enqueue(newRoadTile);
-                            foundMatch = true;
-                        }
-                        else
-                        {
-                            whileCount++;
+                            
+                            break;
                         }
                     }
                     else
@@ -117,38 +111,44 @@ namespace LevelGeneration
                 }
                
             }
-            // not in bounds of levelGrid
-            else
+        }
+
+        private void EndRoads()
+        {
+            for (int x = 1; x < levelWidth - 1; x++)
             {
-                foreach (GameObject roadEnding in tiles.roadEndings)
+                for (int y = 1; y < levelHeight - 1; y++)
                 {
-                    Road newEnding = roadEnding.GetComponent<Road>();
-                    newEnding.X = x;
-                    newEnding.Y = y;
-                    
-                    //Check if Road ending matches with Tile above and apply
-                    if (newEnding.north == _levelGrid[newEnding.X, newEnding.Y+1].GetComponent<Road>().south)
+                    if (_levelGrid[x,y] == null)
                     {
-                        _levelGrid[x, y] = roadEnding;
-                    }
-                    //Check if Road ending matches with Tile below and apply
-                    else if (newEnding.south == _levelGrid[newEnding.X, newEnding.Y-1].GetComponent<Road>().south)
-                    {
-                        _levelGrid[x, y] = roadEnding;
-                    }
-                    //Check if Road ending matches with Tile to the right and apply
-                    else if (newEnding.east == _levelGrid[newEnding.X+1, newEnding.Y].GetComponent<Road>().west)
-                    {
-                        _levelGrid[x, y] = roadEnding;
-                    }
-                    //Check if Road ending matches with Tile to the left and apply
-                    else if (newEnding.west == _levelGrid[newEnding.X-1, newEnding.Y].GetComponent<Road>().east)
-                    {
-                        _levelGrid[x, y] = roadEnding;
+                        //Check if Road ending matches with Tile above and apply
+                        if (_levelGrid[x, y + 1] != null && _levelGrid[x, y + 1].GetComponent<Road>().south)
+                        {
+                            Debug.Log("Hi");
+                            _levelGrid[x, y] = tiles.endingSouth;
+                        }
+                        //Check if Road ending matches with Tile below and apply
+                        else if (_levelGrid[x, y - 1] != null && _levelGrid[x, y - 1].GetComponent<Road>().north)
+                        {
+                            Debug.Log("Hi");
+                            _levelGrid[x, y] = tiles.endingNorth;
+                        }
+                        //Check if Road ending matches with Tile to the right and apply
+                        else if (_levelGrid[x + 1, y] != null && _levelGrid[x + 1, y].GetComponent<Road>().west)
+                        {
+                            Debug.Log("Hi");
+                            _levelGrid[x, y] = tiles.endingWest;
+                        }
+                        //Check if Road ending matches with Tile to the left and apply
+                        else if (_levelGrid[x - 1, y] != null &&_levelGrid[x - 1, y].GetComponent<Road>().east)
+                        {
+                            Debug.Log("Hi");
+                            _levelGrid[x, y] = tiles.endingEast;
+                        }
                     }
                 }
-                
             }
+            
             
         }
 
@@ -162,7 +162,6 @@ namespace LevelGeneration
                     {
                         Instantiate(_levelGrid[x, y], new Vector3(x * tileSize, y * tileSize, 0), Quaternion.identity);
                     }
-                    
                 }
             }
         }
