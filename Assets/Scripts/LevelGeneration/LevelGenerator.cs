@@ -42,6 +42,7 @@ namespace LevelGeneration
             
             q.Enqueue(startRoad);
 
+            //TODO: HAS TO BE WHILE NOT FOREACH
             foreach (GameObject r in q)
             {
                 Road road = r.GetComponent<Road>();
@@ -70,15 +71,15 @@ namespace LevelGeneration
         {
             GameObject newRoadTile = _tiles.northTiles[Random.Range(0, _tiles.northTiles.Count)];
             Road newRoad = newRoadTile.GetComponent<Road>();
+            newRoad.X = x;
+            newRoad.Y = y;
 
             // check if new tile matches with neighbours, else roll again
             if (_grid[newRoad.X, newRoad.Y+1] == null || newRoad.north == _grid[newRoad.X, newRoad.Y+1].GetComponent<Road>().south && 
                 _grid[newRoad.X+1, newRoad.Y] == null || newRoad.east == _grid[newRoad.X+1, newRoad.Y].GetComponent<Road>().west &&
                 _grid[newRoad.X, newRoad.Y-1] == null || newRoad.south == _grid[newRoad.X, newRoad.Y-1].GetComponent<Road>().north &&
-                _grid[newRoad.X-1, newRoad.Y] != null || newRoad.west == _grid[newRoad.X-1, newRoad.Y].GetComponent<Road>().east)
+                _grid[newRoad.X-1, newRoad.Y] == null || newRoad.west == _grid[newRoad.X-1, newRoad.Y].GetComponent<Road>().east)
             {
-                newRoadTile.GetComponent<Road>().X = x;
-                newRoadTile.GetComponent<Road>().Y = y;
                 _grid[x, y] = newRoadTile;
                 q.Enqueue(newRoadTile);
             }
