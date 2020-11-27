@@ -5,13 +5,10 @@ namespace LevelGeneration
 {
     public class TileTemplates : MonoBehaviour
     {
-        public List<GameObject> northTiles;
+        [SerializeField]
+        internal List<GameObject> roadTiles;
         
-        public List<GameObject> eastTiles;
-        
-        public List<GameObject> southTiles;
-        
-        public List<GameObject> westTiles;
-        
+        [SerializeField]
+        internal List<GameObject> roadEndings;
     }
 }

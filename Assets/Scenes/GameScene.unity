@@ -520,7 +520,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce2e977c527dac4baeb27bffe4231c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  northTiles:
+  roadTiles:
   - {fileID: 6161156513005661270, guid: dfb383adc0f217f47a32d3cc2b766d8e, type: 3}
   - {fileID: 3598368562989623081, guid: 53d3c5cdf6ac4bb47918628ce757a82d, type: 3}
   - {fileID: 4101923787063766084, guid: 4b345cacb547d1541b2c35e4b27baad3, type: 3}
@@ -555,9 +555,11 @@ MonoBehaviour:
   - {fileID: 2380134048322068691, guid: 77f906c548e6de14f80984db6b536d8b, type: 3}
   - {fileID: 6060530393285259004, guid: d09e1de6c2444304bb6ab1c690784f35, type: 3}
   - {fileID: 8109456995197142186, guid: 039ff3c6602db1d409a88cbfd14d6b17, type: 3}
-  eastTiles: []
-  southTiles: []
-  westTiles: []
+  roadEndings:
+  - {fileID: 3918017405923059804, guid: f32c063dd89a9eb4c9934b03f7081599, type: 3}
+  - {fileID: 4071389222364161301, guid: ca1c3a6c1eefaeb4ca935aab0055b658, type: 3}
+  - {fileID: 5960043019672948758, guid: 5df3823061b67f24ea026821bf9eb5b7, type: 3}
+  - {fileID: 5352718265478742077, guid: a8316e3e7f835df4180aff7306052618, type: 3}
 --- !u!4 &1115355990
 Transform:
   m_ObjectHideFlags: 0
@@ -566,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115355988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.304919, y: 9.908265, z: -860.9851}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -589,7 +591,7 @@ MonoBehaviour:
   tileSize: 18
   startRoad: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
     type: 3}
-  _tiles: {fileID: 1115355989}
+  tiles: {fileID: 1115355989}
 --- !u!1 &1339066318
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +735,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9007239191295334355, guid: 68c0016d9612d194d8a4a846448b6829,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 9007239191295334382, guid: 68c0016d9612d194d8a4a846448b6829,
         type: 3}
       propertyPath: m_Name
