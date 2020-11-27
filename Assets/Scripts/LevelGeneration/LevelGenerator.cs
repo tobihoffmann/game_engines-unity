@@ -92,7 +92,7 @@ namespace LevelGeneration
                         (_levelGrid[x, y-1] == null || newRoad.south == _levelGrid[x, y-1].GetComponent<Road>().north) &&
                         (_levelGrid[x-1, y] == null || newRoad.west == _levelGrid[x-1, y].GetComponent<Road>().east))
                     {
-                        //TODO: on top of while (only condition)
+                        //TODO: top of scope (only condition)
                         if (_levelGrid[x, y] == null)
                         {   
                             newRoad.X = x;
