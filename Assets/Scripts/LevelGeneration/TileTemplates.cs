@@ -19,5 +19,8 @@ namespace LevelGeneration
         
         [SerializeField]
         internal GameObject endingWest;
+
+        [SerializeField]
+        internal List<GameObject> planeTiles;
     }
 }

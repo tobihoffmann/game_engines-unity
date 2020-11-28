@@ -28,6 +28,7 @@ namespace LevelGeneration
 
         private void Start()
         {
+            _junctionCount = 0;
             _levelGrid = new GameObject[levelWidth, levelHeight];
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;
             GenerateRoad();
@@ -75,6 +76,7 @@ namespace LevelGeneration
             }
 
             EndRoads();
+            AddPlanes();
         }
 
         private void AddTile(int x, int y)
@@ -83,23 +85,18 @@ namespace LevelGeneration
             if (_levelGrid[x, y] == null && x > 1 && x < levelWidth - 2 && y > 1 && y < levelHeight - 2)
             {
                 int whileCount = 0;
-                while (whileCount < 500)
+                while (whileCount < 1000)
                 {
                     // Roll a random road tile
                     GameObject newRoadTile = tiles.roadTiles[Random.Range(0, tiles.roadTiles.Count)];
                     Road newRoad = newRoadTile.GetComponent<Road>();
 
                     // check if new tile matches with neighbours, else roll again
-                    if ((_levelGrid[x, y + 1] == null ||
-                         newRoad.north == _levelGrid[x, y + 1].GetComponent<Road>().south) &&
-                        (_levelGrid[x + 1, y] == null ||
-                         newRoad.east == _levelGrid[x + 1, y].GetComponent<Road>().west) &&
-                        (_levelGrid[x, y - 1] == null ||
-                         newRoad.south == _levelGrid[x, y - 1].GetComponent<Road>().north) &&
-                        (_levelGrid[x - 1, y] == null ||
-                         newRoad.west == _levelGrid[x - 1, y].GetComponent<Road>().east))
+                    if ((_levelGrid[x, y + 1] == null || newRoad.north == _levelGrid[x, y + 1].GetComponent<Road>().south) &&
+                        (_levelGrid[x + 1, y] == null || newRoad.east == _levelGrid[x + 1, y].GetComponent<Road>().west) &&
+                        (_levelGrid[x, y - 1] == null || newRoad.south == _levelGrid[x, y - 1].GetComponent<Road>().north) &&
+                        (_levelGrid[x - 1, y] == null || newRoad.west == _levelGrid[x - 1, y].GetComponent<Road>().east))
                     {
-                        
                         if (newRoad.IsJunction() && (IsNeighbourAJunction(x,y) || _junctionCount >= maxJunctions))
                         {
                             whileCount++;
@@ -152,6 +149,29 @@ namespace LevelGeneration
                 }
             }
         }
+
+        private void AddPlanes()
+        {
+            for (int x = 1; x < levelWidth - 1; x++)
+            {
+                for (int y = 1; y < levelHeight - 1; y++)
+                {
+                    if (_levelGrid[x, y] == null)
+                    {
+                        int connections = 0;
+                        if (_levelGrid[x + 1, y] != null) connections++;
+                        if (_levelGrid[x - 1, y] != null) connections++;
+                        if (_levelGrid[x, y + 1] != null) connections++;
+                        if (_levelGrid[x, y - 1] != null) connections++;
+                        if (connections >= 3)
+                        {
+                            _levelGrid[x, y] = tiles.planeTiles[Random.Range(0, tiles.planeTiles.Count)];
+                        }
+                    }
+                }
+            }
+            
+        }    
 
         private bool IsNeighbourAJunction(int tileCoordX, int tileCoordY)
         {

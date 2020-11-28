@@ -300,7 +300,7 @@ Transform:
   m_GameObject: {fileID: 788925773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -563,6 +563,11 @@ MonoBehaviour:
     type: 3}
   endingWest: {fileID: 3918017405923059804, guid: f32c063dd89a9eb4c9934b03f7081599,
     type: 3}
+  planeTiles:
+  - {fileID: 3382812576315113940, guid: e68934d926dc94747a92b5d8656d6828, type: 3}
+  - {fileID: 6529704102121497869, guid: a4a5791a8e23ddf42b7a03fbd0da3832, type: 3}
+  - {fileID: 2221228117359179544, guid: ea293ceb8cecc824cb143b427e2bfcdb, type: 3}
+  - {fileID: 421155984500370083, guid: e9e9ac7a3ef4c17438899d17c6fab255, type: 3}
 --- !u!4 &1115355990
 Transform:
   m_ObjectHideFlags: 0
