@@ -17,8 +17,12 @@ namespace LevelGeneration
         private GameObject[,] _levelGrid;
 
         private int _maxTiles;
-
         private int _tileCount;
+        
+        [SerializeField]
+        private int maxJunctions;
+
+        private int _junctionCount;
 
         private Queue<GameObject> q = new Queue<GameObject>();
 
@@ -96,12 +100,13 @@ namespace LevelGeneration
                          newRoad.west == _levelGrid[x - 1, y].GetComponent<Road>().east))
                     {
                         
-                        if (newRoad.IsJunction() && IsNeighbourAJunction(x,y))
+                        if (newRoad.IsJunction() && (IsNeighbourAJunction(x,y) || _junctionCount >= maxJunctions))
                         {
                             whileCount++;
                         }
                         else
                         {
+                            if (newRoad.IsJunction()) _junctionCount++;
                             newRoad.X = x;
                             newRoad.Y = y;
                             _levelGrid[x, y] = newRoadTile;
@@ -110,7 +115,6 @@ namespace LevelGeneration
                             break;
                         }
                     }
-
                     whileCount++;
                 }
             }
