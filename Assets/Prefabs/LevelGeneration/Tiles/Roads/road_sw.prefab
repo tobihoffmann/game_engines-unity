@@ -246,6 +246,8 @@ MonoBehaviour:
   south: 1
   east: 0
   west: 1
+  isJunction: 0
+  isCurve: 1
 --- !u!1001 &491610511936427710
 PrefabInstance:
   m_ObjectHideFlags: 0

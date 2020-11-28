@@ -87,6 +87,8 @@ MonoBehaviour:
   south: 0
   east: 0
   west: 1
+  isJunction: 0
+  isCurve: 1
 --- !u!1 &7896589205857177419
 GameObject:
   m_ObjectHideFlags: 0
