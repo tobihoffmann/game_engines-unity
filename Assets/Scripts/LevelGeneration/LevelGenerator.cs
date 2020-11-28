@@ -18,17 +18,11 @@ namespace LevelGeneration
 
         private int _maxTiles;
         private int _tileCount;
-        
-        [SerializeField]
-        private int maxJunctions;
-
-        private int _junctionCount;
 
         private Queue<GameObject> q = new Queue<GameObject>();
 
         private void Start()
         {
-            _junctionCount = 0;
             _levelGrid = new GameObject[levelWidth, levelHeight];
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;
             GenerateRoad();
@@ -97,12 +91,6 @@ namespace LevelGeneration
                         (_levelGrid[x, y - 1] == null || newRoad.south == _levelGrid[x, y - 1].GetComponent<Road>().north) &&
                         (_levelGrid[x - 1, y] == null || newRoad.west == _levelGrid[x - 1, y].GetComponent<Road>().east))
                     {
-                        // Rule: A Junction is not adjacent to another Junction
-                        /*if (newRoad.isJunction && (IsNeighbourAJunction(x,y,true) || _junctionCount >= maxJunctions))
-                        {
-                            whileCount++;
-                        }*/
-                        
                         //Rule: A Junction must have at least 5 tiles between another Junction
                         if (newRoad.isJunction && (IsJunctionInRadius(x,y,5) ))
                         {
@@ -120,7 +108,6 @@ namespace LevelGeneration
                         }
                         else
                         {
-                            if (newRoad.isJunction) _junctionCount++;
                             newRoad.X = x;
                             newRoad.Y = y;
                             _levelGrid[x, y] = newRoadTile;
