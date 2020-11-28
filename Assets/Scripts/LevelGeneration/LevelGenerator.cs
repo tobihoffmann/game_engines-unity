@@ -98,7 +98,13 @@ namespace LevelGeneration
                         (_levelGrid[x - 1, y] == null || newRoad.west == _levelGrid[x - 1, y].GetComponent<Road>().east))
                     {
                         // Rule: A Junction is not adjacent to another Junction
-                        if (newRoad.isJunction && (IsNeighbourAJunction(x,y,true) || _junctionCount >= maxJunctions))
+                        /*if (newRoad.isJunction && (IsNeighbourAJunction(x,y,true) || _junctionCount >= maxJunctions))
+                        {
+                            whileCount++;
+                        }*/
+                        
+                        //Rule: A Junction must have at least 5 tiles between another Junction
+                        if (newRoad.isJunction && (IsJunctionInRadius(x,y,5) ))
                         {
                             whileCount++;
                         }
@@ -200,6 +206,21 @@ namespace LevelGeneration
                             }
                         }
                         else if (!(x == tilePosX && y == tilePosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
+                    }
+                }
+            }
+            return false;
+        }
+        
+        private bool IsJunctionInRadius(int tilePosX, int tilePosY, int radius)
+        {
+            for (int x = tilePosX - radius; x < tilePosX + radius + 1; x++)
+            {
+                for (int y = tilePosY - radius; y < tilePosY + radius + 1; y++)
+                {
+                    if (x >= 0 && y >= 0 && x <= levelWidth - 1 && y <= levelHeight - 1)
+                    {
+                        if (!(x == tilePosX && y == tilePosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
                     }
                 }
             }
