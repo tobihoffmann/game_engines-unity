@@ -555,10 +555,14 @@ MonoBehaviour:
   - {fileID: 2380134048322068691, guid: 77f906c548e6de14f80984db6b536d8b, type: 3}
   - {fileID: 6060530393285259004, guid: d09e1de6c2444304bb6ab1c690784f35, type: 3}
   - {fileID: 8109456995197142186, guid: 039ff3c6602db1d409a88cbfd14d6b17, type: 3}
-  endingNorth: {fileID: 0}
-  endingEast: {fileID: 0}
-  endingSouth: {fileID: 0}
-  endingWest: {fileID: 0}
+  endingNorth: {fileID: 5352718265478742077, guid: a8316e3e7f835df4180aff7306052618,
+    type: 3}
+  endingEast: {fileID: 4071389222364161301, guid: ca1c3a6c1eefaeb4ca935aab0055b658,
+    type: 3}
+  endingSouth: {fileID: 5960043019672948758, guid: 5df3823061b67f24ea026821bf9eb5b7,
+    type: 3}
+  endingWest: {fileID: 3918017405923059804, guid: f32c063dd89a9eb4c9934b03f7081599,
+    type: 3}
 --- !u!4 &1115355990
 Transform:
   m_ObjectHideFlags: 0
