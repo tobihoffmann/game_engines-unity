@@ -52,7 +52,7 @@ public class Melee : MonoBehaviour
         
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit" + enemy.name);
+            Debug.Log("We hit " + enemy.name);
             //give damage to the enemy 
             //just pseudo code, because no enemyManager implemented yet
             
@@ -63,14 +63,14 @@ public class Melee : MonoBehaviour
     
     }
     //Draws an circle to show the melee attack area
-    /*
+    
     void OnDrawGizmosSelected()
     {
-        if (attackPoint == null) return;
+        if (attackCenter == null) return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackCenter.position, attackRange);
     }
-    */
+    
     
 }
 
