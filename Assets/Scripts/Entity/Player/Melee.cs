@@ -11,7 +11,7 @@ public class Melee : MonoBehaviour
     private Transform attackCenter;
     
     [SerializeField][Tooltip("Radian of the AttackCircle")]
-    private float attackRange = 0.5f;
+    private float attackRange;
     
     [SerializeField][Tooltip("Damage of the Melee Attack")]
     private float MeleeDamage;
@@ -22,7 +22,6 @@ public class Melee : MonoBehaviour
     [SerializeField][Tooltip("LayerMask for detecting enemies")]
     private LayerMask enemyLayers;
     
-    //[SerializeField][Tooltip("AnimatorObject for MeleeAnimation")]
     private Animator animator;
     private float t;
     
