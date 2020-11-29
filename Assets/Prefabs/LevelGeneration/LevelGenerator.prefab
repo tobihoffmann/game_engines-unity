@@ -76,6 +76,30 @@ MonoBehaviour:
   - {fileID: 6529704102121497869, guid: a4a5791a8e23ddf42b7a03fbd0da3832, type: 3}
   - {fileID: 2221228117359179544, guid: ea293ceb8cecc824cb143b427e2bfcdb, type: 3}
   - {fileID: 421155984500370083, guid: e9e9ac7a3ef4c17438899d17c6fab255, type: 3}
+  borderNorth: {fileID: 3155231357404711183, guid: 9cf174a73b1021e47be973f1aa16fd3e,
+    type: 3}
+  borderSouth: {fileID: 5404988006042351942, guid: 4e884c8f95698574d952e08892284903,
+    type: 3}
+  borderEast: {fileID: 8566414601121189261, guid: 745ffc421133afb4ba27a38198a30ba9,
+    type: 3}
+  borderWest: {fileID: 3844174766373719761, guid: c6561a75bddc88441821f49e7080fe71,
+    type: 3}
+  borderNorthEast: {fileID: 2519353791296774802, guid: ca18bed899f11324eade2c1677773347,
+    type: 3}
+  borderNorthWest: {fileID: 343054336057035178, guid: fff0d85151de2de45a92a2937cae7283,
+    type: 3}
+  borderSouthEast: {fileID: 5148589813172039008, guid: 7410c8970826db74792e01340226c6d7,
+    type: 3}
+  borderSouthWest: {fileID: 3404184158395983517, guid: 4ba2b89eb9c73a34698b871e5087da1a,
+    type: 3}
+  borderCornerNorthEast: {fileID: 5813578389266401780, guid: 88db03f55b2a8d1488e8fb8323f8b9a7,
+    type: 3}
+  borderCornerNorthWest: {fileID: 8745900827779265143, guid: b324355b174888840bdc600ef84e1ed0,
+    type: 3}
+  borderCornerSouthEast: {fileID: 8207014200611965133, guid: 59233b75dbb530147b5cb77a470dba7c,
+    type: 3}
+  borderCornerSouthWest: {fileID: 3454871935342901521, guid: d5d93b10a40420646bdb1514a4566cec,
+    type: 3}
 --- !u!114 &825621069400695132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,4 +118,3 @@ MonoBehaviour:
   startRoad: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
     type: 3}
   tiles: {fileID: 825621069400695134}
-  maxJunctions: 1

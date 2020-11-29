@@ -78,6 +78,7 @@ namespace LevelGeneration
             // In bounds of levelGrid (-2 for level border layer and road endings)
             if (_levelGrid[x, y] == null && x > 1 && x < levelWidth - 2 && y > 1 && y < levelHeight - 2)
             {
+                // bool foundMatch = false; -> If everything is cool we can use this as while condition
                 int whileCount = 0;
                 while (whileCount < 1000)
                 {
@@ -162,19 +163,29 @@ namespace LevelGeneration
                 {
                     if (_levelGrid[x, y] == null)
                     {
-                        int adjacentTiles = 0;
-                        if (_levelGrid[x + 1, y] != null) adjacentTiles++;
-                        if (_levelGrid[x - 1, y] != null) adjacentTiles++;
-                        if (_levelGrid[x, y + 1] != null) adjacentTiles++;
-                        if (_levelGrid[x, y - 1] != null) adjacentTiles++;
-                        if (adjacentTiles >= 3)
+                        // if grid cell to the west and to the east or to the north and to the south has a tile place plane
+                        if (_levelGrid[x + 1, y] != null && _levelGrid[x - 1, y] != null || _levelGrid[x, y + 1] != null && _levelGrid[x, y - 1] != null)
                         {
                             _levelGrid[x, y] = tiles.planeTiles[Random.Range(0, tiles.planeTiles.Count)];
                         }
                     }
                 }
             }
-            
+            // 2nd rotation to catch empty fields within the level space
+            for (int x = 1; x < levelWidth - 1; x++)
+            {
+                for (int y = 1; y < levelHeight - 1; y++)
+                {
+                    if (_levelGrid[x, y] == null)
+                    {
+                        // if all neighbours have a tile place plane
+                        if (_levelGrid[x + 1, y] != null && _levelGrid[x - 1, y] != null && _levelGrid[x, y + 1] != null && _levelGrid[x, y - 1] != null)
+                        {
+                            _levelGrid[x, y] = tiles.planeTiles[Random.Range(0, tiles.planeTiles.Count)];
+                        }
+                    }
+                }
+            }
         }    
 
         private bool IsNeighbourAJunction(int tilePosX, int tilePosY, bool checkDiagonals)
