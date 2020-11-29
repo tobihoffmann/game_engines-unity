@@ -16,11 +16,15 @@ public class Melee : MonoBehaviour
     [SerializeField][Tooltip("Damage of the Melee Attack")]
     private float MeleeDamage;
     
+    [SerializeField][Tooltip("CoolDown Time of the Melee Attack")]
+    private float CoolDown;
+    
     [SerializeField][Tooltip("LayerMask for detecting enemies")]
     private LayerMask enemyLayers;
     
-    [SerializeField][Tooltip("AnimatorObject for MeleeAnimation")]
+    //[SerializeField][Tooltip("AnimatorObject for MeleeAnimation")]
     private Animator animator;
+    private float t;
     
     private void OnEnable()
     {
@@ -32,14 +36,25 @@ public class Melee : MonoBehaviour
         melee.Disable();
         
     }
+
+    void Start()
+    {
+        animator = gameObject.GetComponent<Animator>();
+        t = CoolDown;
+    }
     
     // Update is called once per frame
     void Update()
     {
+        t = t - Time.deltaTime;
         if (melee.triggered)
         {
-            animator.SetTrigger("MeleeTrigger");
-            Attack();
+            if (t <= 0)
+            {
+                animator.SetTrigger("MeleeTrigger");
+                Attack();
+            }
+           
         }
     }
 
@@ -58,9 +73,9 @@ public class Melee : MonoBehaviour
             
             //enemy.EnemyManager.SetHitpoints(-MeleeDamage);
         }
+
+        t = CoolDown;
         
-        
-    
     }
     //Draws an circle to show the melee attack area
     

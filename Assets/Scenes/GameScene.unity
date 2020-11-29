@@ -1438,11 +1438,21 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6064350941908553545, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: CoolDown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: CoolDown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6064350941908553556, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1507,6 +1517,16 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: MeleeDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: CoolDown
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
