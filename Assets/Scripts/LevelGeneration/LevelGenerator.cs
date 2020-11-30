@@ -396,8 +396,8 @@ namespace LevelGeneration
         private void SpawnPlayer()
         {
             Vector2 start = new Vector2(startAndEnd[0].x, startAndEnd[0].y);
-            start.x += start.x * tileSize;
-            start.y += start.y * tileSize;
+            start.x = start.x * tileSize;
+            start.y = start.y * tileSize;
             player.transform.position = start;
         }
 
@@ -407,8 +407,8 @@ namespace LevelGeneration
         private void SpawnEndPoint()
         {
             Vector2 end = new Vector2(startAndEnd[1].x, startAndEnd[1].y);
-            end.x += end.x * tileSize;
-            end.y += end.y * tileSize;
+            end.x = end.x * tileSize;
+            end.y = end.y * tileSize;
             Instantiate(levelEndPoint, end, Quaternion.identity);
         }
     }
