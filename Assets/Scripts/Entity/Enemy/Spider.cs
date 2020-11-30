@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AbstractClasses;
 using Entity.Player;
 using Managers;
 using Pathfinding;
@@ -26,6 +27,9 @@ namespace Entity.Enemy
         
         [SerializeField] [Tooltip("Wander radius of AI.")]
         private float radius = 2f;
+
+        [SerializeField] [Tooltip("Hitpoints from the Spider")]
+        private int Hitpoints;
 
         private IAstarAI _ai;
         private AIPath _aiPath;
@@ -146,6 +150,12 @@ namespace Entity.Enemy
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, explodeDistance);
+        }
+        
+        public void Hit(int damage)
+        {
+            Hitpoints -= damage;
+            if (Hitpoints <= 1) Destroy(gameObject);
         }
     }
 }

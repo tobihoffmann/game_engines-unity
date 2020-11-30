@@ -21,6 +21,9 @@ public class shooting : MonoBehaviour
     [SerializeField][Tooltip("Float variable for the Bulletforce")]
     private float bulletForce = 50f;
     
+    [SerializeField][Tooltip("BulletDamage")]
+    private float damage;
+    
     [SerializeField][Tooltip("Coodown time for shooting")]
     private float CoolDown;
 
@@ -89,6 +92,11 @@ public class shooting : MonoBehaviour
         t = CoolDown;
 
 
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
     
 }

@@ -1,4 +1,5 @@
 ﻿
+using Entity.Enemy;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -69,8 +70,8 @@ public class Melee : MonoBehaviour
             Debug.Log("We hit " + enemy.name);
             //give damage to the enemy 
             //just pseudo code, because no enemyManager implemented yet
+            enemy.GetComponent<Spider>().Hit((int)MeleeDamage);
             
-            //enemy.EnemyManager.SetHitpoints(-MeleeDamage);
         }
 
         t = CoolDown;
