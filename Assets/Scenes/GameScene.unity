@@ -877,7 +877,7 @@ PrefabInstance:
     - target: {fileID: 4719819693485188337, guid: 1b286af624e72a5439598a9852e22d8a,
         type: 3}
       propertyPath: Hitpoints
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4719819693630697072, guid: 1b286af624e72a5439598a9852e22d8a,
         type: 3}
@@ -1461,6 +1461,11 @@ PrefabInstance:
     - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: Damage
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6064350941908553551, guid: 2608ab4010d791c47a9b026d50605c64,

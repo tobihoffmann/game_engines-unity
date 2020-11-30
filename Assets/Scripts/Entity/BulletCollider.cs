@@ -1,6 +1,9 @@
 ﻿
 using Entity.Enemy;
+using Entity.Player;
+using Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Entity
 {
@@ -9,17 +12,12 @@ namespace Entity
         [SerializeField][Tooltip("Gameobject for HitEffect Animation")]
         private GameObject hitEffect;
 
-        [SerializeField][Tooltip("BulletDamage")]
-        private float damage;
-
-        
-        
 
         void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.collider.name == "Spider")
             {
-                //collision.collider.GetComponent<Spider>().Hit((int)Player.GetComponent<shooting>().GetDamage());
+                var damage = PlayerManager.Instance.GetPlayer().GetComponent<shooting>().GetDamage();
                 collision.collider.GetComponent<Spider>().Hit((int) damage);
             }
             

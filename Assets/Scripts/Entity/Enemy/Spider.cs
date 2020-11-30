@@ -155,7 +155,7 @@ namespace Entity.Enemy
         public void Hit(int damage)
         {
             Hitpoints -= damage;
-            if (Hitpoints <= 1) Destroy(gameObject);
+            if (Hitpoints <= 0) Destroy(gameObject);
         }
     }
 }
