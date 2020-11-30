@@ -26,8 +26,12 @@ namespace LevelGeneration
             _levelGrid = new GameObject[levelWidth, levelHeight];
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;
             GenerateRoad();
+            AddPlanes();
+            AddBorders();
+            AddBorderCorners();
             BuildLevel();
             DrawLevelArray();
+            _levelGrid = new GameObject[0,0];
         }
 
         private void GenerateRoad()
@@ -68,19 +72,17 @@ namespace LevelGeneration
 
                 q.Dequeue();
             }
-
-            EndRoads();
-            AddPlanes();
+            AddRoadEnd();
         }
 
         private void AddTile(int x, int y)
         {
             // In bounds of levelGrid (-2 for level border layer and road endings)
-            if (_levelGrid[x, y] == null && x > 1 && x < levelWidth - 2 && y > 1 && y < levelHeight - 2)
+            if (_levelGrid[x, y] == null && x > 2 && x < levelWidth - 3 && y > 2 && y < levelHeight - 3)
             {
                 // bool foundMatch = false; -> If everything is cool we can use this as while condition
                 int whileCount = 0;
-                while (whileCount < 1000)
+                while (whileCount < 100)
                 {
                     // Roll a random road tile
                     GameObject newRoadTile = tiles.roadTiles[Random.Range(0, tiles.roadTiles.Count)];
@@ -122,11 +124,11 @@ namespace LevelGeneration
             }
         }
 
-        private void EndRoads()
+        private void AddRoadEnd()
         {
-            for (int x = 1; x < levelWidth - 1; x++)
+            for (int x = 2; x < levelWidth - 2; x++)
             {
-                for (int y = 1; y < levelHeight - 1; y++)
+                for (int y = 2; y < levelHeight - 2; y++)
                 {
                     if (_levelGrid[x, y] == null)
                     {
@@ -157,9 +159,9 @@ namespace LevelGeneration
 
         private void AddPlanes()
         {
-            for (int x = 1; x < levelWidth - 1; x++)
+            for (int x = 2; x < levelWidth - 2; x++)
             {
-                for (int y = 1; y < levelHeight - 1; y++)
+                for (int y = 2; y < levelHeight - 2; y++)
                 {
                     if (_levelGrid[x, y] == null)
                     {
@@ -172,9 +174,9 @@ namespace LevelGeneration
                 }
             }
             // 2nd rotation to catch empty fields within the level space
-            for (int x = 1; x < levelWidth - 1; x++)
+            for (int x = 2; x < levelWidth - 2; x++)
             {
-                for (int y = 1; y < levelHeight - 1; y++)
+                for (int y = 2; y < levelHeight - 2; y++)
                 {
                     if (_levelGrid[x, y] == null)
                     {
@@ -186,88 +188,200 @@ namespace LevelGeneration
                     }
                 }
             }
-        }    
+        }
 
-        private bool IsNeighbourAJunction(int tilePosX, int tilePosY, bool checkDiagonals)
+        private void AddBorders()
         {
-            for (int x = tilePosX - 1; x < tilePosX + 2; x++)
+            
+            for (int x = 1; x < levelWidth - 1; x++)
             {
-                for (int y = tilePosY - 1; y < tilePosY + 2; y++)
+                for (int y = 1; y < levelHeight -1 ; y++)
+                {
+                    // Check if Grid Cell is empty
+                    if (_levelGrid[x, y] == null)
+                    {
+                        // Check if grid cell has a tile on any neighbor
+                        if (CountNeighbours(x,y) > 0)
+                        {
+                            for (int i = 0; i < tiles.borders.Count; i++)
+                            {
+                                GameObject newBorderTile = tiles.borders[i];
+                                Border newBorder = newBorderTile.GetComponent<Border>();
+
+                                // Does selected tile match with Grid cell in the north?
+                                if (_levelGrid[x, y + 1] == null && !newBorder.north ||
+                                    _levelGrid[x, y + 1] != null && (_levelGrid[x, y + 1].GetComponent<LevelTile>().type == LevelTile.Type.Plane || _levelGrid[x, y + 1].GetComponent<LevelTile>().type == LevelTile.Type.Road) && newBorder.north ||
+                                    _levelGrid[x, y + 1] != null && _levelGrid[x, y + 1].GetComponent<LevelTile>().type == LevelTile.Type.Border && newBorder.north == _levelGrid[x, y + 1].GetComponent<Border>().south)
+                                {
+                                    // Does selected tile match with Grid cell in the south?
+                                    if (_levelGrid[x, y - 1] == null && !newBorder.south ||
+                                        _levelGrid[x, y - 1] != null && (_levelGrid[x, y - 1].GetComponent<LevelTile>().type == LevelTile.Type.Plane || _levelGrid[x, y - 1].GetComponent<LevelTile>().type == LevelTile.Type.Road) && newBorder.south ||
+                                        _levelGrid[x, y - 1] != null && _levelGrid[x, y - 1].GetComponent<LevelTile>().type == LevelTile.Type.Border && newBorder.south == _levelGrid[x, y - 1].GetComponent<Border>().north)
+                                    {
+                                        // Does selected tile match with Grid cell in the west?
+                                        if (_levelGrid[x + 1, y] == null && !newBorder.east ||
+                                            _levelGrid[x + 1, y] != null && (_levelGrid[x + 1, y].GetComponent<LevelTile>().type == LevelTile.Type.Plane || _levelGrid[x + 1, y].GetComponent<LevelTile>().type == LevelTile.Type.Road) && newBorder.east ||
+                                            _levelGrid[x + 1, y] != null && _levelGrid[x + 1, y].GetComponent<LevelTile>().type == LevelTile.Type.Border && newBorder.east == _levelGrid[x + 1, y].GetComponent<Border>().west)
+                                        {
+                                            // Does selected tile match with Grid cell in the east?
+                                            if (_levelGrid[x - 1, y] == null && !newBorder.west ||
+                                                _levelGrid[x - 1, y] != null && (_levelGrid[x - 1, y].GetComponent<LevelTile>().type == LevelTile.Type.Plane || _levelGrid[x -1, y].GetComponent<LevelTile>().type == LevelTile.Type.Road) && newBorder.west ||
+                                                _levelGrid[x - 1, y] != null && _levelGrid[x - 1, y].GetComponent<LevelTile>().type == LevelTile.Type.Border && newBorder.west == _levelGrid[x - 1, y].GetComponent<Border>().east)
+                                            {
+                                                _levelGrid[x, y] = newBorderTile;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        private void AddBorderCorners()
+        {
+            for (int x = 1; x < levelWidth - 1; x++)
+            {
+                for (int y = 1; y < levelHeight - 1; y++)
+                {
+                    if (_levelGrid[x, y] == null && CountNeighbours(x,y) >= 2)
+                    {
+                        //Check if
+                        if (_levelGrid[x, y + 1] != null &&
+                            _levelGrid[x + 1, y] != null &&
+                            _levelGrid[x, y + 1].GetComponent<Border>() != null &&
+                            _levelGrid[x + 1, y].GetComponent<Border>() != null &&
+                            !_levelGrid[x, y + 1].GetComponent<Border>().isCorner &&
+                            !_levelGrid[x + 1, y].GetComponent<Border>().isCorner &&
+                            _levelGrid[x, y + 1].GetComponent<Border>().east &&
+                            _levelGrid[x + 1, y].GetComponent<Border>().north)
+                        {
+                            _levelGrid[x, y] = tiles.borderCornerSouthWest;
+                        }
+                        //Check if
+                        else if (_levelGrid[x, y - 1] != null &&
+                                 _levelGrid[x + 1, y] != null &&
+                                 _levelGrid[x, y - 1].GetComponent<Border>() != null &&
+                                 _levelGrid[x + 1, y].GetComponent<Border>() != null &&
+                                 !_levelGrid[x, y - 1].GetComponent<Border>().isCorner &&
+                                 !_levelGrid[x + 1, y].GetComponent<Border>().isCorner &&
+                                 _levelGrid[x, y - 1].GetComponent<Border>().east &&
+                                 _levelGrid[x + 1, y].GetComponent<Border>().south)
+                        {
+                            _levelGrid[x, y] = tiles.borderCornerNorthWest;
+                        }
+                        //Check if
+                        else if (_levelGrid[x, y + 1] != null &&
+                                 _levelGrid[x - 1, y] != null &&
+                                 _levelGrid[x, y + 1].GetComponent<Border>() != null &&
+                                 _levelGrid[x - 1, y].GetComponent<Border>() != null &&
+                                 !_levelGrid[x, y + 1].GetComponent<Border>().isCorner &&
+                                 !_levelGrid[x - 1, y].GetComponent<Border>().isCorner &&
+                                 _levelGrid[x, y + 1].GetComponent<Border>().west &&
+                                 _levelGrid[x - 1, y].GetComponent<Border>().north)
+                        {
+                            _levelGrid[x, y] = tiles.borderCornerSouthEast;
+                        }
+                        //Check if
+                        else if (_levelGrid[x, y - 1] != null &&
+                                 _levelGrid[x - 1, y] != null &&
+                                 _levelGrid[x, y - 1].GetComponent<Border>() != null &&
+                                 _levelGrid[x - 1, y].GetComponent<Border>() != null &&
+                                 !_levelGrid[x, y - 1].GetComponent<Border>().isCorner &&
+                                 !_levelGrid[x - 1, y].GetComponent<Border>().isCorner &&
+                                 _levelGrid[x, y - 1].GetComponent<Border>().west &&
+                                 _levelGrid[x - 1, y].GetComponent<Border>().south)
+                        {
+                            _levelGrid[x, y] = tiles.borderCornerNorthEast;
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        private bool IsNeighbourAJunction(int gridPosX, int gridPosY, bool checkDiagonals)
+        {
+            for (int x = gridPosX - 1; x < gridPosX + 2; x++)
+            {
+                for (int y = gridPosY - 1; y < gridPosY + 2; y++)
                 {
                     if (x >= 0 && y >= 0 && x <= levelWidth - 1 && y <= levelHeight - 1)
                     {
                         if (checkDiagonals)
                         {
-                            if (x == tilePosX - 1 && y == tilePosY || x == tilePosX && y == tilePosY - 1 || x == tilePosX && y == tilePosY + 1 || x == tilePosX + 1 && y == tilePosY)
+                            if (x == gridPosX - 1 && y == gridPosY || x == gridPosX && y == gridPosY - 1 || x == gridPosX && y == gridPosY + 1 || x == gridPosX + 1 && y == gridPosY)
                             {
-                                if (!(x == tilePosX && y == tilePosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
+                                if (!(x == gridPosX && y == gridPosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
                             }
                         }
-                        else if (!(x == tilePosX && y == tilePosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
+                        else if (!(x == gridPosX && y == gridPosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
                     }
                 }
             }
             return false;
         }
         
-        private bool IsJunctionInRadius(int tilePosX, int tilePosY, int radius)
+        private bool IsJunctionInRadius(int gridPosX, int gridPosY, int radius)
         {
-            for (int x = tilePosX - radius; x < tilePosX + radius + 1; x++)
+            for (int x = gridPosX - radius; x < gridPosX + radius + 1; x++)
             {
-                for (int y = tilePosY - radius; y < tilePosY + radius + 1; y++)
+                for (int y = gridPosY - radius; y < gridPosY + radius + 1; y++)
                 {
                     if (x >= 0 && y >= 0 && x <= levelWidth - 1 && y <= levelHeight - 1)
                     {
-                        if (!(x == tilePosX && y == tilePosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
+                        if (!(x == gridPosX && y == gridPosY) && _levelGrid[x, y] != null && _levelGrid[x, y].GetComponent<Road>().isJunction) return true;
                     }
                 }
             }
             return false;
         }
 
-        private bool IsUTurn(int tilePosX, int tilePosY, Road newRoad)
+        private bool IsUTurn(int gridPosX, int gridPosY, Road newRoad)
         {
             if (newRoad.isCurve)
             {
-                if (_levelGrid[tilePosX, tilePosY+1] != null)
+                if (_levelGrid[gridPosX, gridPosY+1] != null)
                 {
-                    if (_levelGrid[tilePosX, tilePosY+1].GetComponent<Road>().isCurve)
+                    if (_levelGrid[gridPosX, gridPosY+1].GetComponent<Road>().isCurve)
                     {
-                        if (newRoad.west && _levelGrid[tilePosX, tilePosY+1].GetComponent<Road>().west ||
-                            newRoad.east && _levelGrid[tilePosX, tilePosY+1].GetComponent<Road>().east)
+                        if (newRoad.west && _levelGrid[gridPosX, gridPosY+1].GetComponent<Road>().west ||
+                            newRoad.east && _levelGrid[gridPosX, gridPosY+1].GetComponent<Road>().east)
                         {
                             return true;
                         }
                     }
                 }
-                if (_levelGrid[tilePosX+1, tilePosY] != null)
+                if (_levelGrid[gridPosX+1, gridPosY] != null)
                 {
-                    if (_levelGrid[tilePosX+1, tilePosY].GetComponent<Road>().isCurve)
+                    if (_levelGrid[gridPosX+1, gridPosY].GetComponent<Road>().isCurve)
                     {
-                        if (newRoad.north && _levelGrid[tilePosX+1, tilePosY].GetComponent<Road>().north ||
-                            newRoad.south && _levelGrid[tilePosX+1, tilePosY].GetComponent<Road>().south)
+                        if (newRoad.north && _levelGrid[gridPosX+1, gridPosY].GetComponent<Road>().north ||
+                            newRoad.south && _levelGrid[gridPosX+1, gridPosY].GetComponent<Road>().south)
                         {
                             return true;
                         }
                     }
                 }
-                if (_levelGrid[tilePosX, tilePosY-1] != null)
+                if (_levelGrid[gridPosX, gridPosY-1] != null)
                 {
-                    if (_levelGrid[tilePosX, tilePosY-1].GetComponent<Road>().isCurve)
+                    if (_levelGrid[gridPosX, gridPosY-1].GetComponent<Road>().isCurve)
                     {
-                        if (newRoad.west && _levelGrid[tilePosX, tilePosY-1].GetComponent<Road>().west ||
-                            newRoad.east && _levelGrid[tilePosX, tilePosY-1].GetComponent<Road>().east)
+                        if (newRoad.west && _levelGrid[gridPosX, gridPosY-1].GetComponent<Road>().west ||
+                            newRoad.east && _levelGrid[gridPosX, gridPosY-1].GetComponent<Road>().east)
                         {
                             return true;
                         }
                     }
                 }
-                if (_levelGrid[tilePosX-1, tilePosY] != null)
+                if (_levelGrid[gridPosX-1, gridPosY] != null)
                 {
-                    if (_levelGrid[tilePosX-1, tilePosY].GetComponent<Road>().isCurve)
+                    if (_levelGrid[gridPosX-1, gridPosY].GetComponent<Road>().isCurve)
                     {
-                        if (newRoad.north && _levelGrid[tilePosX-1, tilePosY].GetComponent<Road>().north ||
-                            newRoad.south && _levelGrid[tilePosX-1, tilePosY].GetComponent<Road>().south)
+                        if (newRoad.north && _levelGrid[gridPosX-1, gridPosY].GetComponent<Road>().north ||
+                            newRoad.south && _levelGrid[gridPosX-1, gridPosY].GetComponent<Road>().south)
                         {
                             return true;
                         }
@@ -276,6 +390,33 @@ namespace LevelGeneration
             }
 
             return false;
+        }
+
+        private int CountNeighbours(int gridPosX, int gridPosY)
+        {
+            int amountNeighbours = 0;
+            
+            if (_levelGrid[gridPosX, gridPosY + 1] != null)
+            {
+                amountNeighbours++;
+            }
+
+            if (_levelGrid[gridPosX + 1, gridPosY] != null)
+            {
+                amountNeighbours++;
+            }
+
+            if (_levelGrid[gridPosX, gridPosY - 1] != null)
+            {
+                amountNeighbours++;
+            }
+
+            if (_levelGrid[gridPosX - 1, gridPosY] != null)
+            {
+                amountNeighbours++;
+            }
+            
+            return amountNeighbours;
         }
 
         private void BuildLevel()
@@ -292,52 +433,31 @@ namespace LevelGeneration
                 }
             }
 
-            private void DrawLevelArray()
+        private void DrawLevelArray()
+        {
+            string arrayRepresentation = "";
+            for (int y = 0; y < levelHeight; y++)
             {
-                string arrayRepresentation = "";
-                for (int y = 0; y < levelHeight; y++)
+                for (int x = 0; x < levelWidth; x++)
                 {
-                    for (int x = 0; x < levelWidth; x++)
+                    if (_levelGrid[x, y] != null)
                     {
-                        if (_levelGrid[x, y] != null)
-                        {
-                            arrayRepresentation = arrayRepresentation + "X";
-                        }
-                        else
-                        {
-                            arrayRepresentation = arrayRepresentation + "0";
-                        }
+                        arrayRepresentation = arrayRepresentation + "X";
+                    }
+                    else
+                    {
+                        arrayRepresentation = arrayRepresentation + "0";
+                    }
 
-                        if (x == levelWidth - 1)
-                        {
-                            arrayRepresentation = arrayRepresentation + "\n";
-                        }
+                    if (x == levelWidth - 1)
+                    {
+                        arrayRepresentation = arrayRepresentation + "\n";
                     }
                 }
-
-                Debug.Log(arrayRepresentation + "\n" + "Tiles placed: " + _tileCount + "\n" + "Max Tiles: " +
-                          _maxTiles);
             }
 
-            private List<GameObject> GetNeighbours(GameObject road)
-            {
-                List<GameObject> neighbours = new List<GameObject>();
-                Road r = road.GetComponent<Road>();
-
-                for (int x = r.X - 1; x < r.X + 2; x++)
-                {
-                    for (int y = r.Y - 1; y < r.Y + 2; y++)
-                    {
-                        if (!(x == r.X && y == r.Y))
-                        {
-                            if (_levelGrid[x, y] != null)
-                            {
-                                neighbours.Add(_levelGrid[x, y]);
-                            }
-                        }
-                    }
-                }
-                return neighbours;
-            }
+            Debug.Log(arrayRepresentation + "\n" + "Tiles placed: " + _tileCount + "\n" + "Max Tiles: " +
+                      _maxTiles);
+        }
     }
 }

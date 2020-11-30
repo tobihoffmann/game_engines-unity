@@ -27,21 +27,8 @@ namespace LevelGeneration
         
         [Header("Level Borders")]
         [SerializeField]
-        internal GameObject borderNorth;
-        [SerializeField]
-        internal GameObject borderSouth;
-        [SerializeField]
-        internal GameObject borderEast;
-        [SerializeField]
-        internal GameObject borderWest;
-        [SerializeField]
-        internal GameObject borderNorthEast;
-        [SerializeField]
-        internal GameObject borderNorthWest;
-        [SerializeField]
-        internal GameObject borderSouthEast;
-        [SerializeField]
-        internal GameObject borderSouthWest;
+        internal List<GameObject> borders;
+
         [SerializeField]
         internal GameObject borderCornerNorthEast;
         [SerializeField]

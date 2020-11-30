@@ -4,9 +4,11 @@ namespace LevelGeneration
 {
     public class Road : MonoBehaviour
     {
+        [Header("Openings")]
         [SerializeField]
         internal bool north, south, east, west;
 
+        [Header("Attributes")]
         [SerializeField]
         internal bool isJunction;
 

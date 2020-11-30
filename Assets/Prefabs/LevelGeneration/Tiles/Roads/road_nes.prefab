@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8671441885570484483}
   - component: {fileID: 5975787144132822584}
+  - component: {fileID: 5296123034718832264}
   m_Layer: 0
   m_Name: road_nes
   m_TagString: t_Junction
@@ -52,6 +53,19 @@ MonoBehaviour:
   west: 0
   isJunction: 1
   isCurve: 0
+--- !u!114 &5296123034718832264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161363880525169497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24009cd3c63b6e642acd5b08adbdb0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &4668342618849657370
 GameObject:
   m_ObjectHideFlags: 0

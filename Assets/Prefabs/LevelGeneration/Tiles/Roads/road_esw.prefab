@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4546461709454670125}
   - component: {fileID: 4978164130328003194}
+  - component: {fileID: -8324338569722727528}
   m_Layer: 0
   m_Name: road_esw
   m_TagString: t_Junction
@@ -167,6 +168,19 @@ MonoBehaviour:
   west: 1
   isJunction: 1
   isCurve: 0
+--- !u!114 &-8324338569722727528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598368562989623081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24009cd3c63b6e642acd5b08adbdb0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &7358041549864264843
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,7 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5936971911919536665}
-  - component: {fileID: 3585987270571294386}
+  - component: {fileID: -3151288704646319678}
+  - component: {fileID: -7778698500170841729}
   m_Layer: 0
   m_Name: BorderNorthEast
   m_TagString: Untagged
@@ -114,7 +115,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3585987270571294386
+--- !u!114 &-3151288704646319678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,15 +124,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2519353791296774802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea1a99358b608c44b84b58fcc3e5a1a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e2bb9dc19179b84e94caa66392b9bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   north: 0
-  south: 0
-  east: 1
+  south: 1
+  east: 0
   west: 1
-  isJunction: 0
-  isCurve: 0
+--- !u!114 &-7778698500170841729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519353791296774802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24009cd3c63b6e642acd5b08adbdb0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!1001 &7952879099616275770
 PrefabInstance:
   m_ObjectHideFlags: 0

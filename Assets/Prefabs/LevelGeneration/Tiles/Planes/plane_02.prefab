@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3030075769540070790}
-  - component: {fileID: 5308439701271787821}
+  - component: {fileID: 2243515383615335372}
   m_Layer: 0
   m_Name: plane_02
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5308439701271787821
+--- !u!114 &2243515383615335372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,13 +74,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6529704102121497869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea1a99358b608c44b84b58fcc3e5a1a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 24009cd3c63b6e642acd5b08adbdb0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  north: 0
-  south: 0
-  east: 1
-  west: 1
+  type: 1
 --- !u!1 &8678274072668647347
 GameObject:
   m_ObjectHideFlags: 0

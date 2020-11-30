@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2323624504610529663}
-  - component: {fileID: 4870797198283167188}
+  - component: {fileID: 994110160347322209}
+  - component: {fileID: -4878647386764913297}
   m_Layer: 0
   m_Name: BorderCornerNorthEast
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4870797198283167188
+--- !u!114 &994110160347322209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,15 +43,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 5813578389266401780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea1a99358b608c44b84b58fcc3e5a1a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 24009cd3c63b6e642acd5b08adbdb0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+--- !u!114 &-4878647386764913297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5813578389266401780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2bb9dc19179b84e94caa66392b9bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   north: 0
   south: 0
-  east: 1
-  west: 1
-  isJunction: 0
-  isCurve: 0
+  east: 0
+  west: 0
+  isCorner: 1
 --- !u!1 &8240670035977552714
 GameObject:
   m_ObjectHideFlags: 0

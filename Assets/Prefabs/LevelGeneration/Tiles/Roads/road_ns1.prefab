@@ -126,6 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7932958237628778357}
   - component: {fileID: 2865397486006012334}
+  - component: {fileID: 4857893750799194108}
   m_Layer: 0
   m_Name: road_ns1
   m_TagString: Untagged
@@ -166,6 +167,21 @@ MonoBehaviour:
   south: 1
   east: 0
   west: 0
+  isJunction: 0
+  isCurve: 0
+--- !u!114 &4857893750799194108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249646214860159110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24009cd3c63b6e642acd5b08adbdb0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &5567827939980419411
 GameObject:
   m_ObjectHideFlags: 0
