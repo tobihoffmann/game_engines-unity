@@ -18,7 +18,7 @@ namespace Entity
             if (collision.collider.name == "Spider")
             {
                 var damage = PlayerManager.Instance.GetPlayer().GetComponent<shooting>().GetDamage();
-                collision.collider.GetComponent<Spider>().Hit((int) damage);
+                collision.collider.GetComponent<Hitregistration>().Hit((int) damage);
             }
             
             //initiate explosion effect and destroy bullet object

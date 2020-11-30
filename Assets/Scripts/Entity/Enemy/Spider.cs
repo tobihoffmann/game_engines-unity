@@ -27,9 +27,7 @@ namespace Entity.Enemy
         
         [SerializeField] [Tooltip("Wander radius of AI.")]
         private float radius = 2f;
-
-        [SerializeField] [Tooltip("Hitpoints from the Spider")]
-        private int Hitpoints;
+        
 
         private IAstarAI _ai;
         private AIPath _aiPath;
@@ -152,10 +150,5 @@ namespace Entity.Enemy
             Gizmos.DrawWireSphere(transform.position, explodeDistance);
         }
         
-        public void Hit(int damage)
-        {
-            Hitpoints -= damage;
-            if (Hitpoints <= 0) Destroy(gameObject);
-        }
     }
 }

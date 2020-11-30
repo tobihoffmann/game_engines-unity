@@ -70,7 +70,7 @@ public class Melee : MonoBehaviour
             Debug.Log("We hit " + enemy.name);
             //give damage to the enemy 
             //just pseudo code, because no enemyManager implemented yet
-            enemy.GetComponent<Spider>().Hit((int)MeleeDamage);
+            enemy.GetComponent<Hitregistration>().Hit((int)MeleeDamage);
             
         }
 
