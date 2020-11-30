@@ -673,6 +673,11 @@ PrefabInstance:
       propertyPath: levelWidth
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 825621069400695132, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 788925773}
     - target: {fileID: 825621069400695133, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
         type: 3}
       propertyPath: m_LocalPosition.x
