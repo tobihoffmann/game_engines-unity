@@ -9,12 +9,16 @@ namespace Managers
         private bool _gameHasEnded = false;
 
         [SerializeField]
-        private GameObject completeLevelUI;
+        private GameObject levelChanger;
 
-        public void CompleteLevel()
+        public void ChangeLevel()
         {
-            Debug.Log("Level won!");
-
+            levelChanger.GetComponent<LevelChanger>();
+            int currentLevel = GetCurrentLevelIndex();
+            
+            if (currentLevel >= GetSceneCount())
+                currentLevel = -1;
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(currentLevel + 1);
         }
     
         public void EndGame()

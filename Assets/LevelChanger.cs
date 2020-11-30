@@ -4,22 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    private Animator animator;
+    private Animator _animator;
 
-    private int levelToLoad;
+    private int _levelToLoad;
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
     
     public void FadeToLevel(int levelIndex)
     {
-        levelToLoad = levelIndex;
-        animator.SetTrigger("FadeOut");
+        _levelToLoad = levelIndex;
+        _animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene(_levelToLoad);
     }
 }
