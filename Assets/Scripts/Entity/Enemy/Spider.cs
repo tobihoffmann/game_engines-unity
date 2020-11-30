@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Entity.Player;
 using Managers;
 using Pathfinding;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entity.Enemy
 {
@@ -22,37 +24,57 @@ namespace Entity.Enemy
         
         private Animator _animator;
         
-        //private bool _isExploding = false;
+        [SerializeField] [Tooltip("Wander radius of AI.")]
+        private float radius = 2f;
 
-        private GameObject target;
+        private IAstarAI _ai;
+        private AIPath _aiPath;
+        
+        private bool _isExploding;
+
+        private GameObject _target;
         
         
         private void Start()
         {
-            target = PlayerManager.Instance.GetPlayer();
+            _target = PlayerManager.Instance.GetPlayer();
+            _ai = GetComponent<IAstarAI>();
+            _aiPath = GetComponent<AIPath>();
             Origin = gameObject;
             AIDestSetter = GetComponent<AIDestinationSetter>();
-            PlayerState = target.GetComponent<PlayerState>();
+            PlayerState = _target.GetComponent<PlayerState>();
             _animator = GetComponent<Animator>();
         }
 
 
         private void Update()
         {
-            Distance = Vector2.Distance(Origin.transform.position, target.transform.position);
-            if (Distance < explodeDistance)
-                SwitchState(State.Attack);
-            else if (Distance < chaseDistance && _animator.GetBool("isExploding") == false)
-                SwitchState(State.Chase);
-            else 
-                SwitchState(State.Idle);
+            Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
+            if (_isExploding == false)
+            {
+                if (Distance < explodeDistance)
+                    SwitchState(State.Attack);
+                else if (Distance < chaseDistance)
+                    SwitchState(State.Chase);
+                else 
+                    SwitchState(State.Idle);
+            }
         }
+        
 
         protected override void Idle()
         {
-            if (AIDestSetter.target != null && AIDestSetter.target != Origin.transform)
-                AIDestSetter.target = Origin.transform;
-            //TODO: implement patrolling or sth
+            _animator.Play("Spider_idle");
+            AIDestSetter.target = null;
+            //Lower movement speed while patrolling
+            _aiPath.maxSpeed = 1.5f;
+            // Update the destination of the AI if
+            // the AI is not already calculating a path and
+            // the ai has reached the end of the path or it has no path at all
+            if (!_ai.pathPending && (_ai.reachedEndOfPath || !_ai.hasPath)) {
+                _ai.destination = PickRandomPoint();
+                _ai.SearchPath();
+            }
         }
 
         /// <summary>
@@ -60,15 +82,18 @@ namespace Entity.Enemy
         /// </summary>
         protected override void Attack()
         {
+            _isExploding = true;
+            
+            _aiPath.maxSpeed = 0f;
             AIDestSetter.target = Origin.transform;
 
             //Box Collider Offset
-            Vector2 bcoffset = target.GetComponent<BoxCollider2D>().offset;
+            Vector2 bcoffset = _target.GetComponent<BoxCollider2D>().offset;
             
             //Position of origin (spider)
             Vector2 originPosition = Origin.transform.position;
             
-            Vector2 targetPosition = target.transform.position;
+            Vector2 targetPosition = _target.transform.position;
             
             //Position of collider of the target (player)
             Vector2 finalTargetPos = targetPosition + bcoffset;
@@ -86,20 +111,41 @@ namespace Entity.Enemy
         /// <returns></returns>
         private IEnumerator WaitAndExplode(float explodeTime, RaycastHit2D hit)
         {
-            
+            _isExploding = true;
+            _animator.Play("Spider_attack");
             yield return new WaitForSeconds(explodeTime);
-            _animator.SetBool("isExploding", true);
-            yield return new WaitForSeconds(0.5f);
-            if (hit.collider != null && hit.collider.gameObject == target)
+            _animator.Play("Spider_explode");
+            yield return new WaitForSeconds(.25f);
+            if (hit.collider != null && hit.collider.gameObject == _target && Distance <= explodeDistance)
             {
                 PlayerState.Hit(damage);
             }
             Destroy(gameObject);
         }
-
+        
         protected override void Chase()
         {
-            AIDestSetter.target = target.transform;
+            _animator.Play("Spider_chase");
+            //Increase movement speed while in chase mode
+            _aiPath.maxSpeed = 8f;
+            AIDestSetter.target = _target.transform;
+        }
+        
+        private Vector3 PickRandomPoint () {
+            Vector3 point = Random.insideUnitSphere * radius;
+            point.z = 0;
+            point += _ai.position;
+            return point;
+        }
+
+        
+        /// <summary>
+        /// Visualize explode radius on gizmos.
+        /// </summary>
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, explodeDistance);
         }
     }
 }
