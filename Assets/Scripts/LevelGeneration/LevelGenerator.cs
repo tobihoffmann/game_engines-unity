@@ -14,12 +14,20 @@ namespace LevelGeneration
 
         [SerializeField] private TileTemplates tiles;
 
+        [SerializeField] private GameObject player;
+
+        [SerializeField] private GameObject levelEndPoint;
+
         private GameObject[,] _levelGrid;
 
         private int _maxTiles;
         private int _tileCount;
 
         private Queue<GameObject> q = new Queue<GameObject>();
+
+        private List<Vector2> endingPositions = new List<Vector2>();
+
+        private Vector2[] startAndEnd;
 
         private void Start()
         {
@@ -30,6 +38,9 @@ namespace LevelGeneration
             AddBorders();
             AddBorderCorners();
             BuildLevel();
+            startAndEnd = GetLongestEndingDistance();
+            SpawnPlayer();
+            SpawnEndPoint();
             DrawLevelArray();
             _levelGrid = new GameObject[0,0];
         }
@@ -95,17 +106,17 @@ namespace LevelGeneration
                         (_levelGrid[x - 1, y] == null || newRoad.west == _levelGrid[x - 1, y].GetComponent<Road>().east))
                     {
                         //Rule: A Junction must have at least 5 tiles between another Junction
-                        if (newRoad.isJunction && (IsJunctionInRadius(x,y,5) ))
+                        if (newRoad.isJunction && (IsJunctionInRadius(x, y, 5)))
                         {
                             whileCount++;
                         }
                         // Rule: A Curve is not adjacent to a Junction
-                        else if (newRoad.isCurve && IsNeighbourAJunction(x,y,false))
+                        else if (newRoad.isCurve && IsNeighbourAJunction(x, y, false))
                         {
                             whileCount++;
                         }
                         // Rule: A curve cant make a direct U-Turn
-                        else if (IsUTurn(x,y,newRoad))
+                        else if (IsUTurn(x, y, newRoad))
                         {
                             whileCount++;
                         }
@@ -132,25 +143,35 @@ namespace LevelGeneration
                 {
                     if (_levelGrid[x, y] == null)
                     {
+                        Vector2 endingPos;
                         //Check if Road ending matches with Tile above and apply
                         if (_levelGrid[x, y + 1] != null && _levelGrid[x, y + 1].GetComponent<Road>().south)
                         {
                             _levelGrid[x, y] = tiles.endingSouth;
+                            endingPos = new Vector2(x, y);
+                            endingPositions.Add(endingPos);
+
                         }
                         //Check if Road ending matches with Tile below and apply
                         else if (_levelGrid[x, y - 1] != null && _levelGrid[x, y - 1].GetComponent<Road>().north)
                         {
                             _levelGrid[x, y] = tiles.endingNorth;
+                            endingPos = new Vector2(x, y);
+                            endingPositions.Add(endingPos);
                         }
                         //Check if Road ending matches with Tile to the right and apply
                         else if (_levelGrid[x + 1, y] != null && _levelGrid[x + 1, y].GetComponent<Road>().west)
                         {
                             _levelGrid[x, y] = tiles.endingWest;
+                            endingPos = new Vector2(x, y);
+                            endingPositions.Add(endingPos);
                         }
                         //Check if Road ending matches with Tile to the left and apply
                         else if (_levelGrid[x - 1, y] != null && _levelGrid[x - 1, y].GetComponent<Road>().east)
                         {
                             _levelGrid[x, y] = tiles.endingEast;
+                            endingPos = new Vector2(x, y);
+                            endingPositions.Add(endingPos);
                         }
                     }
                 }
@@ -420,18 +441,18 @@ namespace LevelGeneration
         }
 
         private void BuildLevel()
+        {
+            for (int x = 0; x < levelWidth; x++)
             {
-                for (int x = 0; x < levelWidth; x++)
+                for (int y = 0; y < levelHeight; y++)
                 {
-                    for (int y = 0; y < levelHeight; y++)
+                    if (_levelGrid[x, y] != null)
                     {
-                        if (_levelGrid[x, y] != null)
-                        {
-                            Instantiate(_levelGrid[x, y], new Vector3(x * tileSize, y * tileSize, 0), Quaternion.identity);
-                        }
+                        Instantiate(_levelGrid[x, y], new Vector3(x * tileSize, y * tileSize, 0), Quaternion.identity);
                     }
                 }
             }
+        }
 
         private void DrawLevelArray()
         {
@@ -456,8 +477,78 @@ namespace LevelGeneration
                 }
             }
 
-            Debug.Log(arrayRepresentation + "\n" + "Tiles placed: " + _tileCount + "\n" + "Max Tiles: " +
-                      _maxTiles);
+            Debug.Log(arrayRepresentation + "\n" + "Tiles placed: " + _tileCount + "\n" + "Max Tiles: " + _maxTiles);
+        }
+
+        private List<GameObject> GetNeighbours(GameObject road)
+        {
+            List<GameObject> neighbours = new List<GameObject>();
+            Road r = road.GetComponent<Road>();
+
+            for (int x = r.X - 1; x < r.X + 2; x++)
+            {
+                for (int y = r.Y - 1; y < r.Y + 2; y++)
+                {
+                    if (!(x == r.X && y == r.Y))
+                    {
+                        if (_levelGrid[x, y] != null)
+                        {
+                            neighbours.Add(_levelGrid[x, y]);
+                        }
+                    }
+                }
+            }
+            return neighbours;
+        }
+
+        /// <summary>
+        /// Calculate the longest distance between all ending tiles.
+        /// </summary>
+        /// <returns>A List of two vectors, wich are the furthest away from each other.</returns>
+        private Vector2[] GetLongestEndingDistance()
+        {
+            Vector2[] startAndEnd = new Vector2[2];
+            float distance = 0;
+            for (int i = 0; i < endingPositions.Count - 1; i++)
+            {
+                Vector2 Start = endingPositions[i];
+                for (int j = 1; j < endingPositions.Count; j++)
+                {
+                    Vector2 End = endingPositions[j];
+                    float tempDistance = Vector2.Distance(Start, End);
+                    Debug.Log(tempDistance);
+                    if (tempDistance > distance)
+                    {
+                        startAndEnd[0] = Start;
+                        startAndEnd[1] = End;
+                        distance = tempDistance;
+                    }
+                }
+            }
+            Debug.Log(distance);
+            return startAndEnd;
+        }
+
+        /// <summary>
+        /// Spawn the player on the start positon
+        /// </summary>
+        private void SpawnPlayer()
+        {
+            Vector2 start = new Vector2(startAndEnd[0].x, startAndEnd[0].y);
+            start.x = start.x * tileSize;
+            start.y = start.y * tileSize;
+            player.transform.position = start;
+        }
+
+        /// <summary>
+        /// Spawn the level complete point on the end position
+        /// </summary>
+        private void SpawnEndPoint()
+        {
+            Vector2 end = new Vector2(startAndEnd[1].x, startAndEnd[1].y);
+            end.x = end.x * tileSize;
+            end.y = end.y * tileSize;
+            Instantiate(levelEndPoint, end, Quaternion.identity);
         }
     }
 }
