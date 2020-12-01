@@ -1,11 +1,16 @@
 ﻿using System;
+using Assets.Scripts.Item_Management;
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 namespace Entity.Player
 {
     public class PlayerMovementWalking : MonoBehaviour
     {
+        
+
         [SerializeField][Tooltip("Movement speed of the player")]
         private float movementSpeed = 5f;
         

@@ -1,26 +1,23 @@
 ﻿using AbstractClasses;
+using Assets.Scripts.Item_Management;
 using UnityEngine;
+
 
 namespace Entity.Player
 {
     public class PlayerState : Damageable
     {
         public delegate void PlayerStateChanged(int newValue);
-        
         public delegate void PlayerIsDead();
-
+        
+        
+        
         /// <summary>
         /// The maximum hit points of the player
         /// </summary>
         [SerializeField] [Tooltip("maximum hit points of the player")]
         private int maxHitPoints;
 
-        /// <summary>
-        /// The amount of unlocked power-up slots
-        /// </summary>
-        [SerializeField] [Tooltip("Amount of unlocked power-up slots")]
-        private int powerUpSlots;
-        
         /// <summary>
         /// The amount of maximum power-up slots a player can have. (Balancing)
         /// </summary>
@@ -30,6 +27,7 @@ namespace Entity.Player
         public static event PlayerStateChanged OnPlayerHitPointsUpdate;
         public static event PlayerStateChanged OnPlayerPowerUpsUpdate;
         public static event PlayerIsDead OnPlayerDeath;
+        
         
         
         /// <summary>
@@ -46,19 +44,7 @@ namespace Entity.Player
             if (hitPoints <= 0) 
                 Die();
         }
-
-        /// <summary>
-        /// Unlocks a new power-up slot
-        /// </summary>
-        public void UnlockPowerUpSlot()
-        {
-            int updatedValue = powerUpSlots + 1;
-            if (updatedValue > maxPowerUpSlots) updatedValue = maxPowerUpSlots;
-            updatedValue = Mathf.Clamp(updatedValue, 0, maxPowerUpSlots);
-            powerUpSlots = updatedValue;
-            //throws event with the new amount of unlocked power-up slots as a parameter
-            OnPlayerPowerUpsUpdate?.Invoke(powerUpSlots);
-        }
+        
 
         public override void Hit(int damage)
         {

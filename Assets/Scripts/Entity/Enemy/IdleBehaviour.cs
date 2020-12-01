@@ -24,7 +24,7 @@ public class IdleBehaviour : StateMachineBehaviour
         {
             animator.SetBool("isChasing", true);
         }
-        Debug.Log(distance);
+        //Debug.Log(distance);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
