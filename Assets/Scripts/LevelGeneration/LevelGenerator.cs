@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 using Random = UnityEngine.Random;
 
 namespace LevelGeneration
@@ -18,6 +19,8 @@ namespace LevelGeneration
 
         [SerializeField] private GameObject levelEndPoint;
 
+        [SerializeField] private GameObject pathFinding;
+
         private GameObject[,] _levelGrid;
 
         private int _maxTiles;
@@ -29,6 +32,12 @@ namespace LevelGeneration
 
         private Vector2[] startAndEnd;
 
+        private Vector2 AStarSpawnPoint;
+
+        private int aStarWidth;
+        private int aStarHeight;
+
+
         private void Start()
         {
             _levelGrid = new GameObject[levelWidth, levelHeight];
@@ -39,9 +48,10 @@ namespace LevelGeneration
             AddBorderCorners();
             BuildLevel();
             startAndEnd = GetLongestEndingDistance();
-            SpawnPlayer();
+            SpawnPlayer();           
             SpawnEndPoint();
             DrawLevelArray();
+            InitiatePathFinding();
             _levelGrid = new GameObject[0,0];
         }
 
@@ -516,7 +526,6 @@ namespace LevelGeneration
                 {
                     Vector2 End = endingPositions[j];
                     float tempDistance = Vector2.Distance(Start, End);
-                    Debug.Log(tempDistance);
                     if (tempDistance > distance)
                     {
                         startAndEnd[0] = Start;
@@ -525,7 +534,6 @@ namespace LevelGeneration
                     }
                 }
             }
-            Debug.Log(distance);
             return startAndEnd;
         }
 
@@ -549,6 +557,53 @@ namespace LevelGeneration
             end.x = end.x * tileSize;
             end.y = end.y * tileSize;
             Instantiate(levelEndPoint, end, Quaternion.identity);
+        }
+
+        /// <summary>
+        /// Calculates the spawnpoint and the width and height for the A* graph.
+        /// </summary>
+        /// <returns>The spawnpoint of the A* graph (in the center of the generated level).</returns>
+        private Vector2 GetAStarSpawnPoint()
+        {
+            int smallestX = int.MaxValue;
+            int smallestY = int.MaxValue;
+            int biggestX = int.MinValue;
+            int biggestY = int.MinValue;
+            
+            for (int x = 0; x < levelWidth; x++)
+            {      
+                for (int y = 0; y < levelHeight; y++)
+                {
+                    if (_levelGrid[x,y] != null)
+                    {
+                        if (x < smallestX)
+                            smallestX = x;
+                        if (y < smallestY)
+                            smallestY = y;
+                        if (x > biggestX)
+                            biggestX = x;
+                        if (y > biggestY)
+                            biggestY = y;
+                    }
+                }
+            }
+            float centerX = ((biggestX + smallestX) / 2) * tileSize;
+            float centerY = ((biggestY + smallestY) / 2) * tileSize;
+            aStarWidth = (biggestX - smallestX + 1) * tileSize;
+            aStarHeight = (biggestY - smallestY + 1) * tileSize;
+            Vector2 AIGridCenter = new Vector2(centerX, centerY);
+            return AIGridCenter;
+        }
+
+        /// <summary>
+        /// Sets the values of the active graph in the scene (center and dimensions) and scans the graph.
+        /// </summary>
+        private void InitiatePathFinding()
+        {
+            GridGraph gg = AstarPath.active.data.gridGraph;
+            gg.center = new Vector3(GetAStarSpawnPoint().x, GetAStarSpawnPoint().y, 0);
+            gg.SetDimensions(aStarWidth, aStarHeight, 1);
+            AstarPath.active.Scan();
         }
     }
 }
