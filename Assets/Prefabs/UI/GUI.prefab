@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f909c1021e419bc40838d8672d1337f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 3
   maxHealth: 5
   hearts:
   - {fileID: 9007239190524648068}
@@ -787,7 +786,8 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 6419736002378145190, guid: 03f693ef7282c9c4a9334864f6cc2317,
+    type: 3}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -795,7 +795,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1557896531
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &9007239191295334380

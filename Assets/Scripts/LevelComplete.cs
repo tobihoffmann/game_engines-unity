@@ -10,7 +10,7 @@ public class LevelComplete : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other == PlayerManager.Instance.GetPlayer().GetComponent<Collider2D>())
             GameManager.Instance.ChangeLevel();
     }
 }
