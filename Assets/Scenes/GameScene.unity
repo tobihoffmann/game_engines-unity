@@ -121,29 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &91628077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 825621069400695135, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 825621070509644299}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &91628078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91628077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfceaa21eebe4ad4db219f6d68c054f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesPerSpawnPoint: 5
-  totalFilledSpawnPoints: 5
-  minDistanceBetweenActiveSpawnPoints: 30
-  enemyToSpawn: {fileID: 4719819693630697077, guid: 1b286af624e72a5439598a9852e22d8a,
-    type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +830,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395454857340172751, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
+        type: 3}
+      propertyPath: minDistanceBetweenActiveSpawnPoints
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70c7fc7ddb6d9546a77473389d3f6bf, type: 3}

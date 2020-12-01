@@ -26,7 +26,7 @@ namespace LevelGeneration
         
         private void Start()
         {
-            SpawnEnemies();
+            Invoke(nameof(SpawnEnemies),1f);
         }
         
         private void SpawnEnemies()

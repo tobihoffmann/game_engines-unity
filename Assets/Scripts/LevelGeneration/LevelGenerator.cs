@@ -16,12 +16,8 @@ namespace LevelGeneration
         [SerializeField] private GameObject startRoad;
 
         [SerializeField] private TileTemplates tiles;
-
-        [SerializeField] private GameObject player;
-
+        
         [SerializeField] private GameObject levelEndPoint;
-
-        [SerializeField] private GameObject pathFinding;
 
         private GameObject[,] _levelGrid;
 
@@ -29,9 +25,9 @@ namespace LevelGeneration
         private int _minTiles;
         private int _tileCount;
 
-        private Queue<GameObject> q = new Queue<GameObject>();
+        private Queue<GameObject> _q = new Queue<GameObject>();
 
-        private List<Vector2> endingPositions = new List<Vector2>();
+        private List<Vector2> _endingPositions = new List<Vector2>();
 
         private Vector2[] _startAndEnd;
 
@@ -44,15 +40,17 @@ namespace LevelGeneration
 
         internal bool ListFillFinished = false;
 
-        private void Awake()
+        private void Start()
         {
-            _levelGrid = new GameObject[levelWidth, levelHeight];
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;
             _minTiles = _maxTiles / 5;
             GenerateRoad();
             AddPlanes();
             AddBorders();
             AddBorderCorners();
+            _startAndEnd = GetLongestEndingDistance();
+            SpawnPlayer();
+            SpawnEndPoint();
             BuildLevel();
             
             DrawLevelArray();
@@ -65,6 +63,11 @@ namespace LevelGeneration
             bool meetLevelRequirements = false;
             while (!meetLevelRequirements)
             {
+                _q.Clear();
+                _tileCount = 0;
+                _levelGrid = new GameObject[levelWidth, levelHeight];
+                _endingPositions.Clear();
+                
                 // Put Level Start in the middle of the grid and enqueue
                 int startPosX = levelWidth / 2;
                 int startPosY = levelHeight / 2;
@@ -72,11 +75,11 @@ namespace LevelGeneration
                 _tileCount++;
                 startRoad.GetComponent<Road>().X = levelWidth / 2;
                 startRoad.GetComponent<Road>().Y = levelHeight / 2;
-                q.Enqueue(startRoad);
+                _q.Enqueue(startRoad);
 
-                while (q.Count != 0 && _tileCount < _maxTiles)
+                while (_q.Count != 0 && _tileCount < _maxTiles)
                 {
-                    Road road = q.Peek().GetComponent<Road>();
+                    Road road = _q.Peek().GetComponent<Road>();
 
                     // Apply new Road Tiles if current Tile has respective exits
                     if (road.north)
@@ -99,10 +102,10 @@ namespace LevelGeneration
                         AddTile(road.X - 1, road.Y);
                     }
 
-                    q.Dequeue();
+                    _q.Dequeue();
                 }
                 AddRoadEnd();
-                if (_tileCount >= _minTiles && endingPositions.Count >= 4)
+                if (_tileCount >= _minTiles && _endingPositions.Count >= 4)
                 {
                     meetLevelRequirements = true;
                 }
@@ -150,7 +153,7 @@ namespace LevelGeneration
                             newRoad.Y = y;
                             _levelGrid[x, y] = newRoadTile;
                             _tileCount++;
-                            q.Enqueue(newRoadTile);
+                            _q.Enqueue(newRoadTile);
                             break;
                         }
                     }
@@ -173,7 +176,7 @@ namespace LevelGeneration
                         {
                             _levelGrid[x, y] = tiles.endingSouth;
                             endingPos = new Vector2(x, y);
-                            endingPositions.Add(endingPos);
+                            _endingPositions.Add(endingPos);
 
                         }
                         //Check if Road ending matches with Tile below and apply
@@ -181,21 +184,21 @@ namespace LevelGeneration
                         {
                             _levelGrid[x, y] = tiles.endingNorth;
                             endingPos = new Vector2(x, y);
-                            endingPositions.Add(endingPos);
+                            _endingPositions.Add(endingPos);
                         }
                         //Check if Road ending matches with Tile to the right and apply
                         else if (_levelGrid[x + 1, y] != null && _levelGrid[x + 1, y].GetComponent<Road>().west)
                         {
                             _levelGrid[x, y] = tiles.endingWest;
                             endingPos = new Vector2(x, y);
-                            endingPositions.Add(endingPos);
+                            _endingPositions.Add(endingPos);
                         }
                         //Check if Road ending matches with Tile to the left and apply
                         else if (_levelGrid[x - 1, y] != null && _levelGrid[x - 1, y].GetComponent<Road>().east)
                         {
                             _levelGrid[x, y] = tiles.endingEast;
                             endingPos = new Vector2(x, y);
-                            endingPositions.Add(endingPos);
+                            _endingPositions.Add(endingPos);
                         }
                     }
                 }
@@ -466,9 +469,6 @@ namespace LevelGeneration
 
         private void BuildLevel()
         {
-            _startAndEnd = GetLongestEndingDistance();
-            SpawnPlayer();
-            SpawnEndPoint();
             _enemySpawner = GetComponent<EnemySpawner>();
             for (int x = 0; x < levelWidth; x++)
             {
@@ -521,12 +521,12 @@ namespace LevelGeneration
         {
             Vector2[] startAndEnd = new Vector2[2];
             float distance = 0;
-            for (int i = 0; i < endingPositions.Count - 1; i++)
+            for (int i = 0; i < _endingPositions.Count - 1; i++)
             {
-                Vector2 start = endingPositions[i];
-                for (int j = 1; j < endingPositions.Count; j++)
+                Vector2 start = _endingPositions[i];
+                for (int j = 1; j < _endingPositions.Count; j++)
                 {
-                    Vector2 end = endingPositions[j];
+                    Vector2 end = _endingPositions[j];
                     float tempDistance = Vector2.Distance(start, end);
                     if (tempDistance > distance)
                     {

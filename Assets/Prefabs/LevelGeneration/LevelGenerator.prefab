@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 825621069400695133}
   - component: {fileID: 825621069400695134}
   - component: {fileID: 825621069400695132}
-  - component: {fileID: 7171666088327351149}
+  - component: {fileID: 4395454857340172751}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -117,11 +117,9 @@ MonoBehaviour:
   startRoad: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
     type: 3}
   tiles: {fileID: 825621069400695134}
-  player: {fileID: 0}
-  levelEndPoint: {fileID: 0}
-  pathFinding: {fileID: 581489249763899656}
-  listFillFinished: 0
---- !u!114 &7171666088327351149
+  levelEndPoint: {fileID: 5057502574871711436, guid: 84da3e597d52ea64c890d08e88bfe3bb,
+    type: 3}
+--- !u!114 &4395454857340172751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfceaa21eebe4ad4db219f6d68c054f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesPerSpawnPoint: 5
-  minDistanceBetweenActiveSpawnPoints: 5
+  enemiesPerSpawnPoint: 4
+  minDistanceBetweenActiveSpawnPoints: 30
   enemyToSpawn: {fileID: 4719819693630697077, guid: 1b286af624e72a5439598a9852e22d8a,
     type: 3}
 --- !u!1001 &1475327116254896673
@@ -206,12 +204,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb82ea9dfd27976469b0bc6547397a2d, type: 3}
---- !u!1 &581489249763899656 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2047087612232817449, guid: cb82ea9dfd27976469b0bc6547397a2d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1475327116254896673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &581489249763899662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2047087612232817455, guid: cb82ea9dfd27976469b0bc6547397a2d,
