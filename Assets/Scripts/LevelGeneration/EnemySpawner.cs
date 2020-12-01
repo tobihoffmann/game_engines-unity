@@ -16,7 +16,6 @@ namespace LevelGeneration
         [SerializeField][Tooltip("How many enemies should be spawned in one spawn Point?")]
         private int enemiesPerSpawnPoint;
         
-
         [SerializeField]
         private int minDistanceBetweenActiveSpawnPoints;
         
@@ -26,7 +25,7 @@ namespace LevelGeneration
         
         private void Start()
         {
-            Invoke(nameof(SpawnEnemies),1f);
+            Invoke(nameof(SpawnEnemies),0.5f);
         }
         
         private void SpawnEnemies()
@@ -41,9 +40,7 @@ namespace LevelGeneration
                 Vector2 spawnPos = firstSpawn.transform.position;
                     
                 float distance = int.MaxValue;
-                    
                 
-
                 foreach (Vector2 pos in _spawnZonesWithEnemies)
                 {
                     float tempDist = Vector2.Distance(pos, spawnPos);
