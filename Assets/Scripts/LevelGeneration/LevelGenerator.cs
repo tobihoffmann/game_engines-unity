@@ -24,6 +24,7 @@ namespace LevelGeneration
         private GameObject[,] _levelGrid;
 
         private int _maxTiles;
+        private int _minTiles;
         private int _tileCount;
 
         private Queue<GameObject> q = new Queue<GameObject>();
@@ -42,6 +43,7 @@ namespace LevelGeneration
         {
             _levelGrid = new GameObject[levelWidth, levelHeight];
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;
+            _minTiles = _maxTiles / 5;
             GenerateRoad();
             AddPlanes();
             AddBorders();
@@ -57,43 +59,52 @@ namespace LevelGeneration
 
         private void GenerateRoad()
         {
-            // Put Level Start in the middle of the grid and enqueue
-            int startPosX = levelWidth / 2;
-            int startPosY = levelHeight / 2;
-            _levelGrid[startPosX, startPosY] = startRoad;
-            _tileCount++;
-            startRoad.GetComponent<Road>().X = levelWidth / 2;
-            startRoad.GetComponent<Road>().Y = levelHeight / 2;
-            q.Enqueue(startRoad);
-
-            while (q.Count != 0 && _tileCount < _maxTiles)
+            bool meetLevelRequirements = false;
+            while (!meetLevelRequirements)
             {
-                Road road = q.Peek().GetComponent<Road>();
+                // Put Level Start in the middle of the grid and enqueue
+                int startPosX = levelWidth / 2;
+                int startPosY = levelHeight / 2;
+                _levelGrid[startPosX, startPosY] = startRoad;
+                _tileCount++;
+                startRoad.GetComponent<Road>().X = levelWidth / 2;
+                startRoad.GetComponent<Road>().Y = levelHeight / 2;
+                q.Enqueue(startRoad);
 
-                // Apply new Road Tiles if current Tile has respective exits
-                if (road.north)
+                while (q.Count != 0 && _tileCount < _maxTiles)
                 {
-                    AddTile(road.X, road.Y + 1);
-                }
+                    Road road = q.Peek().GetComponent<Road>();
 
-                if (road.east)
+                    // Apply new Road Tiles if current Tile has respective exits
+                    if (road.north)
+                    {
+                        AddTile(road.X, road.Y + 1);
+                    }
+
+                    if (road.east)
+                    {
+                        AddTile(road.X + 1, road.Y);
+                    }
+
+                    if (road.south)
+                    {
+                        AddTile(road.X, road.Y - 1);
+                    }
+
+                    if (road.west)
+                    {
+                        AddTile(road.X - 1, road.Y);
+                    }
+
+                    q.Dequeue();
+                }
+                AddRoadEnd();
+                if (_tileCount >= _minTiles && endingPositions.Count >= 4)
                 {
-                    AddTile(road.X + 1, road.Y);
+                    meetLevelRequirements = true;
                 }
-
-                if (road.south)
-                {
-                    AddTile(road.X, road.Y - 1);
-                }
-
-                if (road.west)
-                {
-                    AddTile(road.X - 1, road.Y);
-                }
-
-                q.Dequeue();
             }
-            AddRoadEnd();
+            
         }
 
         private void AddTile(int x, int y)
