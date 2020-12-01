@@ -30,12 +30,12 @@ namespace LevelGeneration
 
         private List<Vector2> endingPositions = new List<Vector2>();
 
-        private Vector2[] startAndEnd;
+        private Vector2[] _startAndEnd;
 
-        private Vector2 AStarSpawnPoint;
+        private Vector2 _aStarSpawnPoint;
 
-        private int aStarWidth;
-        private int aStarHeight;
+        private int _aStarWidth;
+        private int _aStarHeight;
 
 
         private void Start()
@@ -47,7 +47,7 @@ namespace LevelGeneration
             AddBorders();
             AddBorderCorners();
             BuildLevel();
-            startAndEnd = GetLongestEndingDistance();
+            _startAndEnd = GetLongestEndingDistance();
             SpawnPlayer();           
             SpawnEndPoint();
             DrawLevelArray();
@@ -489,27 +489,7 @@ namespace LevelGeneration
 
             Debug.Log(arrayRepresentation + "\n" + "Tiles placed: " + _tileCount + "\n" + "Max Tiles: " + _maxTiles);
         }
-
-        private List<GameObject> GetNeighbours(GameObject road)
-        {
-            List<GameObject> neighbours = new List<GameObject>();
-            Road r = road.GetComponent<Road>();
-
-            for (int x = r.X - 1; x < r.X + 2; x++)
-            {
-                for (int y = r.Y - 1; y < r.Y + 2; y++)
-                {
-                    if (!(x == r.X && y == r.Y))
-                    {
-                        if (_levelGrid[x, y] != null)
-                        {
-                            neighbours.Add(_levelGrid[x, y]);
-                        }
-                    }
-                }
-            }
-            return neighbours;
-        }
+        
 
         /// <summary>
         /// Calculate the longest distance between all ending tiles.
@@ -521,15 +501,15 @@ namespace LevelGeneration
             float distance = 0;
             for (int i = 0; i < endingPositions.Count - 1; i++)
             {
-                Vector2 Start = endingPositions[i];
+                Vector2 start = endingPositions[i];
                 for (int j = 1; j < endingPositions.Count; j++)
                 {
-                    Vector2 End = endingPositions[j];
-                    float tempDistance = Vector2.Distance(Start, End);
+                    Vector2 end = endingPositions[j];
+                    float tempDistance = Vector2.Distance(start, end);
                     if (tempDistance > distance)
                     {
-                        startAndEnd[0] = Start;
-                        startAndEnd[1] = End;
+                        startAndEnd[0] = start;
+                        startAndEnd[1] = end;
                         distance = tempDistance;
                     }
                 }
@@ -542,7 +522,7 @@ namespace LevelGeneration
         /// </summary>
         private void SpawnPlayer()
         {
-            Vector2 start = new Vector2(startAndEnd[0].x, startAndEnd[0].y);
+            Vector2 start = new Vector2(_startAndEnd[0].x, _startAndEnd[0].y);
             start.x = start.x * tileSize;
             start.y = start.y * tileSize;
             player.transform.position = start;
@@ -553,7 +533,7 @@ namespace LevelGeneration
         /// </summary>
         private void SpawnEndPoint()
         {
-            Vector2 end = new Vector2(startAndEnd[1].x, startAndEnd[1].y);
+            Vector2 end = new Vector2(_startAndEnd[1].x, _startAndEnd[1].y);
             end.x = end.x * tileSize;
             end.y = end.y * tileSize;
             Instantiate(levelEndPoint, end, Quaternion.identity);
@@ -589,10 +569,10 @@ namespace LevelGeneration
             }
             float centerX = ((biggestX + smallestX) / 2) * tileSize;
             float centerY = ((biggestY + smallestY) / 2) * tileSize;
-            aStarWidth = (biggestX - smallestX + 1) * tileSize;
-            aStarHeight = (biggestY - smallestY + 1) * tileSize;
-            Vector2 AIGridCenter = new Vector2(centerX, centerY);
-            return AIGridCenter;
+            _aStarWidth = (biggestX - smallestX + 1) * tileSize;
+            _aStarHeight = (biggestY - smallestY + 1) * tileSize;
+            Vector2 aiGridCenter = new Vector2(centerX, centerY);
+            return aiGridCenter;
         }
 
         /// <summary>
@@ -602,7 +582,7 @@ namespace LevelGeneration
         {
             GridGraph gg = AstarPath.active.data.gridGraph;
             gg.center = new Vector3(GetAStarSpawnPoint().x, GetAStarSpawnPoint().y, 0);
-            gg.SetDimensions(aStarWidth, aStarHeight, 1);
+            gg.SetDimensions(_aStarWidth, _aStarHeight, 1);
             AstarPath.active.Scan();
         }
     }
