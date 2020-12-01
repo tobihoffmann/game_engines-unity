@@ -52,8 +52,6 @@ namespace LevelGeneration
             SpawnPlayer();
             SpawnEndPoint();
             BuildLevel();
-            
-            DrawLevelArray();
             InitiatePathFinding();
             _levelGrid = new GameObject[0,0];
         }
