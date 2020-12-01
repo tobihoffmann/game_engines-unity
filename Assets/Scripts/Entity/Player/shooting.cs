@@ -6,22 +6,30 @@ using UnityEngine.InputSystem;
 
 public class shooting : MonoBehaviour
 {
+    [SerializeField][Tooltip("Input actions for shooting")]
+    private InputAction shoot;
+    
     [SerializeField][Tooltip("Main Camera Object")]
     private Camera mainCam;
 
     [SerializeField][Tooltip("FirePoint Object")]
     private Transform firePoint;
+    
     [SerializeField][Tooltip("Prefab for Bullet Object")]
     private GameObject bulletPrefab;
+    
     [SerializeField][Tooltip("Float variable for the Bulletforce")]
     private float bulletForce = 50f;
-    [SerializeField][Tooltip("Input actions for shooting")]
-    private InputAction shoot;
+    
+    [SerializeField][Tooltip("Coodown time for shooting")]
+    private float CoolDown;
+
+    
 
     private Vector2 _mousePosition;
     private Vector2 _playerPosition;
     private Vector2 _shootDirection;
-    
+    private float t;
     
     
 
@@ -34,11 +42,21 @@ public class shooting : MonoBehaviour
         shoot.Disable();
     }
 
+    void Start()
+    {
+        t = CoolDown;
+    }
+
     void Update()
-    { 
+    {
+        t = t - Time.deltaTime;
         if (shoot.triggered)
         {
-            Shoot();
+            if (t <= 0)
+            {
+                Shoot();
+            }
+            
         }
         
         
@@ -68,7 +86,9 @@ public class shooting : MonoBehaviour
         //addForce in direction of Mouse position
         rb.AddForce(_shootDirection * bulletForce, ForceMode2D.Impulse);
 
-        
+        t = CoolDown;
+
+
     }
     
 }
