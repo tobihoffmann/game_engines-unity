@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 namespace LevelGeneration
@@ -9,5 +10,11 @@ namespace LevelGeneration
         
         [SerializeField]
         internal Type type;
+
+        private SpawnZone _spawnZone;
+        private void Awake()
+        {
+            _spawnZone = GetComponentInChildren<SpawnZone>();
+        }
     }
 }

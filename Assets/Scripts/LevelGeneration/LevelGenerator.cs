@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using Pathfinding;
 using Random = UnityEngine.Random;
@@ -37,8 +39,11 @@ namespace LevelGeneration
         private int _aStarWidth;
         private int _aStarHeight;
 
+        private EnemySpawner _enemySpawner;
 
-        private void Start()
+        internal bool ListFillFinished = false;
+
+        private void Awake()
         {
             _levelGrid = new GameObject[levelWidth, levelHeight];
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;
@@ -47,9 +52,7 @@ namespace LevelGeneration
             AddBorders();
             AddBorderCorners();
             BuildLevel();
-            _startAndEnd = GetLongestEndingDistance();
-            SpawnPlayer();           
-            SpawnEndPoint();
+            
             DrawLevelArray();
             InitiatePathFinding();
             _levelGrid = new GameObject[0,0];
@@ -452,13 +455,21 @@ namespace LevelGeneration
 
         private void BuildLevel()
         {
+            _startAndEnd = GetLongestEndingDistance();
+            SpawnPlayer();
+            SpawnEndPoint();
+            _enemySpawner = GetComponent<EnemySpawner>();
             for (int x = 0; x < levelWidth; x++)
             {
                 for (int y = 0; y < levelHeight; y++)
                 {
                     if (_levelGrid[x, y] != null)
                     {
-                        Instantiate(_levelGrid[x, y], new Vector3(x * tileSize, y * tileSize, 0), Quaternion.identity);
+                        GameObject go = Instantiate(_levelGrid[x, y], new Vector3(x * tileSize, y * tileSize, 0), Quaternion.identity);
+                        if (go.GetComponentInChildren<SpawnZone>() != null)
+                        {
+                            _enemySpawner.SpawnZones.Add(go.GetComponentInChildren<SpawnZone>());
+                        }
                     }
                 }
             }
@@ -525,7 +536,8 @@ namespace LevelGeneration
             Vector2 start = new Vector2(_startAndEnd[0].x, _startAndEnd[0].y);
             start.x = start.x * tileSize;
             start.y = start.y * tileSize;
-            player.transform.position = start;
+            PlayerManager.Instance.SetPlayerPosition(start.x, start.y);
+            //player.transform.position = start;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Entity.Player;
+﻿using System;
+using Entity.Player;
 using Interfaces;
 using UnityEngine;
 
@@ -13,11 +14,18 @@ namespace Managers
         
         private Vector3 _playerPosition;
 
+        private Transform _playerTransform;
+
         protected override void Awake()
         {
             base.Awake();
             _playerState = player.GetComponent<PlayerState>();
-            _playerPosition = player.GetComponent<Transform>().position;
+            _playerTransform = player.GetComponent<Transform>();
+        }
+        
+        private void Update()
+        {
+            _playerPosition = _playerTransform.position;
         }
 
         /// <summary>
@@ -27,6 +35,15 @@ namespace Managers
         {
             return _playerPosition;
         }
+        
+        /// <summary>
+        /// Sets the player position as a Vector3
+        /// </summary>
+        public void SetPlayerPosition(float x, float y)
+        {
+            player.GetComponent<Transform>().position = new Vector3(x, y, 0);
+        }
+        
         
         /// <summary>
         /// Returns the PlayerState to access Damaging, Healing, etc
@@ -43,5 +60,6 @@ namespace Managers
         {
             return player;
         }
+        
     }
 }
