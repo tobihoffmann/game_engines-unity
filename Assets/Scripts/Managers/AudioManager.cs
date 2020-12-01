@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Audio;
+using GameAudio;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.Audio;
 
 namespace Managers
 {

@@ -8,10 +8,17 @@ namespace Managers
     {
         private bool _gameHasEnded = false;
 
-        public void CompleteLevel()
+        [SerializeField]
+        private GameObject levelChanger;
+
+        public void ChangeLevel()
         {
-            Debug.Log("Level won!");
-            SceneManager.LoadScene("Scenes/LevelComplete");
+            levelChanger.GetComponent<LevelChanger>();
+            int currentLevel = GetCurrentLevelIndex();
+            
+            if (currentLevel >= GetSceneCount())
+                currentLevel = -1;
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(currentLevel + 1);
         }
     
         public void EndGame()
@@ -26,6 +33,16 @@ namespace Managers
         void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        public int GetCurrentLevelIndex()
+        {
+            return SceneManager.GetActiveScene().buildIndex;
+        }
+
+        public int GetSceneCount()
+        {
+            return SceneManager.sceneCount;
         }
         
         public static void Quit()
