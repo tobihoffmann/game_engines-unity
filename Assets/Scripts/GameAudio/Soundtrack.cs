@@ -1,7 +1,7 @@
 ﻿using Managers;
 using UnityEngine;
 
-namespace Audio
+namespace GameAudio
 {
     public class Soundtrack : MonoBehaviour
     {
