@@ -1,4 +1,5 @@
 ﻿
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -59,6 +60,7 @@ public class Melee : MonoBehaviour
 
     void Attack()
     {
+        bool enemyHit = false;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
         
         Debug.Log("MeleeAttack");
@@ -67,11 +69,14 @@ public class Melee : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
+            enemyHit = true;
             //give damage to the enemy 
             //just pseudo code, because no enemyManager implemented yet
-            
+
             //enemy.EnemyManager.SetHitpoints(-MeleeDamage);
         }
+
+        AudioManager.Instance.Play(enemyHit ? "PlayerMeleeHit" : "PlayerMeleeSwing");
 
         t = CoolDown;
         

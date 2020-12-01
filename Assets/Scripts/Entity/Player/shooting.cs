@@ -65,7 +65,7 @@ public class shooting : MonoBehaviour
 
     void Shoot()
     {
-
+        AudioManager.Instance.Play("PlayerGunShot");
         _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         _playerPosition = new Vector2(transform.position.x, transform.position.y);
         _shootDirection = new Ray2D(_playerPosition, _mousePosition - _playerPosition).direction;

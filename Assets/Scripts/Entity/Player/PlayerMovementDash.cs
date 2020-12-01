@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Specialized;
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -68,6 +69,7 @@ namespace Entity.Player
         {
             if (_isDashTriggered)
             {
+                AudioManager.Instance.Play("PlayerDash");
                 Vector3 dashPosition = _playerPosition + _dashDirection * (Time.deltaTime * dashDistance);
 
                 RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(_playerPosition, _dashDirection, (Time.deltaTime * dashDistance), dashLayerMask);

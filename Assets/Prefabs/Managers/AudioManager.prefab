@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8692604050619737534}
   - component: {fileID: 8692604050619737533}
+  - component: {fileID: 5089056811142613430}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -120,9 +121,26 @@ MonoBehaviour:
     volume: 0.3
     loop: 0
     source: {fileID: 0}
-  - name: Ambien
+  - name: SoundTrackWasteland
     clip: {fileID: 8300000, guid: 5dacfcaceb08b284f86e65c2b08df45e, type: 3}
-    volume: 0.3
+    volume: 0.05
     loop: 1
     source: {fileID: 0}
+  - name: PlayerGunShot
+    clip: {fileID: 8300000, guid: 6d2293a874c3b994c8329de27cdbed06, type: 3}
+    volume: 0.3
+    loop: 0
+    source: {fileID: 0}
   audioSources: {fileID: 652228346503424820}
+--- !u!114 &5089056811142613430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692604050619737535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4965589e8da374c8c40eb45d551a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
