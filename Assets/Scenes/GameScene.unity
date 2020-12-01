@@ -1255,33 +1255,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb383adc0f217f47a32d3cc2b766d8e, type: 3}
---- !u!1 &1905332879 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4719819693630697077, guid: 1b286af624e72a5439598a9852e22d8a,
+--- !u!4 &1863539650 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6064350941842866034, guid: 2608ab4010d791c47a9b026d50605c64,
     type: 3}
-  m_PrefabInstance: {fileID: 944439529}
+  m_PrefabInstance: {fileID: 6064350941455696411}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &1905332888
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905332879}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &1981695642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1443,6 +1422,11 @@ PrefabInstance:
       propertyPath: CoolDown
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6064350941908553545, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: coolDown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: mainCam
@@ -1453,6 +1437,11 @@ PrefabInstance:
       propertyPath: CoolDown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1863539650}
     - target: {fileID: 6064350941908553556, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1526,7 +1515,7 @@ PrefabInstance:
     - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: CoolDown
-      value: 2
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
