@@ -15,14 +15,17 @@ namespace Assets.Scripts.Item_Management
         public Inventory()
         {
             itemList = new List<Item>();
-            AddItem(new Item{itemType = Item.ItemType.JuggernautBuff, amount = 1});
-            AddItem(new Item{itemType = Item.ItemType.SpeedBuff, amount = 1});
-
         }
 
         public void AddItem(Item item)
         {
             itemList.Add(item);
+            OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void RemoveItem(Item item)
+        {
+            itemList.Remove(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
         }
 

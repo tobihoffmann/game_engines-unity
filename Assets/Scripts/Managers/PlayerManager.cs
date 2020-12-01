@@ -19,33 +19,21 @@ namespace Managers
         private Inventory inventory;
 
         
-        protected override void Awake()
+        protected void Start()
         {
             base.Awake();
-            
             _playerState = player.GetComponent<PlayerState>();
             _playerPosition = player.GetComponent<Transform>().position;
-            
+              
             inventory = new Inventory();
             uiInventory.SetInventory(inventory);
+            uiInventory.SetPlayer(player);
 
-            ItemWorld.SpawnItemWorld(new Vector3(10, 10), new Item {itemType = Item.ItemType.JuggernautBuff, amount = 1});
-            ItemWorld.SpawnItemWorld(new Vector3(5, 5), new Item {itemType = Item.ItemType.JuggernautBuff, amount = 1});
-            
+
         }
         
         
-        private void OnTriggerEnter2D(Collider2D collider)
-        {
-            Debug.Log("SECONDARY TRIGGER");
-            ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-            if (itemWorld != null)
-            {
-                inventory.AddItem(itemWorld.GetItem());
-                itemWorld.DestroySelf();
-            }
-            
-        }
+        
 
         /// <summary>
         /// Returns the current player position as a Vector3
@@ -69,6 +57,11 @@ namespace Managers
         public GameObject GetPlayer()
         {
             return player;
+        }
+
+        public Inventory GetInventory()
+        {
+            return inventory;
         }
 
     }
