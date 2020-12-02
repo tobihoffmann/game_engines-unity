@@ -78,58 +78,69 @@ MonoBehaviour:
   sounds:
   - name: PlayerBulletImpact
     clip: {fileID: 8300000, guid: 3931dc2ddbf00a046b9435d73dbe06fb, type: 3}
-    volume: 0.017
-    loop: 1
+    volume: 0.05
+    loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerDamageTaken
     clip: {fileID: 8300000, guid: c93912f9eae290d4b845d49bb2092a44, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerDash
     clip: {fileID: 8300000, guid: 8401649cc74311a4aae0bcaf46dc207e, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerFootStep_1
     clip: {fileID: 8300000, guid: 6aecc56becc8d644ebc33c98fa58178b, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerFootStep_2
     clip: {fileID: 8300000, guid: 0f1f2f3df2e2e6c42b77ed70676f7722, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerMeleeHit
     clip: {fileID: 8300000, guid: e7711f52209120b4cb094c26bfd8dd40, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerMeleeSwing
     clip: {fileID: 8300000, guid: 779e43a089e4ce44999d881092744a21, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: SpiderBeep
     clip: {fileID: 8300000, guid: a1c4252dd01438e4a9b4f1efd580d015, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: SpiderExplosion
     clip: {fileID: 8300000, guid: 15d0fe769f6de3b48adadc8b062d8cb1, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: SoundTrackWasteland
     clip: {fileID: 8300000, guid: 5dacfcaceb08b284f86e65c2b08df45e, type: 3}
     volume: 0.05
     loop: 1
+    spatialBlend: 0
     source: {fileID: 0}
   - name: PlayerGunShot
     clip: {fileID: 8300000, guid: 6d2293a874c3b994c8329de27cdbed06, type: 3}
     volume: 0.3
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   audioSources: {fileID: 652228346503424820}
 --- !u!114 &5089056811142613430
