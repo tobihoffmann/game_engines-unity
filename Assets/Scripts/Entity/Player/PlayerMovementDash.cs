@@ -1,6 +1,5 @@
 ﻿
 using System.Collections.Specialized;
-using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +21,7 @@ namespace Entity.Player
         private LayerMask dashLayerMask;
 
         [SerializeField] [Tooltip("Cooldown time for Dash")]
-        private float coolDown;
+        private float CoolDown;
         
         
         private Rigidbody2D _player;
@@ -46,7 +45,7 @@ namespace Entity.Player
         {
             _player = GetComponent<Rigidbody2D>();
             //set t to CoolDown time
-            t = coolDown;
+            t = CoolDown;
         }
         
         void Update()
@@ -69,7 +68,6 @@ namespace Entity.Player
         {
             if (_isDashTriggered)
             {
-                AudioManager.Instance.Play("PlayerDash");
                 Vector3 dashPosition = _playerPosition + _dashDirection * (Time.deltaTime * dashDistance);
 
                 RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(_playerPosition, _dashDirection, (Time.deltaTime * dashDistance), dashLayerMask);
@@ -81,7 +79,7 @@ namespace Entity.Player
                 _isDashTriggered = false;
                 
                 //set t back to Cooldown time
-                t = coolDown;
+                t = CoolDown;
             }
         }
     }
