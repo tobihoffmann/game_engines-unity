@@ -22,6 +22,7 @@ namespace Managers
 
         public void ChangeLevel()
         {
+            AudioManager.Instance.FadeOutPlaying(2);
             int currentLevel = GetCurrentLevelIndex();
             
             if (currentLevel >= GetSceneCount())
