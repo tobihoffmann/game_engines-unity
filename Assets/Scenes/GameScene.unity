@@ -267,8 +267,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: MeleeDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: CoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 4194816
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
+--- !u!4 &302876620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6064350941842866034, guid: 2608ab4010d791c47a9b026d50605c64,
+    type: 3}
+  m_PrefabInstance: {fileID: 302876619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6419736002378145190, guid: 03f693ef7282c9c4a9334864f6cc2317,
@@ -281,6 +303,41 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 302876619}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &778100560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778100559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91233bfc421b1ab4783c425cc207b8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoot:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e58c757e-eb86-48fb-97e0-2b7be65d970a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f9d1fd67-1c4d-413b-acf7-0fc571093af6
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+  mainCam: {fileID: 519420031}
+  firePoint: {fileID: 302876620}
+  bulletPrefab: {fileID: 7267584932666707647, guid: 44c46ea0628ca764388de394f5b3eb15,
+    type: 3}
+  bulletForce: 50
+  CoolDown: 0.4
+  Damage: 1
 --- !u!4 &778100569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6064350941908553556, guid: 2608ab4010d791c47a9b026d50605c64,
