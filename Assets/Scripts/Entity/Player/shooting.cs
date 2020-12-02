@@ -33,6 +33,7 @@ namespace Entity.Player
         private Vector2 _mousePosition;
         private Vector2 _playerPosition;
         private Vector2 _shootDirection;
+        private Vector2 _firepointPosition;
         private float t;
         
         
@@ -71,9 +72,11 @@ namespace Entity.Player
         void Shoot()
         {
             AudioManager.Instance.Play("PlayerGunShot");
+            
             _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            _playerPosition = new Vector2(transform.position.x, transform.position.y);
-            _shootDirection = new Ray2D(_playerPosition, _mousePosition - _playerPosition).direction;
+            //_playerPosition = new Vector2(transform.position.x, transform.position.y);
+            _firepointPosition = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
+            _shootDirection = new Ray2D(_firepointPosition, _mousePosition - _firepointPosition).direction;
 
 
             //initiate the bullet
