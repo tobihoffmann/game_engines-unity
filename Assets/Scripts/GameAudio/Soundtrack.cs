@@ -1,5 +1,6 @@
 ﻿using Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameAudio
 {
@@ -8,8 +9,24 @@ namespace GameAudio
         // Start is called before the first frame update
         void Start()
         {
-            AudioManager.Instance.FadeIn("SoundTrackWasteland", 1);
+            PlaySoundtrack();
         }
-    
+        
+        private void PlaySoundtrack()
+        {
+            int activeScene = SceneManager.GetActiveScene().buildIndex;
+            
+            
+            switch (activeScene)
+            {
+                case 0:
+                    AudioManager.Instance.FadeIn("SoundTrackDrone",4);
+                    break;
+                
+                case 1:
+                    AudioManager.Instance.FadeIn("SoundTrackWasteland", 1);
+                    break;
+            }
+        }
     }
 }

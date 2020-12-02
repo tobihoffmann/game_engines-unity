@@ -31,7 +31,7 @@ namespace UI
         private void StartNewGame()
         {
             //TODO: Destroys PlayerManager Singleton then loads GameScene
-            SceneManager.LoadScene("Scenes/GameScene");
+            GameManager.Instance.ChangeLevel();
         }
 
         private void Continue()
