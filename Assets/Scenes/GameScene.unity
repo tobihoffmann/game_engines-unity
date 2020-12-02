@@ -197,11 +197,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 359831113859614902, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 359831113859614902, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 302876620}
+    - target: {fileID: 359831113859614902, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7267584932666707647, guid: 44c46ea0628ca764388de394f5b3eb15,
+        type: 3}
     - target: {fileID: 6064350941908553545, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6064350941908553545, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: CoolDown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: mainCam
@@ -267,8 +288,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: MeleeDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: CoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 4194816
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
+--- !u!4 &302876620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6064350941842866034, guid: 2608ab4010d791c47a9b026d50605c64,
+    type: 3}
+  m_PrefabInstance: {fileID: 302876619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6419736002378145190, guid: 03f693ef7282c9c4a9334864f6cc2317,
