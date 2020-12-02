@@ -74,7 +74,6 @@ namespace Entity.Player
             AudioManager.Instance.Play("PlayerGunShot");
             
             _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            //_playerPosition = new Vector2(transform.position.x, transform.position.y);
             _firepointPosition = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
             _shootDirection = new Ray2D(_firepointPosition, _mousePosition - _firepointPosition).direction;
 
