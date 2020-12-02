@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AbstractClasses;
 using Entity.Player;
 using Managers;
 using Pathfinding;
@@ -26,6 +27,7 @@ namespace Entity.Enemy
         
         [SerializeField] [Tooltip("Wander radius of AI.")]
         private float radius = 2f;
+        
 
         private IAstarAI _ai;
         private AIPath _aiPath;
@@ -147,5 +149,6 @@ namespace Entity.Enemy
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, explodeDistance);
         }
+        
     }
 }
