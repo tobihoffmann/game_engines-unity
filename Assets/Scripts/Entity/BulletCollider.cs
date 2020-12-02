@@ -1,4 +1,5 @@
 ﻿
+using AbstractClasses;
 using Entity.Enemy;
 using Entity.Player;
 using Managers;
@@ -15,7 +16,7 @@ namespace Entity
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.collider.name == "Spider")
+            if (collision.collider.GetComponent<Damageable>())
             {
                 var damage = PlayerManager.Instance.GetPlayer().GetComponent<shooting>().GetDamage();
                 collision.collider.GetComponent<EnemyState>().Hit((int) damage);
