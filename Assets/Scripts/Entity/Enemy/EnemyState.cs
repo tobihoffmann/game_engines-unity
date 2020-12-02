@@ -3,7 +3,7 @@ using AbstractClasses;
 using UnityEngine;
 
 
-public class Hitregistration : Damageable
+public class EnemyState : Damageable
 {
     
     /// <summary>
