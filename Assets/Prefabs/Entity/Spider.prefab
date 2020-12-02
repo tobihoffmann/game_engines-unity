@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 4719819693485188111}
   - component: {fileID: 4719819693485188110}
   - component: {fileID: 4719819693485188337}
+  - component: {fileID: 2622839282565379863}
+  - component: {fileID: 3449697471393097323}
   m_Layer: 22
   m_Name: Spider
   m_TagString: Untagged
@@ -228,3 +230,36 @@ MonoBehaviour:
   damage: 1
   exTime: 0.8
   radius: 2
+--- !u!114 &2622839282565379863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719819693630697077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d406af927f06f439ff552817b3022d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &3449697471393097323
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719819693630697077}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
