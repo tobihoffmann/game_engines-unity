@@ -364,6 +364,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8027700356968641850, guid: 0e2206efd240d5743af4c4ecc810bbb2,
+        type: 3}
+      propertyPath: sounds.Array.data[7].volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027700356968641850, guid: 0e2206efd240d5743af4c4ecc810bbb2,
+        type: 3}
+      propertyPath: sounds.Array.data[8].volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027700356968641850, guid: 0e2206efd240d5743af4c4ecc810bbb2,
+        type: 3}
+      propertyPath: sounds.Array.data[0].spatialBlend
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027700356968641850, guid: 0e2206efd240d5743af4c4ecc810bbb2,
+        type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2206efd240d5743af4c4ecc810bbb2, type: 3}
 --- !u!1001 &6419736002746426841
