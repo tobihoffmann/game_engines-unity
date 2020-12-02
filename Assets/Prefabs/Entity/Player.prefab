@@ -70,16 +70,16 @@ GameObject:
   m_Component:
   - component: {fileID: 6064350941908553556}
   - component: {fileID: 6064350941908553557}
+  - component: {fileID: 6064350941908553551}
   - component: {fileID: 6064350941908553547}
   - component: {fileID: 6064350941908553545}
+  - component: {fileID: 6364873508759208899}
+  - component: {fileID: 6064350941908553550}
   - component: {fileID: 6064350941908553544}
   - component: {fileID: 6064350941908553546}
-  - component: {fileID: 6064350941908553551}
-  - component: {fileID: 6064350941908553550}
   - component: {fileID: 204967664700088607}
-  - component: {fileID: 6364873508759208899}
   m_Layer: 21
-  m_Name: Player 1
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,6 +151,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6064350941908553551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064350941908553558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5c9073b1595c14d9a0bdda81b4035a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 5
+  maxHitPoints: 5
+  powerUpSlots: 0
+  maxPowerUpSlots: 3
 --- !u!114 &6064350941908553547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1298a5366bbe0334d9c737676ec447eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDistance: 200
   dash:
     m_Name: Dash
     m_Type: 0
@@ -241,10 +256,81 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Dash
       m_Flags: 0
+  dashDistance: 200
   mainCam: {fileID: 0}
   dashLayerMask:
     serializedVersion: 2
     m_Bits: 131072
+  coolDown: 0.8
+--- !u!114 &6364873508759208899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064350941908553558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558ddf4da15d5564187ca6769248b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  melee:
+    m_Name: Melee
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: beaf1015-bdc4-4013-97aa-85f02a11e279
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2dc4898b-ad17-430e-83a6-c02ee9f08a0c
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Melee
+      m_Flags: 0
+  attackCenter: {fileID: 6064350941908022850}
+  attackRange: 0.5
+  MeleeDamage: 0
+  CoolDown: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 4194304
+--- !u!114 &6064350941908553550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064350941908553558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91233bfc421b1ab4783c425cc207b8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoot:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e1be7ace-5f14-4ece-bf30-ae95f31285aa
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 03366c73-f730-4492-9c01-4eb22a9612a1
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+  mainCam: {fileID: 0}
+  firePoint: {fileID: 6064350941842866034}
+  bulletPrefab: {fileID: 7267584932666707647, guid: 44c46ea0628ca764388de394f5b3eb15,
+    type: 3}
+  bulletForce: 50
+  CoolDown: 1
 --- !u!61 &6064350941908553544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -292,55 +378,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6064350941908553551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6064350941908553558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5c9073b1595c14d9a0bdda81b4035a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 5
-  maxHitPoints: 5
-  powerUpSlots: 0
-  maxPowerUpSlots: 3
---- !u!114 &6064350941908553550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6064350941908553558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15d93f08ecbacd4fb867425d3d1449d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
-  firePoint: {fileID: 6064350941842866034}
-  bulletPrefab: {fileID: 7267584932666707647, guid: 44c46ea0628ca764388de394f5b3eb15,
-    type: 3}
-  bulletForce: 20
-  shoot:
-    m_Name: Shoot
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8d3f45ad-b2c3-4e60-b20d-3bbddf116b77
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 66b8da90-c555-4c8c-baf0-eb1408bb057a
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Shoot
-      m_Flags: 0
 --- !u!95 &204967664700088607
 Animator:
   serializedVersion: 3
@@ -360,38 +397,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6364873508759208899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6064350941908553558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558ddf4da15d5564187ca6769248b8e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  melee:
-    m_Name: Melee
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: beaf1015-bdc4-4013-97aa-85f02a11e279
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2dc4898b-ad17-430e-83a6-c02ee9f08a0c
-      m_Path: <Mouse>/rightButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Melee
-      m_Flags: 0
-  attackCenter: {fileID: 6064350941908022850}
-  attackRange: 0.5
-  MeleeDamage: 0
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 4194304
-  animator: {fileID: 204967664700088607}

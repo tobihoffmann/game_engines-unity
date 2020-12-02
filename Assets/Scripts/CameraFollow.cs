@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
-using Vector3 = UnityEngine.Vector3;
+﻿using UnityEngine;
+
 
 public class CameraFollow : MonoBehaviour
 {
@@ -11,13 +9,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float cameraMovementSpeed;
 
-    // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
+    // Update is called once per frame
         void Update()
         {
             Vector3 desiredCameraPosition = player.position;
