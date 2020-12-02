@@ -1,5 +1,6 @@
 ﻿
 using Entity.Enemy;
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -60,7 +61,18 @@ public class Melee : MonoBehaviour
 
     void Attack()
     {
+        
+        
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
+
+        if (hitEnemies.Length > 0)
+        {
+            AudioManager.Instance.Play("PlayerMeleeHit");
+        }
+        else
+        {
+            AudioManager.Instance.Play("PlayerMeleeSwing");
+        }
         
         foreach(Collider2D enemy in hitEnemies)
         {
