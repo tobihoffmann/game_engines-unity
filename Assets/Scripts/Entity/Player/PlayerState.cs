@@ -1,4 +1,5 @@
 ﻿using AbstractClasses;
+using Managers;
 using UnityEngine;
 
 namespace Entity.Player
@@ -62,6 +63,7 @@ namespace Entity.Player
 
         public override void Hit(int damage)
         {
+            AudioManager.Instance.Play("PlayerDamageTaken");
             ChangePlayerHitPoints(-damage);
         }
 

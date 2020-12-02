@@ -5,22 +5,37 @@ namespace LevelGeneration
 {
     public class TileTemplates : MonoBehaviour
     {
-        public List<GameObject> northTiles;
+        [Header("Roads")]
+        [SerializeField]
+        internal List<GameObject> roadTiles;
         
-        public List<GameObject> eastTiles;
+        [SerializeField]
+        internal GameObject endingNorth;
         
-        public List<GameObject> southTiles;
+        [SerializeField]
+        internal GameObject endingEast;
         
-        public List<GameObject> westTiles;
+        [SerializeField]
+        internal GameObject endingSouth;
         
-        
-        
-        /*public GameObject[] northTiles;
+        [SerializeField]
+        internal GameObject endingWest;
 
-        public GameObject[] eastTiles;
+        [Header("Planes")]
+        [SerializeField]
+        internal List<GameObject> planeTiles;
+        
+        [Header("Level Borders")]
+        [SerializeField]
+        internal List<GameObject> borders;
 
-        public GameObject[] southTiles;
-    
-        public GameObject[] westTiles;*/
+        [SerializeField]
+        internal GameObject borderCornerNorthEast;
+        [SerializeField]
+        internal GameObject borderCornerNorthWest;
+        [SerializeField]
+        internal GameObject borderCornerSouthEast;
+        [SerializeField]
+        internal GameObject borderCornerSouthWest;
     }
 }
