@@ -447,6 +447,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054111041634217422, guid: 68c0016d9612d194d8a4a846448b6829,
+        type: 3}
+      propertyPath: click.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054111041634217422, guid: 68c0016d9612d194d8a4a846448b6829,
+        type: 3}
+      propertyPath: release.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
     - target: {fileID: 9007239189802468863, guid: 68c0016d9612d194d8a4a846448b6829,
         type: 3}
       propertyPath: currentHealth
