@@ -62,15 +62,10 @@ public class Melee : MonoBehaviour
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
         
-        Debug.Log("MeleeAttack");
-        
-        
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
             //give damage to the enemy 
-            //just pseudo code, because no enemyManager implemented yet
-            enemy.GetComponent<Hitregistration>().Hit((int)MeleeDamage);
+            enemy.GetComponent<EnemyState>().Hit((int)MeleeDamage);
             
         }
 

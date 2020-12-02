@@ -1555,7 +1555,7 @@ PrefabInstance:
     - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: MeleeDamage
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
