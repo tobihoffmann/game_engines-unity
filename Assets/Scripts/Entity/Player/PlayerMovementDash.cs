@@ -9,9 +9,6 @@ namespace Entity.Player
 {
     public class PlayerMovementDash : MonoBehaviour
     {
-        [SerializeField][Tooltip("Dash InputAction of the player")]
-        private InputAction dash;
-        
         [SerializeField][Tooltip("Dash distance of the player")]
         private float dashDistance = 500f;
         
@@ -24,6 +21,7 @@ namespace Entity.Player
         [SerializeField] [Tooltip("Cooldown time for Dash")]
         private float CoolDown;
         
+        private Controls _controls;
         
         private Rigidbody2D _player;
 
@@ -33,14 +31,9 @@ namespace Entity.Player
         private bool _isDashTriggered;
         private float t;
         
-        private void OnEnable()
-        {
-            dash.Enable();
-        }
-        private void OnDisable()
-        {
-            dash.Disable();
-        }
+        private void Awake() => _controls = new Controls();
+        private void OnEnable() => _controls.Enable();
+        private void OnDisable() => _controls.Disable();
 
         void Start()
         {
@@ -58,7 +51,7 @@ namespace Entity.Player
             _playerPosition = new Vector2(transform.position.x, transform.position.y);
             _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
 
-            if (dash.triggered)
+            if (_controls.Player.Dash.triggered)
             {
                 if(t<=0)_isDashTriggered = true;
                 

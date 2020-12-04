@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 
 namespace Entity.Player
 {
-    public class shooting : MonoBehaviour
+    public class Shooting : MonoBehaviour
     {
-    [SerializeField][Tooltip("Input actions for shooting")]
-    private InputAction shoot;
     
     [SerializeField][Tooltip("Main Camera Object")]
     private Camera mainCam;
@@ -29,24 +27,17 @@ namespace Entity.Player
         [SerializeField] [Tooltip("Damage for shooting")]
         private float Damage;
         
-
+        private Controls _controls;
+        
         private Vector2 _mousePosition;
         private Vector2 _playerPosition;
         private Vector2 _shootDirection;
         private Vector2 _firepointPosition;
         private float t;
         
-        
-
-        private void OnEnable()
-        {
-            
-            shoot.Enable();
-        }
-        private void OnDisable()
-        {
-            shoot.Disable();
-        }
+        private void Awake() => _controls = new Controls();
+        private void OnEnable() => _controls.Enable();
+        private void OnDisable() => _controls.Disable();
 
         void Start()
         {
@@ -56,7 +47,7 @@ namespace Entity.Player
         void Update()
         {
             t = t - Time.deltaTime;
-            if (shoot.triggered)
+            if (_controls.Player.Shoot.triggered)
             {
                 if (t <= 0)
                 {

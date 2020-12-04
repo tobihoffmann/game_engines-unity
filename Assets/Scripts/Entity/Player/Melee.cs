@@ -1,99 +1,91 @@
-﻿
-using Entity.Enemy;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Melee : MonoBehaviour
+namespace Entity.Player
 {
-    [SerializeField][Tooltip("Input actions for melee attack")]
-    private InputAction melee;
-    
-    [SerializeField][Tooltip("Center of the AttackCircle")]
-    private Transform attackCenter;
-    
-    [SerializeField][Tooltip("Radian of the AttackCircle")]
-    private float attackRange;
-    
-    [SerializeField][Tooltip("Damage of the Melee Attack")]
-    private float MeleeDamage;
-    
-    [SerializeField][Tooltip("CoolDown Time of the Melee Attack")]
-    private float CoolDown;
-    
-    [SerializeField][Tooltip("LayerMask for detecting enemies")]
-    private LayerMask enemyLayers;
-    
-    private Animator animator;
-    private float t;
-    
-    private void OnEnable()
+    public class Melee : MonoBehaviour
     {
-        melee.Enable();
+        [SerializeField][Tooltip("Center of the AttackCircle")]
+        private Transform attackCenter;
+    
+        [SerializeField][Tooltip("Radian of the AttackCircle")]
+        private float attackRange;
+    
+        [SerializeField][Tooltip("Damage of the Melee Attack")]
+        private float MeleeDamage;
+    
+        [SerializeField][Tooltip("CoolDown Time of the Melee Attack")]
+        private float CoolDown;
+    
+        [SerializeField][Tooltip("LayerMask for detecting enemies")]
+        private LayerMask enemyLayers;
         
-    }
-    private void OnDisable()
-    {
-        melee.Disable();
-        
-    }
+        private Controls _controls;
+    
+        private Animator animator;
+        private float t;
+    
+        private void Awake() => _controls = new Controls();
+        private void OnEnable() => _controls.Enable();
+        private void OnDisable() => _controls.Disable();
 
-    void Start()
-    {
-        animator = gameObject.GetComponent<Animator>();
-        t = CoolDown;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        t = t - Time.deltaTime;
-        if (melee.triggered)
+        void Start()
         {
-            if (t <= 0)
+            animator = gameObject.GetComponent<Animator>();
+            t = CoolDown;
+        }
+    
+        // Update is called once per frame
+        void Update()
+        {
+            t = t - Time.deltaTime;
+            if (_controls.Player.Melee.triggered)
             {
-                animator.SetTrigger("MeleeTrigger");
-                Attack();
-            }
+                if (t <= 0)
+                {
+                    Attack();
+                }
            
+            }
         }
-    }
 
-    void Attack()
-    {
+        void Attack()
+        {
         
         
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
 
-        if (hitEnemies.Length > 0)
-        {
-            AudioManager.Instance.Play("PlayerMeleeHit");
-        }
-        else
-        {
-            AudioManager.Instance.Play("PlayerMeleeSwing");
-        }
+            if (hitEnemies.Length > 0)
+            {
+                AudioManager.Instance.Play("PlayerMeleeHit");
+            }
+            else
+            {
+                AudioManager.Instance.Play("PlayerMeleeSwing");
+            }
         
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            //give damage to the enemy 
-            enemy.GetComponent<EnemyState>().Hit((int)MeleeDamage);
+            foreach(Collider2D enemy in hitEnemies)
+            {
+                //give damage to the enemy 
+                enemy.GetComponent<EnemyState>().Hit((int)MeleeDamage);
             
-        }
+            }
 
-        t = CoolDown;
+            t = CoolDown;
         
-    }
-    //Draws an circle to show the melee attack area
+        }
+        //Draws an circle to show the melee attack area
     
-    void OnDrawGizmosSelected()
-    {
-        if (attackCenter == null) return;
+        void OnDrawGizmosSelected()
+        {
+            if (attackCenter == null) return;
 
-        Gizmos.DrawWireSphere(attackCenter.position, attackRange);
+            Gizmos.DrawWireSphere(attackCenter.position, attackRange);
+        }
+    
+    
     }
-    
-    
 }
 
 

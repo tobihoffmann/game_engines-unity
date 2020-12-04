@@ -18,7 +18,7 @@ namespace Entity
         {
             if (collision.collider.GetComponent<Damageable>())
             {
-                var damage = PlayerManager.Instance.GetPlayer().GetComponent<shooting>().GetDamage();
+                var damage = PlayerManager.Instance.GetPlayer().GetComponent<Shooting>().GetDamage();
                 collision.collider.GetComponent<EnemyState>().Hit((int) damage);
             }
             
