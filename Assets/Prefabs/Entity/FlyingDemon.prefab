@@ -252,7 +252,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7267584932666707647, guid: 5f4052c56d682154b8492920733e4a23,
     type: 3}
   bulletForce: 50
-  CoolDown: 2
+  coolDown: 1.5
 --- !u!114 &3341060615763806927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,5 +265,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3374b92bca572b47b74c60161b7dc1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 5
-  maxHitPoints: 5
+  hitPoints: 2
+  maxHitPoints: 2
