@@ -1,4 +1,5 @@
-﻿using AbstractClasses;
+﻿using System;
+using AbstractClasses;
 using Managers;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Entity.Player
         public delegate void PlayerStateChanged(int newValue);
         
         public delegate void PlayerIsDead();
+        
 
         /// <summary>
         /// The maximum hit points of the player

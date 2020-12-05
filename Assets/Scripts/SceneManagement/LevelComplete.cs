@@ -5,6 +5,10 @@ namespace SceneManagement
 {
     public class LevelComplete : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject gm;
+        
+
         /// <summary>
         /// If the player walks on the trigger, the level completes.
         /// </summary>
@@ -12,7 +16,7 @@ namespace SceneManagement
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other == PlayerManager.Instance.GetPlayer().GetComponent<Collider2D>())
-                GameManager.Instance.ChangeLevel();
+                gm.GetComponent<GameManager>();
         }
     }
 }
