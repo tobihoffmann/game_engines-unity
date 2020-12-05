@@ -7,16 +7,12 @@ using UnityEngine.InputSystem;
 namespace Entity.Player
 {
     public class Shooting : MonoBehaviour
-    {
+    { 
+        [SerializeField][Tooltip("FirePoint Object")]
+        private Transform firePoint;
     
-    [SerializeField][Tooltip("Main Camera Object")]
-    private Camera mainCam;
-
-    [SerializeField][Tooltip("FirePoint Object")]
-    private Transform firePoint;
-    
-    [SerializeField][Tooltip("Prefab for Bullet Object")]
-    private GameObject bulletPrefab;
+        [SerializeField][Tooltip("Prefab for Bullet Object")]
+        private GameObject bulletPrefab;
         
         [SerializeField][Tooltip("Float variable for the Bulletforce")]
         private float bulletForce = 50f;
@@ -64,7 +60,7 @@ namespace Entity.Player
         {
             AudioManager.Instance.Play("PlayerGunShot");
             
-            _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            _mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             _firepointPosition = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
             _shootDirection = new Ray2D(_firepointPosition, _mousePosition - _firepointPosition).direction;
 
