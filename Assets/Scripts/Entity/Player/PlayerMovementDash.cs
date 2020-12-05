@@ -1,5 +1,4 @@
 ﻿
-using System.Collections.Specialized;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,7 +28,7 @@ namespace Entity.Player
         private Vector2 _playerPosition;
         private Vector2 _dashDirection;
         private bool _isDashTriggered;
-        private float t;
+        private float _t;
         
         private void Awake() => _controls = new Controls();
         private void OnEnable() => _controls.Enable();
@@ -39,13 +38,13 @@ namespace Entity.Player
         {
             _player = GetComponent<Rigidbody2D>();
             //set t to CoolDown time
-            t = CoolDown;
+            _t = CoolDown;
         }
         
         void Update()
         {    
             //count down cooldown time
-            t = t - Time.deltaTime;
+            _t = _t - Time.deltaTime;
             
             _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             _playerPosition = new Vector2(transform.position.x, transform.position.y);
@@ -53,7 +52,7 @@ namespace Entity.Player
 
             if (_controls.Player.Dash.triggered)
             {
-                if(t<=0)_isDashTriggered = true;
+                if(_t<=0)_isDashTriggered = true;
                 
             }
         }
@@ -75,7 +74,7 @@ namespace Entity.Player
                 _isDashTriggered = false;
                 
                 //set t back to Cooldown time
-                t = CoolDown;
+                _t = CoolDown;
             }
         }
     }

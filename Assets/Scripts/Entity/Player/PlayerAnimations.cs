@@ -1,9 +1,7 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.U2D;
 
 namespace Entity.Player
 {
@@ -26,7 +24,7 @@ namespace Entity.Player
         [SerializeField][Tooltip("Prefab for Bullet Object")]
         private GameObject bulletPrefab;
         
-        [SerializeField][Tooltip("Float variable for the Bulletforce")]
+        [SerializeField][Tooltip("Float variable for the Bullet force")]
         private float bulletForce = 50f;
 
         private float _shootingTimer;
@@ -71,9 +69,7 @@ namespace Entity.Player
         private Vector2 _mousePosition;
         private Vector2 _shootDirection;
         private Vector2 _firepointPosition;
-        private Vector2 _perpendicular;
-        private float _angle;
-        
+
         // Movement
         private Vector2 _walkingDirection;
 
@@ -140,9 +136,6 @@ namespace Entity.Player
                 _dashIsOnCooldown = false;
             }
             
-            _perpendicular = new Ray2D(_firepointPosition, new Vector2(0,1)).direction;
-            _angle = Vector2.Angle(_perpendicular, _shootDirection);
-            
             Walk();
         }
 
@@ -170,21 +163,32 @@ namespace Entity.Player
             {
                 //Play audio
                 AudioManager.Instance.Play("PlayerDash");
-                
+
                 _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
                 Vector3 dashPosition = _playerPosition + _dashDirection * dashDistance;
                 
+                //Avoid obstacle objects
+                //TODO: FIX IT BABY
+                RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(_playerPosition, _dashDirection, dashDistance, dashLayerMask);
+                if (rcHitToDashPosition.collider != null)
+                {
+                    dashPosition = rcHitToDashPosition.point;
+                }
+                
                 _player.transform.DOMove(dashPosition, 0.5f);
 
                 // Handle Animation
-                if (_angle <= 45) _animator.SetTrigger(DashUp);
-                else if (_angle >= 135) _animator.SetTrigger(DashDown);
+                float dashAngle = Vector2.SignedAngle(Vector2.up, _dashDirection);
+                if (dashAngle < 45 && dashAngle > -45)
+                    _animator.SetTrigger(DashUp);
+                else if (dashAngle >= 45 && dashAngle <= 135)
+                    _animator.SetTrigger(DashLeft);
+                else if (dashAngle <= -45 && dashAngle >= -135)
+                    _animator.SetTrigger(DashRight);
                 else
-                {
-                    if (_mousePosition.x < _playerPosition.x) _animator.SetTrigger(DashLeft);
-                    else _animator.SetTrigger(DashRight);
-                }
+                    _animator.SetTrigger(DashDown);
+                
                 _dashTimer = dashCooldown;
                 _dashIsOnCooldown = true;
             }
@@ -215,18 +219,19 @@ namespace Entity.Player
 
                 //addForce in direction of Mouse position
                 rb.AddForce(_shootDirection * bulletForce, ForceMode2D.Impulse);
-
+                
                 // Handle Animations
-                if (_angle <= 45) _animator.SetTrigger(ShootUp);
+                float shootingAngle = Vector2.SignedAngle(Vector2.up, _shootDirection);
+                
+                if (shootingAngle < 45 && shootingAngle > -45)
+                    _animator.SetTrigger(ShootUp);
+                else if (shootingAngle >= 45 && shootingAngle <= 135)
+                    _animator.SetTrigger(ShootLeft);
+                else if (shootingAngle <= -45 && shootingAngle >= -135)
+                    _animator.SetTrigger(ShootRight);
                 else
-                {
-                    if (_angle >= 135)  _animator.SetTrigger(ShootDown);
-                    else
-                    {
-                        if (_mousePosition.x < _playerPosition.x) _animator.SetTrigger(ShootLeft);
-                        else _animator.SetTrigger(ShootRight);
-                    }
-                }
+                    _animator.SetTrigger(ShootDown);
+
                 _shootingTimer = shootingCoolDown;
                 _shootingIsOnCooldown = true;
             }
@@ -258,14 +263,6 @@ namespace Entity.Player
                 _meleeTimer = meleeCoolDown;
                 _meleeIsOnCooldown = true;
             }
-        }
-        
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(_firepointPosition, _mousePosition - _firepointPosition);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(_firepointPosition, new Vector2(0,1));
         }
     }
 }
