@@ -123,30 +123,24 @@ namespace Entity.Player
             // Shooting Cooldown
             _shootingTimer = _shootingTimer - Time.deltaTime;
             if (_shootingTimer <= 0)
-                {
-                    _shootingIsOnCooldown = false;
-                }
-            
-            
+            {
+                _shootingIsOnCooldown = false;
+            }
+           
             // Melee Cooldown
             _meleeTimer = _meleeTimer - Time.deltaTime;
-       
-                if (_meleeTimer <= 0)
-                {
-                    _meleeIsOnCooldown = false;
-                }
-            
-            
+            if (_meleeTimer <= 0)
+            {
+                _meleeIsOnCooldown = false;
+            }
+
             // Dash CoolDown
             _dashTimer = _dashTimer - Time.deltaTime;
-    
-                if (_dashTimer <= 0)
-                {
-                    _dashIsOnCooldown = false;
-                }
-                _dashTime -= Time.deltaTime;
-            
-            
+            if (_dashTimer <= 0)
+            {
+                _dashIsOnCooldown = false;
+            }
+
             _player.velocity = Vector2.right * 50;
 
             _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
