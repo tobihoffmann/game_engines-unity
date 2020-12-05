@@ -6,14 +6,12 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Entity.Player
+public class @Controls : IInputActionCollection, IDisposable
 {
-    public class @Controls : IInputActionCollection, IDisposable
+    public InputActionAsset asset { get; }
+    public @Controls()
     {
-        public InputActionAsset asset { get; }
-        public @Controls()
-        {
-            asset = InputActionAsset.FromJson(@"{
+        asset = InputActionAsset.FromJson(@"{
     ""name"": ""Controls"",
     ""maps"": [
         {
@@ -183,139 +181,138 @@ namespace Entity.Player
         }
     ]
 }");
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-            m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
-            m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-            m_Player_WalkingVertical = m_Player.FindAction("WalkingVertical", throwIfNotFound: true);
-            m_Player_WalkingHorizontal = m_Player.FindAction("WalkingHorizontal", throwIfNotFound: true);
-        }
-
-        public void Dispose()
-        {
-            UnityEngine.Object.Destroy(asset);
-        }
-
-        public InputBinding? bindingMask
-        {
-            get => asset.bindingMask;
-            set => asset.bindingMask = value;
-        }
-
-        public ReadOnlyArray<InputDevice>? devices
-        {
-            get => asset.devices;
-            set => asset.devices = value;
-        }
-
-        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-        public bool Contains(InputAction action)
-        {
-            return asset.Contains(action);
-        }
-
-        public IEnumerator<InputAction> GetEnumerator()
-        {
-            return asset.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public void Enable()
-        {
-            asset.Enable();
-        }
-
-        public void Disable()
-        {
-            asset.Disable();
-        }
-
         // Player
-        private readonly InputActionMap m_Player;
-        private IPlayerActions m_PlayerActionsCallbackInterface;
-        private readonly InputAction m_Player_Shoot;
-        private readonly InputAction m_Player_Melee;
-        private readonly InputAction m_Player_Dash;
-        private readonly InputAction m_Player_WalkingVertical;
-        private readonly InputAction m_Player_WalkingHorizontal;
-        public struct PlayerActions
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_WalkingVertical = m_Player.FindAction("WalkingVertical", throwIfNotFound: true);
+        m_Player_WalkingHorizontal = m_Player.FindAction("WalkingHorizontal", throwIfNotFound: true);
+    }
+
+    public void Dispose()
+    {
+        UnityEngine.Object.Destroy(asset);
+    }
+
+    public InputBinding? bindingMask
+    {
+        get => asset.bindingMask;
+        set => asset.bindingMask = value;
+    }
+
+    public ReadOnlyArray<InputDevice>? devices
+    {
+        get => asset.devices;
+        set => asset.devices = value;
+    }
+
+    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+    public bool Contains(InputAction action)
+    {
+        return asset.Contains(action);
+    }
+
+    public IEnumerator<InputAction> GetEnumerator()
+    {
+        return asset.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public void Enable()
+    {
+        asset.Enable();
+    }
+
+    public void Disable()
+    {
+        asset.Disable();
+    }
+
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_Melee;
+    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_WalkingVertical;
+    private readonly InputAction m_Player_WalkingHorizontal;
+    public struct PlayerActions
+    {
+        private @Controls m_Wrapper;
+        public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @Melee => m_Wrapper.m_Player_Melee;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @WalkingVertical => m_Wrapper.m_Player_WalkingVertical;
+        public InputAction @WalkingHorizontal => m_Wrapper.m_Player_WalkingHorizontal;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            private @Controls m_Wrapper;
-            public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-            public InputAction @Melee => m_Wrapper.m_Player_Melee;
-            public InputAction @Dash => m_Wrapper.m_Player_Dash;
-            public InputAction @WalkingVertical => m_Wrapper.m_Player_WalkingVertical;
-            public InputAction @WalkingHorizontal => m_Wrapper.m_Player_WalkingHorizontal;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void SetCallbacks(IPlayerActions instance)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
-                {
-                    @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                    @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                    @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                    @Melee.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
-                    @Melee.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
-                    @Melee.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
-                    @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                    @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                    @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                    @WalkingVertical.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingVertical;
-                    @WalkingVertical.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingVertical;
-                    @WalkingVertical.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingVertical;
-                    @WalkingHorizontal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingHorizontal;
-                    @WalkingHorizontal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingHorizontal;
-                    @WalkingHorizontal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingHorizontal;
-                }
-                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
-                if (instance != null)
-                {
-                    @Shoot.started += instance.OnShoot;
-                    @Shoot.performed += instance.OnShoot;
-                    @Shoot.canceled += instance.OnShoot;
-                    @Melee.started += instance.OnMelee;
-                    @Melee.performed += instance.OnMelee;
-                    @Melee.canceled += instance.OnMelee;
-                    @Dash.started += instance.OnDash;
-                    @Dash.performed += instance.OnDash;
-                    @Dash.canceled += instance.OnDash;
-                    @WalkingVertical.started += instance.OnWalkingVertical;
-                    @WalkingVertical.performed += instance.OnWalkingVertical;
-                    @WalkingVertical.canceled += instance.OnWalkingVertical;
-                    @WalkingHorizontal.started += instance.OnWalkingHorizontal;
-                    @WalkingHorizontal.performed += instance.OnWalkingHorizontal;
-                    @WalkingHorizontal.canceled += instance.OnWalkingHorizontal;
-                }
+                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Melee.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
+                @Melee.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
+                @Melee.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @WalkingVertical.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingVertical;
+                @WalkingVertical.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingVertical;
+                @WalkingVertical.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingVertical;
+                @WalkingHorizontal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingHorizontal;
+                @WalkingHorizontal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingHorizontal;
+                @WalkingHorizontal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalkingHorizontal;
+            }
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @Melee.started += instance.OnMelee;
+                @Melee.performed += instance.OnMelee;
+                @Melee.canceled += instance.OnMelee;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @WalkingVertical.started += instance.OnWalkingVertical;
+                @WalkingVertical.performed += instance.OnWalkingVertical;
+                @WalkingVertical.canceled += instance.OnWalkingVertical;
+                @WalkingHorizontal.started += instance.OnWalkingHorizontal;
+                @WalkingHorizontal.performed += instance.OnWalkingHorizontal;
+                @WalkingHorizontal.canceled += instance.OnWalkingHorizontal;
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
-        private int m_KeyboadandMouseSchemeIndex = -1;
-        public InputControlScheme KeyboadandMouseScheme
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+    private int m_KeyboadandMouseSchemeIndex = -1;
+    public InputControlScheme KeyboadandMouseScheme
+    {
+        get
         {
-            get
-            {
-                if (m_KeyboadandMouseSchemeIndex == -1) m_KeyboadandMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboad and Mouse");
-                return asset.controlSchemes[m_KeyboadandMouseSchemeIndex];
-            }
+            if (m_KeyboadandMouseSchemeIndex == -1) m_KeyboadandMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboad and Mouse");
+            return asset.controlSchemes[m_KeyboadandMouseSchemeIndex];
         }
-        public interface IPlayerActions
-        {
-            void OnShoot(InputAction.CallbackContext context);
-            void OnMelee(InputAction.CallbackContext context);
-            void OnDash(InputAction.CallbackContext context);
-            void OnWalkingVertical(InputAction.CallbackContext context);
-            void OnWalkingHorizontal(InputAction.CallbackContext context);
-        }
+    }
+    public interface IPlayerActions
+    {
+        void OnShoot(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnWalkingVertical(InputAction.CallbackContext context);
+        void OnWalkingHorizontal(InputAction.CallbackContext context);
     }
 }

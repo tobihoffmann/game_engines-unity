@@ -166,8 +166,6 @@ namespace Entity.Player
         void FixedUpdate()
         {
             _player.MovePosition(_player.position + _walkingDirection * (Time.deltaTime * movementSpeed));
-            
-            
         }
 
         // Player Actions
