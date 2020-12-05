@@ -291,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: MeleeDamage
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 6364873508759208899, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6064350941908553550, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
@@ -335,6 +335,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 302876619}
   m_PrefabAsset: {fileID: 0}
+
 --- !u!1001 &854498106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -595,6 +596,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054111041634217422, guid: 68c0016d9612d194d8a4a846448b6829,
+        type: 3}
+      propertyPath: click.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054111041634217422, guid: 68c0016d9612d194d8a4a846448b6829,
+        type: 3}
+      propertyPath: release.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
     - target: {fileID: 9007239189802468863, guid: 68c0016d9612d194d8a4a846448b6829,
         type: 3}
       propertyPath: currentHealth
