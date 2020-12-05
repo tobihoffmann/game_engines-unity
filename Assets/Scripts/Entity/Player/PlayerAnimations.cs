@@ -101,7 +101,7 @@ namespace Entity.Player
         // Start is called before the first frame update
         void Start()
         {
-            _shootingTimer = 0;
+            _shootingTimer = shootingCoolDown;
             _meleeTimer = 0;
             _dashTimer = 0;
             _dashTime = 0;
@@ -122,35 +122,25 @@ namespace Entity.Player
             
             // Shooting Cooldown
             _shootingTimer = _shootingTimer - Time.deltaTime;
-            if (_controls.Player.Shoot.triggered)
+            if (_shootingTimer <= 0)
             {
-                if (_shootingTimer <= 0)
-                {
-                    _shootingIsOnCooldown = false;
-                }
+                _shootingIsOnCooldown = false;
             }
-            
+           
             // Melee Cooldown
             _meleeTimer = _meleeTimer - Time.deltaTime;
-            if (_controls.Player.Melee.triggered)
+            if (_meleeTimer <= 0)
             {
-                if (_meleeTimer <= 0)
-                {
-                    _meleeIsOnCooldown = false;
-                }
+                _meleeIsOnCooldown = false;
             }
-            
+
             // Dash CoolDown
             _dashTimer = _dashTimer - Time.deltaTime;
-            if (_controls.Player.Dash.triggered)
+            if (_dashTimer <= 0)
             {
-                if (_dashTimer <= 0)
-                {
-                    _dashIsOnCooldown = false;
-                }
-                _dashTime -= Time.deltaTime;
+                _dashIsOnCooldown = false;
             }
-            
+
             _player.velocity = Vector2.right * 50;
 
             _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
