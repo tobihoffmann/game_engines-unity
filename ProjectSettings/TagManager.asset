@@ -6,7 +6,8 @@ TagManager:
   tags:
   - SpawnPoint
   - Junction
-  - TEST
+  - t_Junction
+  - x_Junction
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - 
   - Background
-  - 
+  - Enemy
   - Environment
   - Roads
   - 
@@ -30,7 +31,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - AI
   - 
   - 
   - 

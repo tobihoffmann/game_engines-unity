@@ -1,0 +1,335 @@
+fileFormatVersion: 2
+guid: bfd0e58fe512d57428806460dcdf9c32
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6341795693834579260
+    second: the_road_logo_0
+  - first:
+      213: 1706337613744797490
+    second: the_road_logo_1
+  - first:
+      213: -8559337800278228539
+    second: the_road_logo_2
+  - first:
+      213: 8067598104200715603
+    second: the_road_logo_3
+  - first:
+      213: 2471205786569454094
+    second: the_road_logo_4
+  - first:
+      213: 6621134829080555014
+    second: the_road_logo_5
+  - first:
+      213: 1406457206155293205
+    second: the_road_logo_6
+  - first:
+      213: 4210480884248293094
+    second: the_road_logo_7
+  - first:
+      213: -9171683918731088357
+    second: the_road_logo_8
+  - first:
+      213: 4570129049687003929
+    second: the_road_logo_9
+  - first:
+      213: -7801538836416734181
+    second: the_road_logo_10
+  - first:
+      213: -9135739489956749744
+    second: the_road_logo_11
+  - first:
+      213: -3914821436047561864
+    second: the_road_logo_12
+  - first:
+      213: 4419980737806246896
+    second: the_road_logo_13
+  - first:
+      213: -7924826911674305942
+    second: the_road_logo_14
+  - first:
+      213: -8402154828200757258
+    second: the_road_logo_15
+  - first:
+      213: 4681506307051885078
+    second: the_road_logo_16
+  - first:
+      213: 2129614044605660983
+    second: the_road_logo_17
+  - first:
+      213: -3975911079074958646
+    second: the_road_logo_18
+  - first:
+      213: -4833336887417420191
+    second: the_road_logo_19
+  - first:
+      213: -5281031370438217260
+    second: the_road_logo_20
+  - first:
+      213: -1600467781009824425
+    second: the_road_logo_21
+  - first:
+      213: -1858219678210940333
+    second: the_road_logo_22
+  - first:
+      213: 5501613489872403590
+    second: the_road_logo_23
+  - first:
+      213: 476940131371297437
+    second: the_road_logo_24
+  - first:
+      213: 5738498974198636267
+    second: the_road_logo_25
+  - first:
+      213: -5863969627368411190
+    second: the_road_logo_26
+  - first:
+      213: 4131926807919962455
+    second: the_road_logo_27
+  - first:
+      213: 5837852457713275635
+    second: the_road_logo_28
+  - first:
+      213: 642744957877680075
+    second: the_road_logo_29
+  - first:
+      213: -4278363837517787286
+    second: the_road_logo_30
+  - first:
+      213: 8969619430840299526
+    second: the_road_logo_31
+  - first:
+      213: -6276323669085420273
+    second: the_road_logo_32
+  - first:
+      213: 2137564563435640077
+    second: the_road_logo_33
+  - first:
+      213: 4398800428286260399
+    second: the_road_logo_34
+  - first:
+      213: 7532461994036957363
+    second: the_road_logo_35
+  - first:
+      213: 4758958163339349377
+    second: the_road_logo_36
+  - first:
+      213: -2820633516207522322
+    second: the_road_logo_37
+  - first:
+      213: -8524225936026305251
+    second: the_road_logo_38
+  - first:
+      213: -6555247946308323986
+    second: the_road_logo_39
+  - first:
+      213: -665075475033418947
+    second: the_road_logo_40
+  - first:
+      213: -4355741703807694498
+    second: the_road_logo_41
+  - first:
+      213: -6728391118255823019
+    second: the_road_logo_42
+  - first:
+      213: 4978323195468312797
+    second: the_road_logo_43
+  - first:
+      213: -8261770432093904448
+    second: the_road_logo_44
+  - first:
+      213: 503412026917850689
+    second: the_road_logo_45
+  - first:
+      213: -7246923169101654756
+    second: the_road_logo_46
+  - first:
+      213: 3760852945995831986
+    second: the_road_logo_47
+  - first:
+      213: -5974367699059716061
+    second: the_road_logo_48
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: the_road_logo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 172
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3dac115595920850800000000000000
+      internalID: 6341795693834579260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_road_logo_1
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 0
+        width: 172
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2377526e4012ea710800000000000000
+      internalID: 1706337613744797490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_road_logo_2
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 0
+        width: 172
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1c7d5be9f173980800000000000000
+      internalID: -8559337800278228539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_road_logo_3
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 172
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d9f775bbdd5ff60800000000000000
+      internalID: 8067598104200715603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
