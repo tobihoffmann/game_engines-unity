@@ -32,6 +32,8 @@ namespace Entity.Enemy
         private GameObject _target;
         private Vector2 _shootDirection;
         private float _t;
+
+        private Animator _animator;
         private void Start()
         {
             _t = coolDown;
@@ -41,10 +43,14 @@ namespace Entity.Enemy
             Origin = gameObject;
             AIDestSetter = GetComponent<AIDestinationSetter>();
             PlayerState = _target.GetComponent<PlayerState>();
+            _animator = GetComponent<Animator>();
         }
         private void Update()
         {
-            
+            if (Distance < chaseDistance)
+            {
+                AnimationDecision();
+            }
             Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
             if (Distance < attackDistance)
                 SwitchState(State.Attack);
@@ -129,6 +135,24 @@ namespace Entity.Enemy
             rb.AddForce(_shootDirection * bulletForce, ForceMode2D.Impulse);
 
             _t = coolDown;
+        }
+
+        private void AnimationDecision()
+        {
+            Vector2 pos = (_target.transform.position - Origin.transform.position);
+            float angle = Vector2.SignedAngle(Vector2.up, pos);
+            //FRONT
+            if (angle < 45 && angle > -45)
+                _animator.Play("Demon_back");
+            //LEFT
+            else if (angle >= 45 && angle <= 135)
+                _animator.Play("Demon_left");
+            //RIGHT
+            else if (angle <= -45 && angle >= -135)
+                _animator.Play("Demon_right");
+            //BACK
+            else
+                _animator.Play("Demon_Idle");
         }
         
         /// <summary>

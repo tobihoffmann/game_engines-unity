@@ -18,6 +18,9 @@ namespace LevelGeneration
         
         [SerializeField]
         private int minDistanceBetweenActiveSpawnPoints;
+
+        [SerializeField] [Tooltip("Percentage of Demons, 1 equals 10%, 10 equals 100%")]
+        private int demons;
         
 
         [SerializeField][Tooltip("Easy Enemy on top, difficult enemy on bottom!")]
@@ -56,8 +59,7 @@ namespace LevelGeneration
                 {
                     while (enemyCount < enemiesPerSpawnPoint)
                     {
-                        GameObject enemyToSpawn;
-                        enemyToSpawn = Random.Range(0, 10) < 2 ? enemies[1] : enemies[0];
+                        var enemyToSpawn = Random.Range(1, 11) <= demons ? enemies[1] : enemies[0];
                         Vector2 randomPositionInSphere = spawnPos + Random.insideUnitCircle * firstSpawn.SpawnRadius;
                         Instantiate(enemyToSpawn, randomPositionInSphere, Quaternion.identity);
                         enemyCount++;
