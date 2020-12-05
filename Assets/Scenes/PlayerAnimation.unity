@@ -271,12 +271,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3c520cfbd476c843aa6771b9194afbd, type: 3}
+--- !u!1 &284901495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6064350941908553558, guid: 2608ab4010d791c47a9b026d50605c64,
+    type: 3}
+  m_PrefabInstance: {fileID: 1845023979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &284901505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6064350941908553556, guid: 2608ab4010d791c47a9b026d50605c64,
     type: 3}
   m_PrefabInstance: {fileID: 1845023979}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &284901507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284901495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7461787cfe590e43b2a51ea7a2c8438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 2800000, guid: 9192732e0b5c40140a6fcdde52d8dc28, type: 3}
+  cursorClicked: {fileID: 2800000, guid: 0e9ee4c2175891b4b9a12071868486ea, type: 3}
 --- !u!1 &501261358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +1020,7 @@ PrefabInstance:
     - target: {fileID: 6064350941908553556, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.382836
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6064350941908553556, guid: 2608ab4010d791c47a9b026d50605c64,
         type: 3}
@@ -1057,6 +1077,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6972373161709781604, guid: 2608ab4010d791c47a9b026d50605c64,
+        type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1845023980}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2608ab4010d791c47a9b026d50605c64, type: 3}
 --- !u!4 &1845023980 stripped

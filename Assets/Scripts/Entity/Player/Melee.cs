@@ -52,19 +52,11 @@ namespace Entity.Player
 
         void Attack()
         {
-        
-        
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCenter.position, attackRange, enemyLayers);
 
-            if (hitEnemies.Length > 0)
-            {
-                AudioManager.Instance.Play("PlayerMeleeHit");
-            }
-            else
-            {
-                AudioManager.Instance.Play("PlayerMeleeSwing");
-            }
-        
+            if (hitEnemies.Length > 0) AudioManager.Instance.Play("PlayerMeleeHit");
+            else AudioManager.Instance.Play("PlayerMeleeSwing");
+            
             foreach(Collider2D enemy in hitEnemies)
             {
                 //give damage to the enemy 
