@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnPoint
   - Junction
+  - TEST
   layers:
   - Default
   - TransparentFX

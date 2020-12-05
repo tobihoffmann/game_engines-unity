@@ -12,7 +12,7 @@ namespace Entity.Player
         
 
         [SerializeField][Tooltip("Movement speed of the player")]
-        private float movementSpeed = 5f;
+        public float movementSpeed = 5f;
         
         [SerializeField][Tooltip("Input actions for walking")]
         private InputAction walking;
@@ -24,13 +24,20 @@ namespace Entity.Player
 
         private void OnEnable()
         {
+            Inventory.onMovementSpeedUpdate += OnMovementSpeedUpdated;
             walking.Enable();
         }
         private void OnDisable()
         {
+            Inventory.onMovementSpeedUpdate -= OnMovementSpeedUpdated;
             walking.Disable();
         }
 
+        public void OnMovementSpeedUpdated(int value)
+        {
+            movementSpeed += value;
+        }
+        
         void Start()
         {
             _player = GetComponent<Rigidbody2D>();

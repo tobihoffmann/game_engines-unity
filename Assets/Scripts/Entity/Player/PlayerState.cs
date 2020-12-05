@@ -9,8 +9,11 @@ namespace Entity.Player
     {
         public delegate void PlayerStateChanged(int newValue);
         public delegate void PlayerIsDead();
-        
-        
+
+        public void Start()
+        {
+            
+        }
         
         /// <summary>
         /// The maximum hit points of the player

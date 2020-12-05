@@ -24,8 +24,21 @@ namespace Assets.Scripts.Item_Management {
                 case ItemType.JuggernautBuff: return ItemAssets.Instance.juggernautBuffSprite;
             }
         }
-        
-        
+
+        public int GetValue()
+        {
+            switch(itemType)
+            {
+                default:
+                case ItemType.SpeedBuff: return 3;
+                case ItemType.JuggernautBuff: return 4;
+            }
+        }
+
+        public ItemType GetItemType()
+        {
+            return itemType;
+        }
         
     }
 }
