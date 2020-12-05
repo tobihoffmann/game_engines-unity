@@ -1,4 +1,6 @@
-﻿using Interfaces;
+﻿using Entity.Player;
+using Interfaces;
+using SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,28 +8,36 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
-        private bool _gameHasEnded = false;
 
         [SerializeField]
         private GameObject levelChanger;
 
+        private LevelChanger _lc;
+        protected override void Awake()
+        {
+            _lc = levelChanger.GetComponent<LevelChanger>();
+            base.Awake();
+            PlayerState.OnPlayerDeath += EndGame;
+        }
+
         public void ChangeLevel()
         {
-            levelChanger.GetComponent<LevelChanger>();
+            AudioManager.Instance.FadeOutPlaying(2);
             int currentLevel = GetCurrentLevelIndex();
             
             if (currentLevel >= GetSceneCount())
                 currentLevel = -1;
-            levelChanger.GetComponent<LevelChanger>().FadeToLevel(currentLevel + 1);
+            _lc.FadeToLevel(currentLevel + 1);
         }
-    
-        public void EndGame()
+
+
+        /// <summary>
+        /// When the player dies, load last game scene in build index. Game Over should always be last index in build settings!
+        /// </summary>
+        private void EndGame()
         {
-            if (_gameHasEnded == false)
-            {
-                _gameHasEnded = true;
-                Debug.Log("Game Over!");
-            }
+            _lc.FadeToLevel(SceneManager.sceneCountInBuildSettings - 1);
+            PlayerState.OnPlayerDeath -= EndGame;
         }
 
         void Restart()
