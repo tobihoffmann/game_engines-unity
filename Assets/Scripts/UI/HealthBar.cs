@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Assets.Scripts.Item_Management;
 using Entity.Player;
+using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -29,16 +31,26 @@ namespace UI
 
         private void OnEnable()
         {
+            Inventory.onJuggernautEquiped += OnJuggernautUpdate;
             PlayerState.OnPlayerHitPointsUpdate += OnHealthUpdated;
             //TODO: PlayerState.OnPlayerPowerUpsUpdate += OnMaxHealthUpdated
         }
 
         private void OnDisable()
         {
+            Inventory.onJuggernautEquiped -= OnJuggernautUpdate;
             PlayerState.OnPlayerHitPointsUpdate -= OnHealthUpdated;
             //TODO: PlayerState.OnPlayerPowerUpsUpdate -= OnMaxHealthUpdated
         }
 
+        public void OnJuggernautUpdate(int value)
+        {
+            maxHealth += value;
+            PlayerManager.Instance.GetPlayerState().maxHitPoints1 = PlayerManager.Instance.GetPlayerState().maxHitPoints1 + value;
+            _currentHealth += value;
+
+        }
+        
         private void Start()
         {
             _currentHealth = maxHealth;

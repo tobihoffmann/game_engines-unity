@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Entity.Player;
+using Managers;
 using UnityEngine.Video;
 
 
@@ -14,9 +15,8 @@ namespace Assets.Scripts.Item_Management
         
         public delegate void MovementSpeedEquiped(int newMovementSpeedVal);
         
-        public delegate void JuggernautEquiped(int newHealtValue);
-
-
+        public delegate void JuggernautEquiped(int newHealthValue);
+        
         public static event JuggernautEquiped onJuggernautEquiped;    
 
         public static event MovementSpeedEquiped onMovementSpeedUpdate;
@@ -27,6 +27,8 @@ namespace Assets.Scripts.Item_Management
         public Inventory()
         {
             itemList = new List<Item>();
+            
+
         }
 
         public void AddItem(Item item)
@@ -34,7 +36,12 @@ namespace Assets.Scripts.Item_Management
             itemList.Add(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
             if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(item.GetValue());
-
+            if (item.GetItemType() == Item.ItemType.JuggernautBuff) onJuggernautEquiped?.Invoke(item.GetValue());
+            
+                
+                
+                
+            Debug.Log(PlayerManager.Instance.GetPlayerState().maxHitPoints1);
         }
 
         public void RemoveItem(Item item)
@@ -42,6 +49,7 @@ namespace Assets.Scripts.Item_Management
             itemList.Remove(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
             if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(-(item.GetValue()));
+            if (item.GetItemType() == Item.ItemType.JuggernautBuff) onJuggernautEquiped?.Invoke(-(item.GetValue()));
         }
 
         public List<Item> GetItemList()

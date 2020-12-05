@@ -10,7 +10,8 @@ namespace Assets.Scripts.Item_Management {
         public enum ItemType
         {
             SpeedBuff,
-            JuggernautBuff
+            JuggernautBuff,
+            ShootFastBuff
         }
 
         public ItemType itemType;
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Item_Management {
                 default:
                 case ItemType.SpeedBuff: return ItemAssets.Instance.speedBuffSprite;
                 case ItemType.JuggernautBuff: return ItemAssets.Instance.juggernautBuffSprite;
+                case ItemType.ShootFastBuff: return ItemAssets.Instance.shootFastBuffSprite;
             }
         }
 
@@ -31,7 +33,8 @@ namespace Assets.Scripts.Item_Management {
             {
                 default:
                 case ItemType.SpeedBuff: return 3;
-                case ItemType.JuggernautBuff: return 4;
+                case ItemType.JuggernautBuff: return 2;
+                case ItemType.ShootFastBuff: return 2;
             }
         }
 

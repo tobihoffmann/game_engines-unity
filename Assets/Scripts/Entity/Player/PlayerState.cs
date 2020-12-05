@@ -78,5 +78,11 @@ namespace Entity.Player
             base.Die();
             OnPlayerDeath?.Invoke();
         }
+
+        public int maxHitPoints1
+        {
+            get => maxHitPoints;
+            set => maxHitPoints = value;
+        }
     }
 }

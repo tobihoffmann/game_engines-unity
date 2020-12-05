@@ -10,6 +10,7 @@ namespace Assets.Scripts.Item_Management
         
         public Sprite juggernautBuffSprite;
         public Sprite speedBuffSprite;
+        public Sprite shootFastBuffSprite;
 
 
         private void Awake()
