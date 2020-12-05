@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -60,7 +61,6 @@ namespace Entity.Player
         private Vector2 _dashDirection;
         private float _dashTimer;
         private bool _dashIsOnCooldown;
-        private float _dashTime;
 
         private Controls _controls;
         private Camera _mainCamera;
@@ -104,8 +104,7 @@ namespace Entity.Player
             _shootingTimer = 0;
             _meleeTimer = 0;
             _dashTimer = 0;
-            _dashTime = 0;
-            
+
             _player = gameObject.GetComponent<Rigidbody2D>();
             _animator = gameObject.GetComponent<Animator>();
             
@@ -140,14 +139,8 @@ namespace Entity.Player
             {
                 _dashIsOnCooldown = false;
             }
-
-            _player.velocity = Vector2.right * 50;
-
-            _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            _firepointPosition = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
+            
             _perpendicular = new Ray2D(_firepointPosition, new Vector2(0,1)).direction;
-            _shootDirection = new Ray2D(_firepointPosition, _mousePosition - _firepointPosition).direction;
-            _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
             _angle = Vector2.Angle(_perpendicular, _shootDirection);
             
             Walk();
@@ -155,14 +148,17 @@ namespace Entity.Player
 
         void FixedUpdate()
         {
-            _player.MovePosition(_player.position + _walkingDirection * (Time.deltaTime * movementSpeed));
+            if (_animator.GetBool("isFinished"))
+            {
+                _player.MovePosition(_player.position + _walkingDirection * (Time.deltaTime * movementSpeed));
+            }
         }
 
-        // Player Actions
+        /** Player Actions **/
         
         private void Walk()
         {
-            _walkingDirection =new Vector2(_controls.Player.WalkingHorizontal.ReadValue<float>(), _controls.Player.WalkingVertical.ReadValue<float>()).normalized;
+            _walkingDirection = new Vector2(_controls.Player.WalkingHorizontal.ReadValue<float>(), _controls.Player.WalkingVertical.ReadValue<float>()).normalized;
             
             _animator.SetFloat("xMovement",_controls.Player.WalkingHorizontal.ReadValue<float>());
             _animator.SetFloat("yMovement",_controls.Player.WalkingVertical.ReadValue<float>());
@@ -175,8 +171,12 @@ namespace Entity.Player
                 //Play audio
                 AudioManager.Instance.Play("PlayerDash");
                 
-                _dashTime = 3;
+                _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
+                Vector3 dashPosition = _playerPosition + _dashDirection * dashDistance;
                 
+                _player.transform.DOMove(dashPosition, 0.5f);
+
                 // Handle Animation
                 if (_angle <= 45) _animator.SetTrigger(DashUp);
                 else if (_angle >= 135) _animator.SetTrigger(DashDown);
@@ -259,8 +259,6 @@ namespace Entity.Player
                 _meleeIsOnCooldown = true;
             }
         }
-
-        
         
         private void OnDrawGizmos()
         {
