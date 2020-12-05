@@ -8,14 +8,10 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
-
-        [SerializeField]
-        private GameObject levelChanger;
-
         private LevelChanger _lc;
         protected override void Awake()
         {
-            _lc = levelChanger.GetComponent<LevelChanger>();
+            _lc = GameObject.Find("LevelChanger").GetComponent<LevelChanger>();
             base.Awake();
             PlayerState.OnPlayerDeath += EndGame;
         }
