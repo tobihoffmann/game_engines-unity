@@ -131,8 +131,6 @@ namespace Entity.Player
 
         private void Update()
         {
-            Debug.Log(_player.velocity);
-            
             _playerPosition = PlayerManager.Instance.GetPlayerPosition();
             
             // Shooting Cooldown

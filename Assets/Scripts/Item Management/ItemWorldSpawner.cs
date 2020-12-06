@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.Item_Management;
-using Item_Management;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ItemWorldSpawner : MonoBehaviour
+namespace Item_Management
 {
-    public Item item;
-
-    private void Start()
+    public class ItemWorldSpawner : MonoBehaviour
     {
-        ItemWorld.SpawnItemWorld(transform.position, item);
-        Destroy(gameObject);
+        public Item item;
+
+        private void Start()
+        {
+            ItemWorld.SpawnItemWorld(transform.position, item);
+            Destroy(gameObject);
+        }
     }
 }

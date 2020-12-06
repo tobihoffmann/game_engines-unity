@@ -27,11 +27,14 @@ namespace Managers
             base.Awake();
             _playerState = player.GetComponent<PlayerState>();
             _playerTransform = player.GetComponent<Transform>();
-            
+        }
+
+        private void Start()
+        {
             inventory = new Inventory();
             uiInventory.SetInventory(inventory);
         }
-        
+
         private void Update()
         {
             _playerPosition = _playerTransform.position;
