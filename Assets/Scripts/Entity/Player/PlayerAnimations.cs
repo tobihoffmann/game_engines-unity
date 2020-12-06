@@ -1,5 +1,7 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Managers;
+using Pathfinding.Util;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -166,6 +168,10 @@ namespace Entity.Player
 
                 _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
+                Vector2 playerOffset = _player.GetComponent<BoxCollider2D>().offset;
+                Debug.Log(_playerPosition);
+                _playerPosition += playerOffset;
+                Debug.Log(_playerPosition);
                 Vector3 dashPosition = _playerPosition + _dashDirection * dashDistance;
                 
                 //Avoid obstacle objects
