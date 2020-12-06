@@ -246,13 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec15d16db1b31944a9e022734407fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 20
-  attackDistance: 10
+  chaseDistance: 15
+  attackDistance: 8
   radius: 2
   bulletPrefab: {fileID: 7267584932666707647, guid: 5f4052c56d682154b8492920733e4a23,
     type: 3}
-  bulletForce: 50
-  coolDown: 1.5
+  bulletForce: 30
+  coolDown: 2
 --- !u!114 &3341060615763806927
 MonoBehaviour:
   m_ObjectHideFlags: 0

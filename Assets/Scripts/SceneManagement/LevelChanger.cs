@@ -11,7 +11,6 @@ namespace SceneManagement
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            DontDestroyOnLoad(this);
         }
     
         public void FadeToLevel(int levelIndex)
@@ -22,7 +21,6 @@ namespace SceneManagement
 
         public void OnFadeComplete()
         {
-            Debug.Log("GETS CALLED");
             SceneManager.LoadScene(_levelToLoad);
         }
     }
