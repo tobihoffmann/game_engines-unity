@@ -1,5 +1,4 @@
-﻿using AbstractClasses;
-using Assets.Scripts.Item_Management;
+using AbstractClasses;
 using Managers;
 using UnityEngine;
 
@@ -79,10 +78,9 @@ namespace Entity.Player
             OnPlayerDeath?.Invoke();
         }
 
-        public int maxHitPoints1
+        public int GetMaxHitPoints()
         {
-            get => maxHitPoints;
-            set => maxHitPoints = value;
+            return maxHitPoints;
         }
     }
 }

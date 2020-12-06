@@ -8,9 +8,10 @@ namespace SceneManagement
         private Animator _animator;
 
         private int _levelToLoad;
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
+            DontDestroyOnLoad(this);
         }
     
         public void FadeToLevel(int levelIndex)

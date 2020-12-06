@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Entity.Player;
+using Managers;
 using UnityEngine;
 
 namespace SceneManagement
@@ -11,7 +12,7 @@ namespace SceneManagement
         /// <param name="other"></param>
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other == PlayerManager.Instance.GetPlayer().GetComponent<Collider2D>())
+            if (other.GetComponent<PlayerState>())
                 GameManager.Instance.ChangeLevel();
         }
     }

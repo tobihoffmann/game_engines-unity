@@ -53,6 +53,7 @@ namespace UI
         
         private void Start()
         {
+            maxHealth = PlayerManager.Instance.GetPlayerState().GetMaxHitPoints();
             _currentHealth = maxHealth;
         }
 
