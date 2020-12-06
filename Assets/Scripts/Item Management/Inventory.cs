@@ -1,34 +1,24 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
-using Entity.Player;
+using Assets.Scripts.Item_Management;
 using Managers;
-using UnityEngine.Video;
+using UnityEngine;
 
-
-namespace Assets.Scripts.Item_Management
+namespace Item_Management
 {
     public class Inventory
-    {
+    { 
+        public delegate void OnPowerUpUpdate(int newValue);
+        
         private List<Item> itemList;
+        
         public event EventHandler OnItemListChanged;
+        public static event OnPowerUpUpdate OnJuggernautUpdate;
+        public static event OnPowerUpUpdate onMovementSpeedUpdate;
         
-        public delegate void MovementSpeedEquiped(int newMovementSpeedVal);
-        
-        public delegate void JuggernautEquiped(int newHealthValue);
-        
-        public static event JuggernautEquiped onJuggernautEquiped;    
-
-        public static event MovementSpeedEquiped onMovementSpeedUpdate;
-        
-        
-        [SerializeField] private PlayerMovementWalking _playerMovementWalking;
-
         public Inventory()
         {
             itemList = new List<Item>();
-            
-
         }
 
         public void AddItem(Item item)
@@ -36,20 +26,15 @@ namespace Assets.Scripts.Item_Management
             itemList.Add(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
             if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(item.GetValue());
-            if (item.GetItemType() == Item.ItemType.JuggernautBuff) onJuggernautEquiped?.Invoke(item.GetValue());
-            
-                
-                
-                
-            Debug.Log(PlayerManager.Instance.GetPlayerState().maxHitPoints1);
+            if (item.GetItemType() == Item.ItemType.JuggernautBuff) OnJuggernautUpdate?.Invoke(item.GetValue());
         }
 
         public void RemoveItem(Item item)
         {
             itemList.Remove(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
-            if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(-(item.GetValue()));
-            if (item.GetItemType() == Item.ItemType.JuggernautBuff) onJuggernautEquiped?.Invoke(-(item.GetValue()));
+            if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(-item.GetValue());
+            if (item.GetItemType() == Item.ItemType.JuggernautBuff) OnJuggernautUpdate?.Invoke(-item.GetValue());
         }
 
         public List<Item> GetItemList()

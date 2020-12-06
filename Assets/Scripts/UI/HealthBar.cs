@@ -31,24 +31,20 @@ namespace UI
 
         private void OnEnable()
         {
-            Inventory.onJuggernautEquiped += OnJuggernautUpdate;
+            PlayerState.onMaxHitPointUpdate += UpdateMaxHitPoints;
             PlayerState.OnPlayerHitPointsUpdate += OnHealthUpdated;
-            //TODO: PlayerState.OnPlayerPowerUpsUpdate += OnMaxHealthUpdated
         }
 
         private void OnDisable()
         {
-            Inventory.onJuggernautEquiped -= OnJuggernautUpdate;
+            PlayerState.onMaxHitPointUpdate -= UpdateMaxHitPoints;
             PlayerState.OnPlayerHitPointsUpdate -= OnHealthUpdated;
-            //TODO: PlayerState.OnPlayerPowerUpsUpdate -= OnMaxHealthUpdated
         }
 
-        public void OnJuggernautUpdate(int value)
+        public void UpdateMaxHitPoints(int value)
         {
-            maxHealth += value;
-            PlayerManager.Instance.GetPlayerState().maxHitPoints1 = PlayerManager.Instance.GetPlayerState().maxHitPoints1 + value;
-            _currentHealth += value;
-
+            maxHealth = value;
+            if (maxHealth >= 10) maxHealth = 10;
         }
         
         private void Start()

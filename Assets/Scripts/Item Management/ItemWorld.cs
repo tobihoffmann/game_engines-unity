@@ -1,51 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.Item_Management;
+﻿using Assets.Scripts.Item_Management;
 using CodeMonkey.Utils;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 
-public class ItemWorld : MonoBehaviour
+namespace Item_Management
 {
-    public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
+    public class ItemWorld : MonoBehaviour
     {
-        Transform transform =  Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
+        public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
+        {
+            Transform transform =  Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
 
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
-        itemWorld.SetItem(item);
+            ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+            itemWorld.SetItem(item);
 
-        return itemWorld;
-    }
+            return itemWorld;
+        }
 
-    public static ItemWorld DropItem(Vector3 dropPosition, Item item)
-    {
-        Vector3 randomDirection = UtilsClass.GetRandomDir();
-        ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDirection * 1.5f, item);
-        return itemWorld;
-    }
+        public static ItemWorld DropItem(Vector3 dropPosition, Item item)
+        {
+            Vector3 randomDirection = UtilsClass.GetRandomDir();
+            ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDirection * 1.5f, item);
+            return itemWorld;
+        }
     
-    private Item item;
-    private SpriteRenderer spriteRenderer;
+        private Item item;
+        private SpriteRenderer spriteRenderer;
     
-    public void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        public void Awake()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     
-    public void SetItem(Item item)
-    {
-        this.item = item;
-        spriteRenderer.sprite = item.GetSprite();
-    }
+        public void SetItem(Item item)
+        {
+            this.item = item;
+            spriteRenderer.sprite = item.GetSprite();
+        }
 
-    public Item GetItem()
-    {
-        return item;
-    }
+        public Item GetItem()
+        {
+            return item;
+        }
 
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
-    }
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
+        }
     
+    }
 }

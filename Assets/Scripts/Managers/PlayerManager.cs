@@ -2,6 +2,7 @@ using Assets.Scripts.Item_Management;
 using System;
 using Entity.Player;
 using Interfaces;
+using Item_Management;
 using UnityEngine;
 
 namespace Managers

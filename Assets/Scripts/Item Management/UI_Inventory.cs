@@ -1,9 +1,8 @@
-using System;
+using Assets.Scripts.Item_Management;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Item_Management
+namespace Item_Management
 {
     public class UI_Inventory : MonoBehaviour
     {
@@ -12,11 +11,11 @@ namespace Assets.Scripts.Item_Management
         private Transform itemSlotTemplate;
         private GameObject player;
 
-        [SerializeField] private InputHandler _inputHandler;
+        private Controls _controls;
         
         public void Awake()
         {
-            _inputHandler = new InputHandler();
+            _controls = new Controls();
             itemSlots = transform.Find("itemSlots");
             itemSlotTemplate = itemSlots.Find("itemSlotTemplate");
         }
@@ -28,21 +27,15 @@ namespace Assets.Scripts.Item_Management
             ItemWorld.DropItem(player.transform.position ,item);
         }
 
-        private void OnEnable()
-        {
-            _inputHandler.Enable();
-        }
-        private void OnDisable()
-        {
-            _inputHandler.Disable();
-        }
-
+        private void OnEnable() =>  _controls.Enable();
+        private void OnDisable() => _controls.Disable();
+        
 
         private void Start()
         {
-            _inputHandler.DropItem.DropItem.performed += _ => Drop_Item(0);
-            _inputHandler.DropItem.DropItem1.performed += _ => Drop_Item(1);
-            _inputHandler.DropItem.DropItem2.performed += _ => Drop_Item(2);
+            _controls.Inventory.DropItem_01.performed += _ => Drop_Item(0);
+            _controls.Inventory.DropItem_02.performed += _ => Drop_Item(1);
+            _controls.Inventory.DropItem_03.performed += _ => Drop_Item(2);
         }
         
         public void SetPlayer(GameObject player)

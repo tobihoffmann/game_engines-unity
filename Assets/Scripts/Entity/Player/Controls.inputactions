@@ -147,6 +147,71 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Inventory",
+            "id": "14d0d2a8-de0c-4229-879b-14400f52be4f",
+            "actions": [
+                {
+                    "name": "DropItem_01",
+                    "type": "Button",
+                    "id": "845f27e9-a293-4d88-babf-f84da76f94e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DropItem_02",
+                    "type": "Button",
+                    "id": "62a75b30-9d54-428b-80e0-712fe3ac1d60",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DropItem_03",
+                    "type": "Button",
+                    "id": "42a8794e-f0e1-426e-92fc-b6c292e49c30",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b84e8172-081f-444a-ab3c-0fed64386388",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad and Mouse",
+                    "action": "DropItem_01",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "284bbd41-1a94-4351-bef6-a0b38c6719ee",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad and Mouse",
+                    "action": "DropItem_02",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d85a7db5-ab52-4301-97ba-bf993dee2c3f",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad and Mouse",
+                    "action": "DropItem_03",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
