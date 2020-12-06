@@ -53,8 +53,8 @@ namespace Item_Management
                 if (child == itemSlotTemplate) continue;
                 Destroy(child.gameObject);
             }
-            float x = 0.5f;
-            float itemSlotCellSize = 85f;
+            float x = 4f;
+            float itemSlotCellSize = 37f;
 
             foreach (Item item in inventory.GetItemList())
             {
@@ -64,9 +64,9 @@ namespace Item_Management
                 itemSlotRectTransform.gameObject.SetActive(true);
 
                 // PLACE ITEM WITH CORRECT SPRITE AND POSITION IN UI
-                itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, 0);
+                itemSlotRectTransform.anchoredPosition = new Vector2((x * itemSlotCellSize) + 107, -76);
                 Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
-                image.sprite = item.GetSprite();
+                image.sprite = item.GetIconSprite();
                 x++;
             }
         }

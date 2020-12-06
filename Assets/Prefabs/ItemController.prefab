@@ -77,10 +77,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfItemWorld: {fileID: 2249420080795148176, guid: efeaf2387c232fb44a1e3d87b5dbbc90,
     type: 3}
-  juggernautBuffSprite: {fileID: 21300000, guid: bdf50583a5d8112479eb6dbf5d9d1651,
+  juggernautBuffSprite: {fileID: 21300000, guid: f5750e9ccb79de24caba17339f88b414,
     type: 3}
-  speedBuffSprite: {fileID: 21300000, guid: 334ccbb5b70b95343afabbbe9dc6f4fb, type: 3}
-  shootFastBuffSprite: {fileID: 0}
+  speedBuffSprite: {fileID: 21300000, guid: c05cd5c3d196b9341b834e9e064f6921, type: 3}
+  shootDamageBuffSprite: {fileID: 21300000, guid: 854bd3fb6a27c8c4c9336e6c06127a38,
+    type: 3}
+  juggernautBuffIconSprite: {fileID: 21300000, guid: f367b00cf6b3597468bcc23941bcb5a4,
+    type: 3}
+  speedBuffIconSprite: {fileID: 21300000, guid: a494944bd56985b4098f66c9b2e957f2,
+    type: 3}
+  shootDamageBuffIconSprite: {fileID: 21300000, guid: 211cd5915ad6ef743a6f6c75ccd26512,
+    type: 3}
 --- !u!1 &4859662448372314523
 GameObject:
   m_ObjectHideFlags: 0

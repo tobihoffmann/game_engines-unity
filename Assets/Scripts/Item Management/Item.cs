@@ -22,7 +22,18 @@ namespace Item_Management {
             {
                 case ItemType.SpeedBuff: return ItemAssets.Instance.speedBuffSprite;
                 case ItemType.JuggernautBuff: return ItemAssets.Instance.juggernautBuffSprite;
-                case ItemType.ShootDamageBuff: return ItemAssets.Instance.shootFastBuffSprite;
+                case ItemType.ShootDamageBuff: return ItemAssets.Instance.shootDamageBuffSprite;
+                default: return null;
+            }
+        }
+        
+        public Sprite GetIconSprite()
+        {
+            switch(itemType)
+            {
+                case ItemType.SpeedBuff: return ItemAssets.Instance.speedBuffIconSprite;
+                case ItemType.JuggernautBuff: return ItemAssets.Instance.juggernautBuffIconSprite;
+                case ItemType.ShootDamageBuff: return ItemAssets.Instance.shootDamageBuffIconSprite;
                 default: return null;
             }
         }
