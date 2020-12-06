@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Entity.Player
 {
-    public class PlayerAnimations : MonoBehaviour
+    public class PlayerActions : MonoBehaviour
     {     
         [Header("Walking")]
         [SerializeField][Tooltip("Movement speed of the player")]
@@ -61,6 +61,8 @@ namespace Entity.Player
         private Vector2 _dashDirection;
         private float _dashTimer;
         private bool _dashIsOnCooldown;
+        private bool _dashTriggered;
+        private Vector3 _dashPosition;
 
         private Controls _controls;
         private Camera _mainCamera;
@@ -105,8 +107,8 @@ namespace Entity.Player
 
             _player = gameObject.GetComponent<Rigidbody2D>();
             _animator = gameObject.GetComponent<Animator>();
-            
-            _controls.Player.Dash.performed += _ => Dash();
+
+            _controls.Player.Dash.performed += _ => _dashTriggered = true;
             _controls.Player.Shoot.performed += _ => Shoot();
             _controls.Player.Melee.performed += _ => MeleeAttack();
             
@@ -143,14 +145,24 @@ namespace Entity.Player
 
         void FixedUpdate()
         {
+            // Handle walking "physics"
             if (_animator.GetBool("isFinished"))
             {
                 _player.MovePosition(_player.position + _walkingDirection * (Time.deltaTime * movementSpeed));
+            }
+            
+            if (_dashTriggered)
+            {
+                Dash();
+                _dashTriggered = false;
             }
         }
 
         /** Player Actions **/
         
+        /// <summary>
+        /// Reads Movement inputs and passes information to the Animator
+        /// </summary>
         private void Walk()
         {
             _walkingDirection = new Vector2(_controls.Player.WalkingHorizontal.ReadValue<float>(), _controls.Player.WalkingVertical.ReadValue<float>()).normalized;
@@ -159,6 +171,9 @@ namespace Entity.Player
             _animator.SetFloat("yMovement",_controls.Player.WalkingVertical.ReadValue<float>());
         }
         
+        /// <summary>
+        /// Dash Ability for the player: Handles physics, sound and animation triggers
+        /// </summary>
         private void Dash()
         {
             if (!_dashIsOnCooldown)
@@ -172,17 +187,18 @@ namespace Entity.Player
                 Debug.Log(_playerPosition);
                 _playerPosition += playerOffset;
                 Debug.Log(_playerPosition);
-                Vector3 dashPosition = _playerPosition + _dashDirection * dashDistance;
+                _dashPosition = _playerPosition + _dashDirection * dashDistance;
                 
                 //Avoid obstacle objects
                 //TODO: FIX IT BABY
                 RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(_playerPosition, _dashDirection, dashDistance, dashLayerMask);
                 if (rcHitToDashPosition.collider != null)
                 {
-                    dashPosition = rcHitToDashPosition.point;
+                    _dashPosition = rcHitToDashPosition.point;
                 }
+
+                _player.transform.DOMove(_dashPosition, 0.5f);
                 
-                _player.transform.DOMove(dashPosition, 0.5f);
 
                 // Handle Animation
                 float dashAngle = Vector2.SignedAngle(Vector2.up, _dashDirection);
@@ -199,7 +215,10 @@ namespace Entity.Player
                 _dashIsOnCooldown = true;
             }
         }
-
+        
+        /// <summary>
+        /// Shoot Ability for the player: Handles physics, sound and animation triggers
+        /// </summary>
         private void Shoot()
         {
             if (!_shootingIsOnCooldown)
@@ -243,11 +262,18 @@ namespace Entity.Player
             }
         }
         
-        public float GetDamage() 
+        /// <summary>
+        /// Returns the Value set for Shooting Damage
+        /// TODO: Could make this internal, if we put BulletCollider.cs into the same Namespace
+        /// </summary>
+        public float GetBulletDamage() 
         { 
             return shootingDamage;;
         }
         
+        /// <summary>
+        /// Melee Ability for the player: Handles physics, sound and animation triggers and passes damage values to EnemyState
+        /// </summary>
         private void MeleeAttack()
         {
             if (!_meleeIsOnCooldown)
