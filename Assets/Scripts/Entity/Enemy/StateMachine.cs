@@ -57,7 +57,7 @@ namespace Entity.Enemy
             throw new NotImplementedException();
         }
 
-        protected virtual void Chase()
+        internal virtual void Chase()
         {
             throw new NotImplementedException();
         }
