@@ -160,6 +160,71 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""14d0d2a8-de0c-4229-879b-14400f52be4f"",
+            ""actions"": [
+                {
+                    ""name"": ""DropItem_01"",
+                    ""type"": ""Button"",
+                    ""id"": ""845f27e9-a293-4d88-babf-f84da76f94e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DropItem_02"",
+                    ""type"": ""Button"",
+                    ""id"": ""62a75b30-9d54-428b-80e0-712fe3ac1d60"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DropItem_03"",
+                    ""type"": ""Button"",
+                    ""id"": ""42a8794e-f0e1-426e-92fc-b6c292e49c30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b84e8172-081f-444a-ab3c-0fed64386388"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboad and Mouse"",
+                    ""action"": ""DropItem_01"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""284bbd41-1a94-4351-bef6-a0b38c6719ee"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboad and Mouse"",
+                    ""action"": ""DropItem_02"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d85a7db5-ab52-4301-97ba-bf993dee2c3f"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboad and Mouse"",
+                    ""action"": ""DropItem_03"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -188,6 +253,11 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_WalkingVertical = m_Player.FindAction("WalkingVertical", throwIfNotFound: true);
         m_Player_WalkingHorizontal = m_Player.FindAction("WalkingHorizontal", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_DropItem_01 = m_Inventory.FindAction("DropItem_01", throwIfNotFound: true);
+        m_Inventory_DropItem_02 = m_Inventory.FindAction("DropItem_02", throwIfNotFound: true);
+        m_Inventory_DropItem_03 = m_Inventory.FindAction("DropItem_03", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -298,6 +368,55 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private IInventoryActions m_InventoryActionsCallbackInterface;
+    private readonly InputAction m_Inventory_DropItem_01;
+    private readonly InputAction m_Inventory_DropItem_02;
+    private readonly InputAction m_Inventory_DropItem_03;
+    public struct InventoryActions
+    {
+        private @Controls m_Wrapper;
+        public InventoryActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @DropItem_01 => m_Wrapper.m_Inventory_DropItem_01;
+        public InputAction @DropItem_02 => m_Wrapper.m_Inventory_DropItem_02;
+        public InputAction @DropItem_03 => m_Wrapper.m_Inventory_DropItem_03;
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
+            {
+                @DropItem_01.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_01;
+                @DropItem_01.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_01;
+                @DropItem_01.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_01;
+                @DropItem_02.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_02;
+                @DropItem_02.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_02;
+                @DropItem_02.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_02;
+                @DropItem_03.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_03;
+                @DropItem_03.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_03;
+                @DropItem_03.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnDropItem_03;
+            }
+            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @DropItem_01.started += instance.OnDropItem_01;
+                @DropItem_01.performed += instance.OnDropItem_01;
+                @DropItem_01.canceled += instance.OnDropItem_01;
+                @DropItem_02.started += instance.OnDropItem_02;
+                @DropItem_02.performed += instance.OnDropItem_02;
+                @DropItem_02.canceled += instance.OnDropItem_02;
+                @DropItem_03.started += instance.OnDropItem_03;
+                @DropItem_03.performed += instance.OnDropItem_03;
+                @DropItem_03.canceled += instance.OnDropItem_03;
+            }
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     private int m_KeyboadandMouseSchemeIndex = -1;
     public InputControlScheme KeyboadandMouseScheme
     {
@@ -314,5 +433,11 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnWalkingVertical(InputAction.CallbackContext context);
         void OnWalkingHorizontal(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
+        void OnDropItem_01(InputAction.CallbackContext context);
+        void OnDropItem_02(InputAction.CallbackContext context);
+        void OnDropItem_03(InputAction.CallbackContext context);
     }
 }

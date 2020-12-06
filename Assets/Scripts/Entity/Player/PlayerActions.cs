@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Item_Management;
 using Managers;
 using Pathfinding.Util;
 using UnityEngine;
@@ -95,8 +96,20 @@ namespace Entity.Player
         private const string Melee = "Melee";
 
         private void Awake() => _controls = new Controls();
-        private void OnEnable() => _controls.Enable();
-        private void OnDisable() => _controls.Disable();
+
+        private void OnEnable()
+        {
+            _controls.Enable();
+            Inventory.OnMovementSpeedUpdate += ChangeMovementSpeed;
+            Inventory.OnShootingDamageUpdate += ChangeShootingDamage;
+        }
+
+        private void OnDisable()
+        {
+            _controls.Disable();
+            Inventory.OnMovementSpeedUpdate -= ChangeMovementSpeed;
+            Inventory.OnShootingDamageUpdate -= ChangeShootingDamage;
+        }
         
         
         // Start is called before the first frame update
@@ -118,8 +131,6 @@ namespace Entity.Player
 
         private void Update()
         {
-            Debug.Log(_player.velocity);
-            
             _playerPosition = PlayerManager.Instance.GetPlayerPosition();
             
             // Shooting Cooldown
@@ -308,6 +319,18 @@ namespace Entity.Player
                 _meleeTimer = meleeCoolDown;
                 _meleeIsOnCooldown = true;
             }
+        }
+
+        private void ChangeMovementSpeed(int value)
+        {
+            movementSpeed += value;
+            if (movementSpeed < 1) movementSpeed = 1;
+        }
+
+        private void ChangeShootingDamage(int value)
+        {
+            shootingDamage += value;
+            if (shootingDamage < 1) shootingDamage = 1;
         }
     }
 }

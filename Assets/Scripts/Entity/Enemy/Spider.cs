@@ -128,8 +128,7 @@ namespace Entity.Enemy
         internal override void Chase()
         {
             _animator.Play("Spider_chase");
-
-            chaseDistance *= 2;
+            
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
             AIDestSetter.target = _target.transform;
