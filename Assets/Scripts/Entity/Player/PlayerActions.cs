@@ -15,7 +15,7 @@ namespace Entity.Player
         
         [Header("Shooting")]
         [SerializeField] [Tooltip("Damage for shooting")]
-        private float shootingDamage;
+        private int shootingDamage;
         
         [SerializeField][Tooltip("Coodown time for shooting")]
         private float shootingCoolDown;
@@ -31,10 +31,11 @@ namespace Entity.Player
 
         private float _shootingTimer;
         private bool _shootingIsOnCooldown;
+        private bool _shootTriggered;
         
         [Header("Melee")]
         [SerializeField][Tooltip("Damage of the Melee Attack")]
-        private float meleeDamage;
+        private int meleeDamage;
     
         [SerializeField][Tooltip("CoolDown Time of the Melee Attack")]
         private float meleeCoolDown;
@@ -109,7 +110,7 @@ namespace Entity.Player
             _animator = gameObject.GetComponent<Animator>();
 
             _controls.Player.Dash.performed += _ => _dashTriggered = true;
-            _controls.Player.Shoot.performed += _ => Shoot();
+            _controls.Player.Shoot.performed += _ => _shootTriggered = true;
             _controls.Player.Melee.performed += _ => MeleeAttack();
             
             _mainCamera = Camera.main;
@@ -117,6 +118,8 @@ namespace Entity.Player
 
         private void Update()
         {
+            Debug.Log(_player.velocity);
+            
             _playerPosition = PlayerManager.Instance.GetPlayerPosition();
             
             // Shooting Cooldown
@@ -156,6 +159,12 @@ namespace Entity.Player
                 Dash();
                 _dashTriggered = false;
             }
+            
+            if (_shootTriggered)
+            {
+                Shoot();
+                _shootTriggered = false;
+            }
         }
 
         /** Player Actions **/
@@ -178,6 +187,8 @@ namespace Entity.Player
         {
             if (!_dashIsOnCooldown)
             {
+                _player.velocity = Vector2.zero;
+                
                 //Play audio
                 AudioManager.Instance.Play("PlayerDash");
 
@@ -221,6 +232,8 @@ namespace Entity.Player
         {
             if (!_shootingIsOnCooldown)
             {
+                _player.velocity = Vector2.zero;
+                
                 // Play Audio
                 AudioManager.Instance.Play("PlayerGunShot");
             
@@ -264,7 +277,7 @@ namespace Entity.Player
         /// Returns the Value set for Shooting Damage
         /// TODO: Could make this internal, if we put BulletCollider.cs into the same Namespace
         /// </summary>
-        public float GetBulletDamage() 
+        public int GetBulletDamage() 
         { 
             return shootingDamage;;
         }
@@ -276,6 +289,8 @@ namespace Entity.Player
         {
             if (!_meleeIsOnCooldown)
             {
+                _player.velocity = Vector2.zero;
+                
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_playerPosition, meleeRange, enemyLayers);
             
                 // Play Audio
@@ -285,7 +300,7 @@ namespace Entity.Player
                 foreach(Collider2D enemy in hitEnemies)
                 {
                     //give damage to the enemy 
-                    enemy.GetComponent<EnemyState>().Hit((int)meleeDamage);
+                    enemy.GetComponent<EnemyState>().Hit(meleeDamage);
                 }
                 // Handle Animations
                 _animator.SetTrigger(Melee);
