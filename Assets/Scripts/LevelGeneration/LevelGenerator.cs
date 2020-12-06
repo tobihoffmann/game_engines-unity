@@ -546,7 +546,7 @@ namespace LevelGeneration
             start.x = start.x * tileSize;
             start.y = start.y * tileSize;
             PlayerManager.Instance.SetPlayerPosition(start.x, start.y);
-            GameObject mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+            Camera mainCam = Camera.main;
             mainCam.transform.position = new Vector3(start.x, start.y, -45);
         }
 
