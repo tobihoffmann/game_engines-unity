@@ -17,7 +17,7 @@ namespace SceneManagement
 
         private void BackToMainMenu()
         {
-            SceneManager.LoadScene("Scenes/MainMenu");
+            SceneManager.LoadScene(0);
         }
     }
 }

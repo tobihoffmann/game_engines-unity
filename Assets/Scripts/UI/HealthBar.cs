@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Entity.Player;
+using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -41,6 +42,7 @@ namespace UI
 
         private void Start()
         {
+            maxHealth = PlayerManager.Instance.GetPlayerState().GetMaxHitPoints();
             _currentHealth = maxHealth;
         }
 
