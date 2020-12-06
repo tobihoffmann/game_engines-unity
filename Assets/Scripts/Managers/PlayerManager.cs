@@ -1,6 +1,8 @@
-﻿using System;
+using Assets.Scripts.Item_Management;
+using System;
 using Entity.Player;
 using Interfaces;
+using Item_Management;
 using UnityEngine;
 
 namespace Managers
@@ -13,6 +15,10 @@ namespace Managers
         private PlayerState _playerState;
         
         private Vector3 _playerPosition;
+        
+        [SerializeField] private UIInventory  uiInventory;
+        
+        private Inventory inventory;
 
         private Transform _playerTransform;
 
@@ -22,7 +28,13 @@ namespace Managers
             _playerState = player.GetComponent<PlayerState>();
             _playerTransform = player.GetComponent<Transform>();
         }
-        
+
+        private void Start()
+        {
+            inventory = new Inventory();
+            uiInventory.SetInventory(inventory);
+        }
+
         private void Update()
         {
             _playerPosition = _playerTransform.position;
@@ -60,6 +72,11 @@ namespace Managers
         {
             return player;
         }
-        
+
+        public Inventory GetInventory()
+        {
+            return inventory;
+        }
+
     }
 }

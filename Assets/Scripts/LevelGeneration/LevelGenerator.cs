@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Item_Management;
 using Managers;
 using UnityEngine;
 using Pathfinding;
@@ -53,6 +54,7 @@ namespace LevelGeneration
             SpawnEndPoint();
             BuildLevel();
             InitiatePathFinding();
+            SpawnPowerUps();
             _levelGrid = new GameObject[0,0];
         }
 
@@ -510,13 +512,15 @@ namespace LevelGeneration
             Debug.Log(arrayRepresentation + "\n" + "Tiles placed: " + _tileCount + "\n" + "Max Tiles: " + _maxTiles);
         }
         
-
+        
         /// <summary>
         /// Calculate the longest distance between all ending tiles.
         /// </summary>
         /// <returns>A List of two vectors, wich are the furthest away from each other.</returns>
         private Vector2[] GetLongestEndingDistance()
         {
+            int _tempI = 0;
+            int _tempJ = 0;
             Vector2[] startAndEnd = new Vector2[2];
             float distance = 0;
             for (int i = 0; i < _endingPositions.Count - 1; i++)
@@ -529,12 +533,39 @@ namespace LevelGeneration
                     if (tempDistance > distance)
                     {
                         startAndEnd[0] = start;
+                        _tempI = i;
                         startAndEnd[1] = end;
+                        _tempJ = j;
                         distance = tempDistance;
                     }
                 }
             }
+            _endingPositions.Remove(_endingPositions[_tempI]);
+            _endingPositions.Remove(_endingPositions[_tempJ-1]);
             return startAndEnd;
+        }
+
+        private void SpawnPowerUps()
+        {
+            int count = _endingPositions.Count - 1;
+            for (int i = 0; i < count; i++)
+            {
+                int random = Random.Range(0, _endingPositions.Count - 1);
+                Vector2 randomPos = _endingPositions[random];
+                _endingPositions.Remove(_endingPositions[random]);
+                
+                //Select Random Power Up
+                int randomPowerUp = Random.Range(0, 3);
+                Item powerUp;
+                if (randomPowerUp == 0) powerUp = new Item {itemType = Item.ItemType.JuggernautBuff};
+                else if (randomPowerUp == 1) powerUp = new Item {itemType = Item.ItemType.SpeedBuff};
+                else powerUp = new Item {itemType = Item.ItemType.ShootDamageBuff};
+                
+                //Spawn item in World coordinates
+                randomPos.x *= tileSize;
+                randomPos.y *= tileSize;
+                ItemWorld.SpawnItemWorld(randomPos, powerUp);
+            }
         }
 
         /// <summary>
@@ -547,7 +578,7 @@ namespace LevelGeneration
             start.y = start.y * tileSize;
             PlayerManager.Instance.SetPlayerPosition(start.x, start.y);
             Camera mainCam = Camera.main;
-            mainCam.transform.position = new Vector3(start.x, start.y, -45);
+            if (!(mainCam is null)) mainCam.transform.position = new Vector3(start.x, start.y, -45);
         }
 
         /// <summary>

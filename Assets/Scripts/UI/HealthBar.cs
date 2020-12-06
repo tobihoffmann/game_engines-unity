@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Assets.Scripts.Item_Management;
 using Entity.Player;
 using Managers;
 using UnityEngine;
@@ -30,16 +31,22 @@ namespace UI
 
         private void OnEnable()
         {
+            PlayerState.OnMaxHitPointUpdate += UpdateMaxHitPoints;
             PlayerState.OnPlayerHitPointsUpdate += OnHealthUpdated;
-            //TODO: PlayerState.OnPlayerPowerUpsUpdate += OnMaxHealthUpdated
         }
 
         private void OnDisable()
         {
+            PlayerState.OnMaxHitPointUpdate -= UpdateMaxHitPoints;
             PlayerState.OnPlayerHitPointsUpdate -= OnHealthUpdated;
-            //TODO: PlayerState.OnPlayerPowerUpsUpdate -= OnMaxHealthUpdated
         }
 
+        public void UpdateMaxHitPoints(int value)
+        {
+            maxHealth = value;
+            if (maxHealth >= 10) maxHealth = 10;
+        }
+        
         private void Start()
         {
             maxHealth = PlayerManager.Instance.GetPlayerState().GetMaxHitPoints();
