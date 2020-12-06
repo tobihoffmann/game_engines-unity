@@ -538,7 +538,7 @@ namespace LevelGeneration
         }
 
         /// <summary>
-        /// Spawn the player on the start positon
+        /// Spawn the player on the start positon and sets camera position.
         /// </summary>
         private void SpawnPlayer()
         {
@@ -546,7 +546,8 @@ namespace LevelGeneration
             start.x = start.x * tileSize;
             start.y = start.y * tileSize;
             PlayerManager.Instance.SetPlayerPosition(start.x, start.y);
-            //player.transform.position = start;
+            GameObject mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+            mainCam.transform.position = new Vector3(start.x, start.y, -45);
         }
 
         /// <summary>
