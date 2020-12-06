@@ -10,36 +10,39 @@ namespace Item_Management
     { 
         public delegate void OnPowerUpUpdate(int newValue);
         
-        private List<Item> itemList;
+        private List<Item> _itemList;
         
         public event EventHandler OnItemListChanged;
         public static event OnPowerUpUpdate OnJuggernautUpdate;
-        public static event OnPowerUpUpdate onMovementSpeedUpdate;
+        public static event OnPowerUpUpdate OnMovementSpeedUpdate;
+        public static event OnPowerUpUpdate OnShootingDamageUpdate;
         
         public Inventory()
         {
-            itemList = new List<Item>();
+            _itemList = new List<Item>();
         }
 
         public void AddItem(Item item)
         {
-            itemList.Add(item);
+            _itemList.Add(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
-            if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(item.GetValue());
+            if (item.GetItemType() == Item.ItemType.SpeedBuff) OnMovementSpeedUpdate?.Invoke(item.GetValue());
             if (item.GetItemType() == Item.ItemType.JuggernautBuff) OnJuggernautUpdate?.Invoke(item.GetValue());
+            if (item.GetItemType() == Item.ItemType.ShootDamageBuff) OnShootingDamageUpdate?.Invoke(item.GetValue());
         }
 
         public void RemoveItem(Item item)
         {
-            itemList.Remove(item);
+            _itemList.Remove(item);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);
-            if (item.GetItemType() == Item.ItemType.SpeedBuff) onMovementSpeedUpdate?.Invoke(-item.GetValue());
+            if (item.GetItemType() == Item.ItemType.SpeedBuff) OnMovementSpeedUpdate?.Invoke(-item.GetValue());
             if (item.GetItemType() == Item.ItemType.JuggernautBuff) OnJuggernautUpdate?.Invoke(-item.GetValue());
+            if (item.GetItemType() == Item.ItemType.ShootDamageBuff) OnShootingDamageUpdate?.Invoke(-item.GetValue());
         }
 
         public List<Item> GetItemList()
         {
-            return itemList;
+            return _itemList;
         }
     }
 }

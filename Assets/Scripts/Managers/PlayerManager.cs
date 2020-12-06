@@ -16,7 +16,7 @@ namespace Managers
         
         private Vector3 _playerPosition;
         
-        [SerializeField] private UI_Inventory  uiInventory;
+        [SerializeField] private UIInventory  uiInventory;
         
         private Inventory inventory;
 
@@ -30,9 +30,6 @@ namespace Managers
             
             inventory = new Inventory();
             uiInventory.SetInventory(inventory);
-            uiInventory.SetPlayer(player);
-
-
         }
         
         private void Update()

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.Item_Management;
 using UnityEngine;
-namespace Assets.Scripts.Item_Management {
+
+namespace Item_Management {
 
     [Serializable]
     public class Item {
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Item_Management {
         {
             SpeedBuff,
             JuggernautBuff,
-            ShootFastBuff
+            ShootDamageBuff
         }
 
         public ItemType itemType;
@@ -20,10 +20,10 @@ namespace Assets.Scripts.Item_Management {
         {
             switch(itemType)
             {
-                default:
                 case ItemType.SpeedBuff: return ItemAssets.Instance.speedBuffSprite;
                 case ItemType.JuggernautBuff: return ItemAssets.Instance.juggernautBuffSprite;
-                case ItemType.ShootFastBuff: return ItemAssets.Instance.shootFastBuffSprite;
+                case ItemType.ShootDamageBuff: return ItemAssets.Instance.shootFastBuffSprite;
+                default: return null;
             }
         }
 
@@ -31,10 +31,10 @@ namespace Assets.Scripts.Item_Management {
         {
             switch(itemType)
             {
-                default:
-                case ItemType.SpeedBuff: return 3;
+                case ItemType.SpeedBuff: return 1;
                 case ItemType.JuggernautBuff: return 2;
-                case ItemType.ShootFastBuff: return 2;
+                case ItemType.ShootDamageBuff: return 1;
+                default: return 0;
             }
         }
 

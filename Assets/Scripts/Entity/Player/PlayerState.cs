@@ -18,20 +18,8 @@ namespace Entity.Player
         [SerializeField] [Tooltip("maximum hit points of the player")]
         private int maxHitPoints;
 
-        /// <summary>
-        /// The amount of unlocked power-up slots
-        /// </summary>
-        [SerializeField] [Tooltip("Amount of unlocked power-up slots")]
-        private int powerUpSlots;
-        
-        /// <summary>
-        /// The amount of maximum power-up slots a player can have. (Balancing)
-        /// </summary>
-        [SerializeField] [Tooltip("maximum power-up slots a player can have")]
-        private int maxPowerUpSlots;
-        
         public static event PlayerStateChanged OnPlayerHitPointsUpdate;
-        public static event PlayerStateChanged onMaxHitPointUpdate;
+        public static event PlayerStateChanged OnMaxHitPointUpdate;
         public static event PlayerIsDead OnPlayerDeath;
         
         private void OnEnable()
@@ -86,7 +74,7 @@ namespace Entity.Player
         {
             maxHitPoints += value;
             if (maxHitPoints >= 10) maxHitPoints = 10;
-            onMaxHitPointUpdate?.Invoke(maxHitPoints);
+            OnMaxHitPointUpdate?.Invoke(maxHitPoints);
             ChangePlayerHitPoints(value);
         }
     }

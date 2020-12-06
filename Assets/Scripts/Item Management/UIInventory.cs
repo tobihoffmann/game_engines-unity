@@ -1,48 +1,39 @@
 using Assets.Scripts.Item_Management;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Item_Management
 {
-    public class UI_Inventory : MonoBehaviour
+    public class UIInventory : MonoBehaviour
     {
         private Inventory inventory;
+        [SerializeField]
         private Transform itemSlots;
+        [SerializeField]
         private Transform itemSlotTemplate;
-        private GameObject player;
 
         private Controls _controls;
         
-        public void Awake()
-        {
-            _controls = new Controls();
-            itemSlots = transform.Find("itemSlots");
-            itemSlotTemplate = itemSlots.Find("itemSlotTemplate");
-        }
-
-        public void Drop_Item(int index)
-        {
-            Item item = inventory.GetItemList()[index];
-            inventory.RemoveItem(item);
-            ItemWorld.DropItem(player.transform.position ,item);
-        }
+        public void Awake() => _controls = new Controls();
 
         private void OnEnable() =>  _controls.Enable();
         private void OnDisable() => _controls.Disable();
-        
 
         private void Start()
         {
-            _controls.Inventory.DropItem_01.performed += _ => Drop_Item(0);
-            _controls.Inventory.DropItem_02.performed += _ => Drop_Item(1);
-            _controls.Inventory.DropItem_03.performed += _ => Drop_Item(2);
+            _controls.Inventory.DropItem_01.performed += _ => DropItem(0);
+            _controls.Inventory.DropItem_02.performed += _ => DropItem(1);
+            _controls.Inventory.DropItem_03.performed += _ => DropItem(2);
         }
-        
-        public void SetPlayer(GameObject player)
+
+        private void DropItem(int index)
         {
-            this.player = player;
+            Item item = inventory.GetItemList()[index];
+            inventory.RemoveItem(item);
+            ItemWorld.DropItem(PlayerManager.Instance.GetPlayerPosition(), item);
         }
-        
+
         public void SetInventory(Inventory inv)
         {
             inventory = inv;

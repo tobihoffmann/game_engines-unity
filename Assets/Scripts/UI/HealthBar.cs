@@ -31,13 +31,13 @@ namespace UI
 
         private void OnEnable()
         {
-            PlayerState.onMaxHitPointUpdate += UpdateMaxHitPoints;
+            PlayerState.OnMaxHitPointUpdate += UpdateMaxHitPoints;
             PlayerState.OnPlayerHitPointsUpdate += OnHealthUpdated;
         }
 
         private void OnDisable()
         {
-            PlayerState.onMaxHitPointUpdate -= UpdateMaxHitPoints;
+            PlayerState.OnMaxHitPointUpdate -= UpdateMaxHitPoints;
             PlayerState.OnPlayerHitPointsUpdate -= OnHealthUpdated;
         }
 
