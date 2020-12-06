@@ -1,25 +1,39 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Interfaces
 {
-    public class Singleton<T> : MonoBehaviour where T : class
+    public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
-        /// <summary>
-        /// Globally accessible Instance
-        /// </summary>
-        public static T Instance { get; private set; }
+        private static T instance;
+        public static T Instance
+        {
+            get { return instance; }
+        }
 
-        /// <summary>
-        /// checks if there is already a Singleton of this type.
-        /// </summary>
+        public static bool IsInitialized
+        {
+            get { return instance != null; }
+        }
+
         protected virtual void Awake()
         {
-            if (Instance != null)
-                Destroy(gameObject);
+            if (instance != null)
+            {
+                Debug.LogError("[Singleton] Trying to instantiate a second instance of a singleton class.");
+            }
             else
-                Instance = this as T;
-            
-            DontDestroyOnLoad(gameObject);
+            {
+                instance = (T)this;
+            }
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (instance == this)
+            {
+                instance = null;
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Entity.Player
         private Vector2 _mousePosition;
         private Vector2 _playerPosition;
         private Vector2 _shootDirection;
+        private Vector2 _firepointPosition;
         private float t;
         
         
@@ -71,16 +72,18 @@ namespace Entity.Player
         void Shoot()
         {
             AudioManager.Instance.Play("PlayerGunShot");
+            
             _mousePosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            _playerPosition = new Vector2(transform.position.x, transform.position.y);
-            _shootDirection = new Ray2D(_playerPosition, _mousePosition - _playerPosition).direction;
+            _firepointPosition = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
+            _shootDirection = new Ray2D(_firepointPosition, _mousePosition - _firepointPosition).direction;
 
 
             //initiate the bullet
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
             // Makes sure the bullet doesn't collide with the Object that is shooting it
-            Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), transform.GetComponent<BoxCollider2D>());
+            //Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), transform.GetComponent<BoxCollider2D>());
+            Physics2D.IgnoreLayerCollision(12, 21);
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 

@@ -8,20 +8,17 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
-
-        [SerializeField]
-        private GameObject levelChanger;
-
         private LevelChanger _lc;
         protected override void Awake()
         {
-            _lc = levelChanger.GetComponent<LevelChanger>();
+            _lc = GameObject.Find("LevelChanger").GetComponent<LevelChanger>();
             base.Awake();
             PlayerState.OnPlayerDeath += EndGame;
         }
 
         public void ChangeLevel()
         {
+            AudioManager.Instance.FadeOutPlaying(2);
             int currentLevel = GetCurrentLevelIndex();
             
             if (currentLevel >= GetSceneCount())

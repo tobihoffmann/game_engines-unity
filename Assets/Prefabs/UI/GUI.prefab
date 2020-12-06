@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1063605225495387605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6225229247690427508}
+  - component: {fileID: 3054111041634217422}
+  m_Layer: 0
+  m_Name: CursorController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6225229247690427508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063605225495387605}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11160.839, y: 6023.398, z: -1664.1682}
+  m_LocalScale: {x: 29.80372, y: 29.80372, z: 29.80372}
+  m_Children: []
+  m_Father: {fileID: 9007239191295334354}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3054111041634217422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063605225495387605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7461787cfe590e43b2a51ea7a2c8438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  click:
+    m_Name: Click
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0746a441-0a45-4df0-b4b1-d8b02178244e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b6ae9d61-99d8-440c-a602-26caf7a97c37
+      m_Path: <Mouse>/leftButton
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Click
+      m_Flags: 0
+  release:
+    m_Name: Release
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4ca8c764-f37b-4779-b919-c1c3d2fdec2c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4f1d1b7c-fb0b-41a2-bcf5-0c85eca609b5
+      m_Path: <Mouse>/leftButton
+      m_Interactions: Press(behavior=1)
+      m_Processors: 
+      m_Groups: 
+      m_Action: Release
+      m_Flags: 0
+  cursor: {fileID: 2800000, guid: 9192732e0b5c40140a6fcdde52d8dc28, type: 3}
+  cursorClicked: {fileID: 2800000, guid: 0e9ee4c2175891b4b9a12071868486ea, type: 3}
 --- !u!1 &9007239189698855996
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +845,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 9007239189802468856}
+  - {fileID: 6225229247690427508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

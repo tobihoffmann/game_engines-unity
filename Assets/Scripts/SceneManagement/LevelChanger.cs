@@ -8,7 +8,7 @@ namespace SceneManagement
         private Animator _animator;
 
         private int _levelToLoad;
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
         }
