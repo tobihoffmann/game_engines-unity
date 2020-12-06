@@ -11,6 +11,7 @@ namespace SceneManagement
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            DontDestroyOnLoad(this);
         }
     
         public void FadeToLevel(int levelIndex)

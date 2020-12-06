@@ -40,16 +40,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6064350941908553556}
   - component: {fileID: 6064350941908553557}
-  - component: {fileID: 6064350941908553545}
   - component: {fileID: 6064350941908553544}
   - component: {fileID: 6064350941908553546}
   - component: {fileID: 6972373161709781604}
   - component: {fileID: 6064350941908553551}
-  - component: {fileID: 1022930064654387078}
   - component: {fileID: 6491674713736825301}
+  - component: {fileID: 1022930064654387078}
   m_Layer: 21
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,24 +119,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6064350941908553545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6064350941908553558}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1298a5366bbe0334d9c737676ec447eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashDistance: 150
-  mainCam: {fileID: 0}
-  dashLayerMask:
-    serializedVersion: 2
-    m_Bits: 131072
-  CoolDown: 3
 --- !u!61 &6064350941908553544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -231,6 +212,20 @@ MonoBehaviour:
   maxHitPoints: 5
   powerUpSlots: 0
   maxPowerUpSlots: 3
+--- !u!114 &6491674713736825301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064350941908553558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7461787cfe590e43b2a51ea7a2c8438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 2800000, guid: 9192732e0b5c40140a6fcdde52d8dc28, type: 3}
+  cursorClicked: {fileID: 2800000, guid: 0e9ee4c2175891b4b9a12071868486ea, type: 3}
 --- !u!95 &1022930064654387078
 Animator:
   serializedVersion: 3
@@ -250,17 +245,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6491674713736825301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6064350941908553558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7461787cfe590e43b2a51ea7a2c8438, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursor: {fileID: 2800000, guid: 9192732e0b5c40140a6fcdde52d8dc28, type: 3}
-  cursorClicked: {fileID: 2800000, guid: 0e9ee4c2175891b4b9a12071868486ea, type: 3}
