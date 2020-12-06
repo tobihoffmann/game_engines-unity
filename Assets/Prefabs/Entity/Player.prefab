@@ -210,7 +210,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 4194304
-  dashDistance: 2000
+  dashDistance: 4
   dashCooldown: 1
   dashLayerMask:
     serializedVersion: 2
