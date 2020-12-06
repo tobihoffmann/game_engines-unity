@@ -133,8 +133,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesPerSpawnPoint: 4
   minDistanceBetweenActiveSpawnPoints: 30
-  enemyToSpawn: {fileID: 4719819693630697077, guid: 1b286af624e72a5439598a9852e22d8a,
-    type: 3}
+  demons: 4
+  enemies:
+  - {fileID: 4719819693630697077, guid: 1b286af624e72a5439598a9852e22d8a, type: 3}
+  - {fileID: 8733263081706986060, guid: 211f8b68512e7cd42b677840528bfbc5, type: 3}
 --- !u!1001 &1475327116254896673
 PrefabInstance:
   m_ObjectHideFlags: 0

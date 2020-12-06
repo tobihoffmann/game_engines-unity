@@ -7,7 +7,7 @@ namespace LevelGeneration
 {
     public class EnemySpawner : MonoBehaviour
     {
-        //this list holds all potential spawnpoints.
+        //this list holds all potential spawn points.
         internal readonly List<SpawnZone> SpawnZones = new List<SpawnZone>();
         
         //this list holds all the spawnPoints where enemies already spawned.
@@ -18,10 +18,15 @@ namespace LevelGeneration
         
         [SerializeField]
         private int minDistanceBetweenActiveSpawnPoints;
+
+        [SerializeField] [Tooltip("Percentage of Demons, 1 equals 10%, 10 equals 100%")]
+        private int demons;
         
 
-        [SerializeField]
-        private GameObject enemyToSpawn;
+        [SerializeField][Tooltip("Easy Enemy on top, difficult enemy on bottom!")]
+        GameObject[] enemies = new GameObject[2];
+        // [SerializeField]
+        // private GameObject enemyToSpawn;
         
         private void Start()
         {
@@ -30,6 +35,7 @@ namespace LevelGeneration
         
         private void SpawnEnemies()
         {
+            
             int whileCount = 0;
             _spawnZonesWithEnemies.Add(PlayerManager.Instance.GetPlayerPosition());
             while (whileCount < 100)
@@ -52,6 +58,7 @@ namespace LevelGeneration
                 {
                     while (enemyCount < enemiesPerSpawnPoint)
                     {
+                        var enemyToSpawn = Random.Range(1, 11) <= demons ? enemies[1] : enemies[0];
                         Vector2 randomPositionInSphere = spawnPos + Random.insideUnitCircle * firstSpawn.SpawnRadius;
                         Instantiate(enemyToSpawn, randomPositionInSphere, Quaternion.identity);
                         enemyCount++;
