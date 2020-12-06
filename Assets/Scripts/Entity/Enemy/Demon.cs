@@ -81,11 +81,13 @@ namespace Entity.Enemy
             return point;
         }
         
-        protected override void Chase()
+        internal override void Chase()
         {
+            chaseDistance *= 2;
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 4f;
             AIDestSetter.target = _target.transform;
+            
         }
         
         protected override void Attack()

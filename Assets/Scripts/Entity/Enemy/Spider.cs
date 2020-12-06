@@ -54,7 +54,7 @@ namespace Entity.Enemy
             Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
             if (_isExploding == false)
             {
-                if (Distance < explodeDistance)
+                if (Distance < explodeDistance/2)
                     SwitchState(State.Attack);
                 else if (Distance < chaseDistance)
                     SwitchState(State.Chase);
@@ -125,9 +125,11 @@ namespace Entity.Enemy
             Destroy(gameObject);
         }
         
-        protected override void Chase()
+        internal override void Chase()
         {
             _animator.Play("Spider_chase");
+
+            chaseDistance *= 2;
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
             AIDestSetter.target = _target.transform;

@@ -1,5 +1,6 @@
 ﻿
 using AbstractClasses;
+using Entity.Enemy;
 using UnityEngine;
 
 
@@ -26,6 +27,7 @@ public class EnemyState : Damageable
 
     public override void Hit(int damage)
     {
+        gameObject.GetComponent<StateMachine>().Chase();
         ChangeEnemyHitPoints(-damage);
     }
 

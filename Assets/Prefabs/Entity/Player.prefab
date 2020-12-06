@@ -186,7 +186,7 @@ MonoBehaviour:
     type: 3}
   bulletForce: 15
   meleeDamage: 2
-  meleeCoolDown: 0.5
+  meleeCoolDown: 0.8
   meleeRange: 1.5
   enemyLayers:
     serializedVersion: 2
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5c9073b1595c14d9a0bdda81b4035a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 10
-  maxHitPoints: 10
+  hitPoints: 5
+  maxHitPoints: 5
   powerUpSlots: 0
   maxPowerUpSlots: 3
 --- !u!114 &6491674713736825301
