@@ -37,7 +37,6 @@ namespace LevelGeneration
         {
             
             int whileCount = 0;
-            Debug.Log(PlayerManager.Instance.GetPlayerPosition());
             _spawnZonesWithEnemies.Add(PlayerManager.Instance.GetPlayerPosition());
             while (whileCount < 100)
             {

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8733263081706986063}
   - component: {fileID: 8733263081706986062}
   - component: {fileID: 3341060615763806927}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: FlyingDemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -251,7 +251,7 @@ MonoBehaviour:
   radius: 2
   bulletPrefab: {fileID: 7267584932666707647, guid: 5f4052c56d682154b8492920733e4a23,
     type: 3}
-  bulletForce: 30
+  bulletForce: 15
   coolDown: 2
 --- !u!114 &3341060615763806927
 MonoBehaviour:
