@@ -188,6 +188,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 4395454857340172751, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
+        type: 3}
+      propertyPath: enemiesPerSpawnPoint
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395454857340172751, guid: c70c7fc7ddb6d9546a77473389d3f6bf,
+        type: 3}
+      propertyPath: demons
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70c7fc7ddb6d9546a77473389d3f6bf, type: 3}
 --- !u!1001 &302876619
