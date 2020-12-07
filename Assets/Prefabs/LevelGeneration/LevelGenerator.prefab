@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e0875ef8897034a96b2ef46b3f3291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 30
-  levelHeight: 20
+  levelWidth: 58
+  levelHeight: 10
   tileSize: 18
   startRoad: {fileID: 6123173786669320549, guid: 4574de2434e91e344955c6cc004f9c10,
     type: 3}

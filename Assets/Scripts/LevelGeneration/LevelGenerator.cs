@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Item_Management;
 using Managers;
 using UnityEngine;
@@ -38,9 +37,7 @@ namespace LevelGeneration
         private int _aStarHeight;
 
         private EnemySpawner _enemySpawner;
-
-        internal bool ListFillFinished = false;
-
+        
         private void Start()
         {
             _maxTiles = (levelHeight - 4) * (levelWidth - 4) / 2;

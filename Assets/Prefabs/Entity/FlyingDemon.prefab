@@ -251,7 +251,7 @@ MonoBehaviour:
   radius: 2
   bulletPrefab: {fileID: 7267584932666707647, guid: 5f4052c56d682154b8492920733e4a23,
     type: 3}
-  bulletForce: 15
+  bulletForce: 12
   coolDown: 1.5
 --- !u!114 &3341060615763806927
 MonoBehaviour:
