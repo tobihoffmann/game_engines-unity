@@ -540,16 +540,8 @@ namespace LevelGeneration
                     }
                 }
             }
-            if (_tempI < _tempJ)
-            {
-                _endingPositions.Remove(_endingPositions[_tempI]);
-                _endingPositions.Remove(_endingPositions[_tempJ - 1]);
-            }
-            else
-            {
-                _endingPositions.Remove(_endingPositions[_tempJ]);
-                _endingPositions.Remove(_endingPositions[_tempI - 1]);
-            }
+            _endingPositions.Remove(_endingPositions[_tempI]);
+            _endingPositions.Remove(_endingPositions[_tempJ - 1]);
            
             return startAndEnd;
         }
