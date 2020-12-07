@@ -14,5 +14,6 @@ public class HealthKit : MonoBehaviour
     {
         ps = PlayerManager.Instance.GetPlayerState();
         ps.Heal(healAmount);
+        Destroy(this);
     }
 }
