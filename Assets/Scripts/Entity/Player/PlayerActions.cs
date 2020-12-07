@@ -59,6 +59,9 @@ namespace Entity.Player
 
         [SerializeField] [Tooltip("All Layers with Objects to collide with on dash")]
         private LayerMask dashLayerMask;
+        
+        [SerializeField] [Tooltip("All Layers with Objects to collide with on dash")]
+        private Collider2D worldCollider;
 
         private Vector2 _dashDirection;
         private float _dashTimer;
@@ -205,13 +208,12 @@ namespace Entity.Player
 
                 _mousePosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 _dashDirection = new Ray2D(_playerPosition,_mousePosition - _playerPosition).direction;
-                Vector2 playerOffset = _player.GetComponent<BoxCollider2D>().offset;
-                _playerPosition += playerOffset;
+                Vector2 playerOffset = worldCollider.offset + _playerPosition;
                 _dashPosition = _playerPosition + _dashDirection * dashDistance;
                 
                 //Avoid obstacle objects
-                //TODO: FIX IT BABY
-                RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(_playerPosition, _dashDirection, dashDistance, dashLayerMask);
+                //TODO: FIX IT BABY: Can jump through trees from +y to -y
+                RaycastHit2D rcHitToDashPosition = Physics2D.Raycast(playerOffset, _dashDirection, dashDistance, dashLayerMask);
                 if (rcHitToDashPosition.collider != null)
                 {
                     _dashPosition = rcHitToDashPosition.point;
