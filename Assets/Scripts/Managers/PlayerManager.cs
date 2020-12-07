@@ -1,5 +1,8 @@
-﻿using Entity.Player;
+using Assets.Scripts.Item_Management;
+using System;
+using Entity.Player;
 using Interfaces;
+using Item_Management;
 using UnityEngine;
 
 namespace Managers
@@ -12,12 +15,29 @@ namespace Managers
         private PlayerState _playerState;
         
         private Vector3 _playerPosition;
+        
+        [SerializeField] private UIInventory  uiInventory;
+        
+        private Inventory inventory;
+
+        private Transform _playerTransform;
 
         protected override void Awake()
         {
             base.Awake();
             _playerState = player.GetComponent<PlayerState>();
-            _playerPosition = player.GetComponent<Transform>().position;
+            _playerTransform = player.GetComponent<Transform>();
+        }
+
+        private void Start()
+        {
+            inventory = new Inventory();
+            uiInventory.SetInventory(inventory);
+        }
+
+        private void Update()
+        {
+            _playerPosition = _playerTransform.position;
         }
 
         /// <summary>
@@ -27,6 +47,15 @@ namespace Managers
         {
             return _playerPosition;
         }
+        
+        /// <summary>
+        /// Sets the player position as a Vector3
+        /// </summary>
+        public void SetPlayerPosition(float x, float y)
+        {
+            player.GetComponent<Transform>().position = new Vector3(x, y, 0);
+        }
+        
         
         /// <summary>
         /// Returns the PlayerState to access Damaging, Healing, etc
@@ -43,5 +72,11 @@ namespace Managers
         {
             return player;
         }
+
+        public Inventory GetInventory()
+        {
+            return inventory;
+        }
+
     }
 }

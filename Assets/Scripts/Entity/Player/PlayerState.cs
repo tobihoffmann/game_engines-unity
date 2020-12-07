@@ -1,4 +1,7 @@
-﻿using AbstractClasses;
+using AbstractClasses;
+using Assets.Scripts.Item_Management;
+using Item_Management;
+using Managers;
 using UnityEngine;
 
 namespace Entity.Player
@@ -15,21 +18,19 @@ namespace Entity.Player
         [SerializeField] [Tooltip("maximum hit points of the player")]
         private int maxHitPoints;
 
-        /// <summary>
-        /// The amount of unlocked power-up slots
-        /// </summary>
-        [SerializeField] [Tooltip("Amount of unlocked power-up slots")]
-        private int powerUpSlots;
-        
-        /// <summary>
-        /// The amount of maximum power-up slots a player can have. (Balancing)
-        /// </summary>
-        [SerializeField] [Tooltip("maximum power-up slots a player can have")]
-        private int maxPowerUpSlots;
-        
         public static event PlayerStateChanged OnPlayerHitPointsUpdate;
-        public static event PlayerStateChanged OnPlayerPowerUpsUpdate;
+        public static event PlayerStateChanged OnMaxHitPointUpdate;
         public static event PlayerIsDead OnPlayerDeath;
+        
+        private void OnEnable()
+        {
+            Inventory.OnJuggernautUpdate += UpdateMaxHitPoints;
+        }
+
+        private void OnDisable()
+        {
+            Inventory.OnJuggernautUpdate -= UpdateMaxHitPoints;
+        }
         
         
         /// <summary>
@@ -46,22 +47,10 @@ namespace Entity.Player
             if (hitPoints <= 0) 
                 Die();
         }
-
-        /// <summary>
-        /// Unlocks a new power-up slot
-        /// </summary>
-        public void UnlockPowerUpSlot()
-        {
-            int updatedValue = powerUpSlots + 1;
-            if (updatedValue > maxPowerUpSlots) updatedValue = maxPowerUpSlots;
-            updatedValue = Mathf.Clamp(updatedValue, 0, maxPowerUpSlots);
-            powerUpSlots = updatedValue;
-            //throws event with the new amount of unlocked power-up slots as a parameter
-            OnPlayerPowerUpsUpdate?.Invoke(powerUpSlots);
-        }
-
+        
         public override void Hit(int damage)
         {
+            AudioManager.Instance.Play("PlayerDamageTaken");
             ChangePlayerHitPoints(-damage);
         }
 
@@ -74,6 +63,19 @@ namespace Entity.Player
         {
             base.Die();
             OnPlayerDeath?.Invoke();
+        }
+
+        public int GetMaxHitPoints()
+        {
+            return maxHitPoints;
+        }
+
+        private void UpdateMaxHitPoints(int value)
+        {
+            maxHitPoints += value;
+            if (maxHitPoints >= 10) maxHitPoints = 10;
+            OnMaxHitPointUpdate?.Invoke(maxHitPoints);
+            ChangePlayerHitPoints(value);
         }
     }
 }

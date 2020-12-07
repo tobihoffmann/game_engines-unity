@@ -1,5 +1,10 @@
 ﻿
+using AbstractClasses;
+using Entity.Enemy;
+using Entity.Player;
+using Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Entity
 {
@@ -10,11 +15,18 @@ namespace Entity
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-
+            if (collision.collider.GetComponent<Damageable>())
+            {
+                int damage = PlayerManager.Instance.GetPlayer().GetComponent<PlayerActions>().GetBulletDamage();
+                collision.collider.GetComponent<EnemyState>().Hit(damage);
+            }
+            
             //initiate explosion effect and destroy bullet object
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.15f);
             Destroy(gameObject);
+            
+            
 
         }
     }

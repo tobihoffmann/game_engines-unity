@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &652228346503424820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5025930615772238994}
+  m_Layer: 0
+  m_Name: AudioSources
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5025930615772238994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652228346503424820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8692604050619737534}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8692604050619737535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8692604050619737534}
+  - component: {fileID: 8692604050619737533}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8692604050619737534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692604050619737535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5025930615772238994}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8692604050619737533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692604050619737535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fcd314111b8e4f4ba5427672d06385f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PlayerBulletImpact
+    clip: {fileID: 8300000, guid: 3931dc2ddbf00a046b9435d73dbe06fb, type: 3}
+    volume: 0.05
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerDamageTaken
+    clip: {fileID: 8300000, guid: c93912f9eae290d4b845d49bb2092a44, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerDash
+    clip: {fileID: 8300000, guid: 8401649cc74311a4aae0bcaf46dc207e, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep_1
+    clip: {fileID: 8300000, guid: 6aecc56becc8d644ebc33c98fa58178b, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep_2
+    clip: {fileID: 8300000, guid: 0f1f2f3df2e2e6c42b77ed70676f7722, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerMeleeHit
+    clip: {fileID: 8300000, guid: e7711f52209120b4cb094c26bfd8dd40, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerMeleeSwing
+    clip: {fileID: 8300000, guid: 779e43a089e4ce44999d881092744a21, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: SpiderBeep
+    clip: {fileID: 8300000, guid: a1c4252dd01438e4a9b4f1efd580d015, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: SpiderExplosion
+    clip: {fileID: 8300000, guid: 15d0fe769f6de3b48adadc8b062d8cb1, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: SoundTrackWasteland
+    clip: {fileID: 8300000, guid: 5dacfcaceb08b284f86e65c2b08df45e, type: 3}
+    volume: 0.05
+    loop: 1
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerGunShot
+    clip: {fileID: 8300000, guid: 6d2293a874c3b994c8329de27cdbed06, type: 3}
+    volume: 0.3
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: SoundTrackDrone
+    clip: {fileID: 8300000, guid: aab264dd5582675409a33076e93b4c88, type: 3}
+    volume: 0.05
+    loop: 1
+    spatialBlend: 0
+    source: {fileID: 0}
+  audioSources: {fileID: 652228346503424820}

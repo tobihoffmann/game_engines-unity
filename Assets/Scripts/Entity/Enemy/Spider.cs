@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AbstractClasses;
 using Entity.Player;
 using Managers;
 using Pathfinding;
@@ -26,6 +27,7 @@ namespace Entity.Enemy
         
         [SerializeField] [Tooltip("Wander radius of AI.")]
         private float radius = 2f;
+        
 
         private IAstarAI _ai;
         private AIPath _aiPath;
@@ -52,7 +54,7 @@ namespace Entity.Enemy
             Distance = Vector2.Distance(Origin.transform.position, _target.transform.position);
             if (_isExploding == false)
             {
-                if (Distance < explodeDistance)
+                if (Distance < explodeDistance/2)
                     SwitchState(State.Attack);
                 else if (Distance < chaseDistance)
                     SwitchState(State.Chase);
@@ -123,9 +125,10 @@ namespace Entity.Enemy
             Destroy(gameObject);
         }
         
-        protected override void Chase()
+        internal override void Chase()
         {
             _animator.Play("Spider_chase");
+            
             //Increase movement speed while in chase mode
             _aiPath.maxSpeed = 8f;
             AIDestSetter.target = _target.transform;
@@ -147,5 +150,6 @@ namespace Entity.Enemy
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, explodeDistance);
         }
+        
     }
 }
