@@ -540,14 +540,23 @@ namespace LevelGeneration
                     }
                 }
             }
-            _endingPositions.Remove(_endingPositions[_tempI]);
-            _endingPositions.Remove(_endingPositions[_tempJ-1]);
+            if (_tempI < _tempJ)
+            {
+                _endingPositions.Remove(_endingPositions[_tempI]);
+                _endingPositions.Remove(_endingPositions[_tempJ - 1]);
+            }
+            else
+            {
+                _endingPositions.Remove(_endingPositions[_tempJ]);
+                _endingPositions.Remove(_endingPositions[_tempI - 1]);
+            }
+           
             return startAndEnd;
         }
 
         private void SpawnPowerUps()
         {
-            int count = _endingPositions.Count - 1;
+            int count = _endingPositions.Count;
             for (int i = 0; i < count; i++)
             {
                 int random = Random.Range(0, _endingPositions.Count - 1);
