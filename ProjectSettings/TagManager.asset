@@ -8,6 +8,7 @@ TagManager:
   - Junction
   - t_Junction
   - x_Junction
+  - TEST
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - 
   - Player
   - AI
-  - 
+  - Hitbox
   - 
   - 
   - 
