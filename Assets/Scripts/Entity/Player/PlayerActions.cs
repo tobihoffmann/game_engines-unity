@@ -301,8 +301,10 @@ namespace Entity.Player
             if (!_meleeIsOnCooldown)
             {
                 _player.velocity = Vector2.zero;
+
+                Vector2 hitBoxOrigin = new Vector2(_playerPosition.x, _playerPosition.y + 0.5f);
                 
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_playerPosition, meleeRange, enemyLayers);
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitBoxOrigin, meleeRange, enemyLayers);
             
                 // Play Audio
                 if (hitEnemies.Length > 0) AudioManager.Instance.Play("PlayerMeleeHit");

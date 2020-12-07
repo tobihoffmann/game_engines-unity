@@ -188,7 +188,7 @@ MonoBehaviour:
   bulletForce: 15
   meleeDamage: 2
   meleeCoolDown: 0.8
-  meleeRange: 1.5
+  meleeRange: 1.7
   enemyLayers:
     serializedVersion: 2
     m_Bits: 4194304
@@ -211,8 +211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 5
   maxHitPoints: 5
-  powerUpSlots: 0
-  maxPowerUpSlots: 3
 --- !u!114 &6491674713736825301
 MonoBehaviour:
   m_ObjectHideFlags: 0
