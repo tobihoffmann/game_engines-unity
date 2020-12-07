@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfceaa21eebe4ad4db219f6d68c054f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesPerSpawnPoint: 4
-  minDistanceBetweenActiveSpawnPoints: 30
-  demons: 4
+  enemiesPerSpawnPoint: 5
+  minDistanceBetweenActiveSpawnPoints: 27
+  demons: 2
   enemies:
   - {fileID: 4719819693630697077, guid: 1b286af624e72a5439598a9852e22d8a, type: 3}
   - {fileID: 8733263081706986060, guid: 211f8b68512e7cd42b677840528bfbc5, type: 3}

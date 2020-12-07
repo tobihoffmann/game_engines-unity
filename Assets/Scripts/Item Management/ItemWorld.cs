@@ -19,7 +19,7 @@ namespace Item_Management
         public static ItemWorld DropItem(Vector3 dropPosition, Item item)
         {
             Vector3 randomDirection = UtilsClass.GetRandomDir();
-            ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDirection * 1.5f, item);
+            ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDirection * 2.1f, item);
             return itemWorld;
         }
     
