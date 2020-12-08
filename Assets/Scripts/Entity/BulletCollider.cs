@@ -1,10 +1,9 @@
 ﻿
 using AbstractClasses;
-using Entity.Enemy;
 using Entity.Player;
 using Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 namespace Entity
 {

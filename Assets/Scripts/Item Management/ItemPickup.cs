@@ -1,3 +1,5 @@
+using System;
+using Entity.Player;
 using Managers;
 using UnityEngine;
 
@@ -14,7 +16,6 @@ namespace Item_Management
                 inventory.AddItem(itemWorld.GetItem());
                 itemWorld.DestroySelf();
             }
-            
         }
         
         

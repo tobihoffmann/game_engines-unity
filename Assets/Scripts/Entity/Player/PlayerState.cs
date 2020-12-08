@@ -1,4 +1,4 @@
-using AbstractClasses;
+﻿using AbstractClasses;
 using Assets.Scripts.Item_Management;
 using Item_Management;
 using Managers;
@@ -75,7 +75,6 @@ namespace Entity.Player
             maxHitPoints += value;
             if (maxHitPoints >= 10) maxHitPoints = 10;
             OnMaxHitPointUpdate?.Invoke(maxHitPoints);
-            ChangePlayerHitPoints(value);
         }
     }
 }

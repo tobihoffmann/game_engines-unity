@@ -13,6 +13,12 @@ public class EnemyState : Damageable
     [SerializeField] [Tooltip("maximum hit points of the enemy")]
     private int maxHitPoints;
 
+    [SerializeField][Range(0,100)]
+    private int dropChance;
+
+    [SerializeField]
+    private GameObject healthKit;
+
     public void ChangeEnemyHitPoints(int changeBy)
     {
         int updatedValue = hitPoints + changeBy;
@@ -21,8 +27,16 @@ public class EnemyState : Damageable
         hitPoints = updatedValue;
         //throws event with the new health value as a parameter
         
-        if (hitPoints <= 0) 
+        if (hitPoints <= 0)
+        {
+            int r = Random.Range(0, 100);
+            if (gameObject.GetComponent<Demon>() != null && r <= dropChance)
+            {
+                Debug.Log("this is true");
+                Instantiate(healthKit, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
+        }
     }
 
     public override void Hit(int damage)

@@ -267,3 +267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 3
   maxHitPoints: 3
+  dropChance: 20
+  healthKit: {fileID: 4571704244605799759, guid: 041965265807cb24586212456ae08d11,
+    type: 3}
