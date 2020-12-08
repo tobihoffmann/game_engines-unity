@@ -29,12 +29,13 @@ public class EnemyState : Damageable
         
         if (hitPoints <= 0)
         {
-            Destroy(gameObject);
             int r = Random.Range(0, 100);
             if (gameObject.GetComponent<Demon>() != null && r <= dropChance)
             {
-                Instantiate(healthKit, transform);
+                Debug.Log("this is true");
+                Instantiate(healthKit, transform.position, Quaternion.identity);
             }
+            Destroy(gameObject);
         }
     }
 

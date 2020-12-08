@@ -258,8 +258,9 @@ namespace Entity.Player
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
                 // Makes sure the bullet doesn't collide with the Object that is shooting it
-                Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), transform.GetComponent<BoxCollider2D>());
-
+                Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), gameObject.GetComponent<BoxCollider2D>());
+                Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), worldCollider);
+                
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
                 //turn the bullet in the correct direction

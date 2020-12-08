@@ -7,13 +7,14 @@ public class HealthKit : MonoBehaviour
     [SerializeField]
     private int healAmount;
 
-    PlayerState ps;
-    
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void  OnTriggerEnter2D(Collider2D other)
     {
-        ps = PlayerManager.Instance.GetPlayerState();
-        ps.Heal(healAmount);
-        Destroy(this);
+        Debug.Log("DA");
+        if (other.GetComponent<PlayerState>() != null) 
+        {
+            Debug.Log("HIER");
+            PlayerManager.Instance.GetPlayerState().Heal(healAmount);
+            Destroy(gameObject);
+        }
     }
 }

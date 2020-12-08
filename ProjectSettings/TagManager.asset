@@ -9,6 +9,7 @@ TagManager:
   - t_Junction
   - x_Junction
   - TEST
+  - Worldcollider
   layers:
   - Default
   - TransparentFX

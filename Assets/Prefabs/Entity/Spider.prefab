@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeDistance: 2.5
-  chaseDistance: 12
+  chaseDistance: 8
   damage: 1
   exTime: 0.5
   radius: 3
